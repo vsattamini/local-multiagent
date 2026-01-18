@@ -34,6 +34,13 @@ Requirements:
     async def _generate_code(self, prompt: str) -> str:
         """Generate code using the model (placeholder)"""
         # This would call the actual SLM
+        if "factorial" in prompt.lower():
+            return '''def factorial(n):
+    """Calculate factorial of n."""
+    if n == 0:
+        return 1
+    return n * factorial(n-1)
+'''
         return f'''def add_numbers(a, b):
     """Add two numbers and return the result."""
     return a + b
