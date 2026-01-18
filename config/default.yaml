@@ -1,0 +1,21 @@
+system:
+  max_memory_gb: 8
+  max_tokens: 4000
+  
+models:
+  default_model: "default-model"
+  model_path: "path/to/model"
+  
+agents:
+  coordinator:
+    name: "main-coordinator"
+    model: "default-model"
+  
+evaluation:
+  swebench:
+    dataset_path: null
+    lite_mode: true
+    
+logging:
+  level: "INFO"
+  file: "logs/system.log"

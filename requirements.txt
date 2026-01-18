@@ -1,0 +1,9 @@
+transformers>=4.30.0
+pydantic>=2.0.0
+asyncio
+fastapi>=0.100.0
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+psutil
+datasets
+

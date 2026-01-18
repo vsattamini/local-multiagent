@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+venv/
+.idea/
+.vscode/
+*.swp
+
+/models
+*execution_log*.txt
