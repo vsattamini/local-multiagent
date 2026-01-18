@@ -12,20 +12,25 @@ class TestWriter(BaseAgent):
         
         return tests
         
-    def _build_test_prompt(self, task: Task) -> str:
-        """Build prompt for test generation"""
-        context = task.context or {}
         return f"""
+<|im_start|>system
+You are an expert QA Engineer specialized in writing robust Python tests using pytest.
+Your goal is to write a concise, strictly typed, and correct test suite for the provided code/task.
+
+Constraints:
+1. Output ONLY the Python code for the tests.
+2. Do NOT add any conversational text, explanations, or "Here is the code".
+3. Wrap code in ```python ... ``` blocks.
+4. Keep the tests focused and atomic.
+5. Limit the output to the most critical test cases (Success, Edge Case, Failure).
+<|im_end|>
+<|im_start|>user
 Write comprehensive tests for:
 {task.description}
 
 Context: {context}
-
-Requirements:
-- Use pytest framework
-- Include edge cases
-- Test both success and failure scenarios
-- Follow test naming conventions
+<|im_end|>
+<|im_start|>assistant
 """
         
     async def _generate_tests(self, prompt: str) -> str:

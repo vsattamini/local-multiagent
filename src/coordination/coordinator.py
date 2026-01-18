@@ -7,6 +7,7 @@ from src.agents.specialists.code_generator import CodeGenerator
 from src.agents.specialists.test_writer import TestWriter
 from src.agents.specialists.debugger import Debugger
 from src.agents.specialists.reviewer import Reviewer
+from src.utils.validator import validate_python_code
 
 class Coordinator(BaseAgent):
     def __init__(self, name: str, model_name: str):
@@ -52,11 +53,43 @@ class Coordinator(BaseAgent):
         
         agent = self._get_agent_for_task(subtask)
         if agent:
-             # In a real system we might reuse agent instances or manage their lifecycle
-             result = await agent.process_task(subtask)
-             subtask.result = result
-             subtask.status = TaskStatus.COMPLETED
-             return result
+             # Validation Loop
+             max_retries = 2
+             attempt = 0
+             original_description = subtask.description
+             
+             while attempt <= max_retries:
+                 # Process task
+                 result = await agent.process_task(subtask)
+                 
+                 # Only validate for code-generating agents
+                 if subtask.type in [AgentType.CODE_GENERATOR, AgentType.TEST_WRITER]:
+                     validation = validate_python_code(result)
+                     if validation["valid"]:
+                         subtask.result = result
+                         subtask.status = TaskStatus.COMPLETED
+                         return result
+                     else:
+                         # Invalid code. Retry if possible
+                         attempt += 1
+                         if attempt <= max_retries:
+                             print(f"Validation failed (Attempt {attempt}): {validation['error']}. Retrying...")
+                             # Update task description with feedback
+                             subtask.description = (
+                                 f"{original_description}\n\n"
+                                 f"PREVIOUS ATTEMPT FAILED WITH SYNTAX ERROR:\n"
+                                 f"{validation['error']}\n"
+                                 f"Please fix the syntax and regenerate the code."
+                             )
+                         else:
+                             # Retries exhausted
+                             subtask.status = TaskStatus.FAILED
+                             return f"Generation failed after {max_retries} retries. Last error: {validation['error']}\nCode:\n{result}"
+                 else:
+                     # Non-code agents don't need syntax validation
+                     subtask.result = result
+                     subtask.status = TaskStatus.COMPLETED
+                     return result
              
         # Fallback
         subtask.status = TaskStatus.FAILED

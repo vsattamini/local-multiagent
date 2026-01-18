@@ -18,17 +18,18 @@ class CodeGenerator(BaseAgent):
     def _build_code_prompt(self, task: Task) -> str:
         """Build prompt for code generation"""
         context = task.context or {}
-        return f"""
-Write code for the following task:
+        return f"""<|im_start|>system
+You are an expert Python coder.
+Constraints:
+1. Write valid Python code.
+2. Output ONLY the code.
+3. NO conversational text or explanations.
+4. Wrap in ```python``` blocks.
+<|im_end|>
+<|im_start|>user
 {task.description}
-
-Context: {context}
-
-Requirements:
-- Write clean, readable code
-- Follow Python best practices
-- Include necessary imports
-- Add docstrings
+Context: {context}<|im_end|>
+<|im_start|>assistant
 """
         
     async def _generate_code(self, prompt: str) -> str:

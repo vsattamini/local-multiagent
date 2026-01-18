@@ -7,6 +7,8 @@ A swarm-adjacent multi-agent system using Small Language Models (SLMs) that can 
 - **Hybrid Swarm Architecture**: Lightweight coordinator with specialist agents
 - **Memory Efficient**: Sequential agent execution within GPU constraints
 - **Local Processing**: Runs entirely on local hardware
+- **Self-Correction**: AST-based syntax validation with automatic retry loops
+- **Reliable Generation**: Strictly constrained prompts to prevent hallucinations and verbose output
 - **SWEBench Integration**: Evaluated on SWEBench Lite coding tasks
 - **Extensible**: Easy to add new specialist agents
 

@@ -25,14 +25,19 @@ class MultiAgentSystem:
         # Placeholder: await self.model_manager.load_model("default-model", "path/to/model")
         logger.info("System initialized")
         
-    async def process_task(self, task_description: str) -> str:
+    async def process_task(self, task_description: str, history: Optional[Dict[str, Any]] = None) -> str:
         """Process a single task through the multi-agent system"""
         from .agents.types import Task, AgentType
         
+        context = {}
+        if history:
+            context["history"] = history
+
         task = Task(
             id="main-task",
             type=AgentType.COORDINATOR,
-            description=task_description
+            description=task_description,
+            context=context
         )
         
         result = await self.coordinator.process_task(task)
