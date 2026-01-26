@@ -6,6 +6,7 @@ venv/
 .idea/
 .vscode/
 *.swp
+.claude
 
 /models
 *execution_log*.txt
