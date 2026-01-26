@@ -1,0 +1,37 @@
+# Phase 3 Experiment: Experimental (Affinity Routing)
+name: "exp3_experimental"
+description: "SWE-bench Lite - 3 agents with emergent specialization"
+
+model:
+  path: "models/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf"
+  type: "llama_cpp"
+  context_length: 8192
+  temperature: 0.2
+  max_tokens: 2048
+
+experiment:
+  condition: "experimental"
+  n_agents: 3
+  routing_strategy: "affinity"  # Emergent specialization through context accumulation
+
+dataset:
+  name: "SWE-bench_Lite"
+  curated_file: "data/swebench_curated.json"
+  n_issues: 50
+
+execution:
+  timeout: 1800
+  run_tests: false
+  checkpoint_frequency: 5
+
+output:
+  dir: "results/swebench/experimental"
+  save_intermediate: true
+  log_level: "INFO"
+
+# Specialization settings
+specialization:
+  enable_context_accumulation: true
+  max_examples_per_agent: 10
+  similarity_threshold: 0.7
+  update_frequency: "per_task"

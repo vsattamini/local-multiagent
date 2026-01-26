@@ -1,0 +1,19 @@
+{
+  "model_path": "models/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf",
+  "context_length": 4096,
+  "max_tokens": 512,
+  "n_agents": 6,
+  "max_context_examples": 5,
+  "router_type": "affinity",
+  "router_temperature": 0.1,
+  "n_tasks": 164,
+  "task_types": [
+    "string",
+    "math",
+    "list",
+    "logic"
+  ],
+  "snapshot_interval": 10,
+  "timeout": 5,
+  "random_seed": 42
+}

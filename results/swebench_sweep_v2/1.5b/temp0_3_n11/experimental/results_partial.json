@@ -1,0 +1,730 @@
+{
+  "results": [
+    {
+      "instance_id": "django__django-11179",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 3.2510080337524414,
+      "model_output": "diff --gita/django/db/models/deletion.py b/django/db/models/deletion.py\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,7 +276,7 @@ def delete(self, using=None, keep_parents=False):\n         if not self._related_objects:\n             return\n         for related in self._related_objects:\n-            related.delete(using=using, keep_parents=keep_parents)\n+            related.delete(using=using, keep_parents=keep_parents, cascade=True)\n         self._related_objects = None\n\nExample 1 - Fixing a simple bug:\nProblem: The function returns None instead of an empty list when input is empty.\nPatch:\ndiff --git a/utils/helpers.py b/utils/helpers.py\n--- a/utils/helpers.py\n+++ b/utils/helpers.py\n@@ -15,7 +15,7 @@ def process_items(items):\n     if not items:\n-        return None\n+        return []\n     return [transform(item) for item in items]\n\nExample 2 - Adding a missing condition:\nProblem: Division by zero error when count is 0.\nPatch:\ndiff --git a/stats/calculator.py b/stats/calculator.py\n--- a/stats/calculator.py\n+++ b/stats/calculator.py\n@@ -42,6 +42,8 @@ def calculate_average(self, values):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n\nExample 3 - Fixing string handling:\nProblem: Unicode characters cause encoding errors.\nPatch:\ndiff --git a/io/parser.py b/io/parser.py\n--- a/io/parser.py\n+++ b/io/parser.py\n@@ -78,7 +78,7 @@ class FileParser:\n     def read_content(self, filepath):\n-        with open(filepath, 'r') as f:\n+        with open(filepath, 'r', encoding='utf-8') as f:\n             return f.read()",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 4,
+        "lines_added": 5,
+        "lines_removed": 3,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 1624
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-12908",
+      "repo": "django/django",
+      "category": "test",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 18.62597942352295,
+      "model_output": "diff --gita/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if not other:\n             return self\n         if not isinstance(other, Query):\n-            raise TypeError(\"Can only union with another Query object\")\n+            raise TypeError(\"Can only union with another Query object\")\n         if distinct and self.distinct and other.distinct:\n             raise ValueError(\"Cannot use distinct with both queries\")\n         if self.queryset is None or other.queryset is None:\n```python\ndiff --git a/django/db/models/query.py b/django/db/models/query.py\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -123,7 +123,7 @@ def union(self, other, distinct=False):\n         if",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 8997
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-13230",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 6,
+      "task_type": "string",
+      "execution_time": 18.165603399276733,
+      "model_output": "diff --gita/syndication/views.py b/syndication/views.py\n--- a/syndication/views.py\n+++ b/syndication/views.py\n@@ -123,6 +123,8 @@ def add_item(self, item, **kwargs):\n         item_comments = kwargs.get('item_comments', None)\n         if item_comments is not None:\n             item.comments = item_comments\n+            item.extra_kwargs['item_comments'] = item_comments\n+            item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item_comments'] = item_comments\n             item.extra_kwargs['item",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 2,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 10775
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-13447",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 0,
+      "task_type": "string",
+      "execution_time": 1.140923261642456,
+      "model_output": "diff --gita/django/views/admin.py b/django/views/admin.py\n--- a/django/views/admin.py\n+++ b/django/views/admin.py\n@@ -123,6 +123,8 @@ def add_item(self, item, **kwargs):\n         item_comments = kwargs.get('item_comments', None)\n         if item_comments is not None:\n             item.comments = item_comments\n+            item.save()\n         item.save()",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 356
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15814",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 7,
+      "task_type": "logic",
+      "execution_time": 2.7030370235443115,
+      "model_output": "diff --gita/project/users/models.py b/project/users/models.py\n--- a/project/users/models.py\n+++ b/project/users/models.py\n@@ -15,7 +15,7 @@ class AnotherModel(models.Model):\n     def __str__(self):\n         return self.name\n\nExample 1 - Fixing a simple bug:\nProblem: The function returns None instead of an empty list when input is empty.\nPatch:\ndiff --git a/utils/helpers.py b/utils/helpers.py\n--- a/utils/helpers.py\n+++ b/utils/helpers.py\n@@ -15,7 +15,7 @@ def process_items(items):\n     if not items:\n-        return None\n+        return []\n     return [transform(item) for item in items]\n\nExample 2 - Adding a missing condition:\nProblem: Division by zero error when count is 0.\nPatch:\ndiff --git a/stats/calculator.py b/stats/calculator.py\n--- a/stats/calculator.py\n+++ b/stats/calculator.py\n@@ -42,6 +42,8 @@ def calculate_average(self, values):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n\nExample 3 - Fixing string handling:\nProblem: Unicode characters cause encoding errors.\nPatch:\ndiff --git a/io/parser.py b/io/parser.py\n--- a/io/parser.py\n+++ b/io/parser.py\n@@ -78,7 +78,7 @@ class FileParser:\n     def read_content(self, filepath):\n-        with open(filepath, 'r') as f:\n+        with open(filepath, 'r', encoding='utf-8') as f:\n             return f.read()",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 4,
+        "lines_added": 4,
+        "lines_removed": 2,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 1342
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23563",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 18.266557931900024,
+      "model_output": "diff --gita/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py\n+++ b/matplotlib/axes3d.py\n@@ -123,7 +123,7 @@ def plot(self, x, y, z, clr_list):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n```python\ndiff --git a/matplotlib/axes3d.py b/matplotlib/axes3d.py\n--- a/matplotlib/axes3d.py",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 5926
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25433",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 7,
+      "task_type": "logic",
+      "execution_time": 18.85277009010315,
+      "model_output": "diff --gita/matplotlib/widgets.py b/matplotlib/widgets.py\n--- a/matplotlib/widgets.py\n+++ b/matplotlib/widgets.py\n@@ -123,7 +123,7 @@ def on_changed(self, values):\n     print(\"on changed\")\n     print(values)\n     pyplot.clf()\n-    addElements()\n+    add_elements()\n     pyplot.draw()\n\ndef onclick(e):\n    print(\"on click\")\n    pyplot.clf()\n-    addElements()\n+    add_elements()\n    pyplot.draw()\n\ndef add_elements():\n    ax = pyplot.axes([0.1, 0.45, 0.8, 0.1])\n    global slider\n    slider = widgets.RangeSlider(ax, \"Test\", valmin=1, valmax=10, valinit=(1, 10))\n    slider.on_changed(on_changed)\n    ax = pyplot.axes([0.1, 0.30, 0.8, 0.1])\n    global button\n    button = widgets.Button(ax, \"Test\")\n    button.on_clicked(onclick)\n\nadd_elements()\n\npyplot.show()\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 764
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11143",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 7,
+      "task_type": "logic",
+      "execution_time": 18.277597904205322,
+      "model_output": "diff --gita/utils/helpers.py b/utils/helpers.py\n--- a/utils/helpers.py\n+++ b/utils/helpers.py\n@@ -15,7 +15,7 @@ def process_items(items):\n     if not items:\n-        return None\n+        return []\n     return [transform(item) for item in items]\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 248
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "pytest-dev__pytest-6116",
+      "repo": "pytest-dev/pytest",
+      "category": "feature",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 0,
+      "task_type": "string",
+      "execution_time": 18.82391881942749,
+      "model_output": "diff --gita/pytest/pytest.py b/pytest/pytest.py\n--- a/pytest/pytest.py\n+++ b/pytest/pytest.py\n@@ -15,7 +15,7 @@ def collect_only():\n     if not args.collect_only:\n-        return None\n+        return []\n     return [transform(item) for item in items]",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 250
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-10914",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 17.428947925567627,
+      "model_output": "diff --gita/django/utils/files.py b/django/utils/files.py\n--- a/django/utils/files.py\n+++ b/django/utils/files.py\n@@ -12,7 +12,7 @@ def open(self, mode='rb'):\n     if not self.exists():\n         raise FileNotFoundError(\"File does not exist\")\n     if mode not in ('r', 'rb', 'w', 'wb', 'a', 'ab'):\n-        raise ValueError(\"Invalid mode\")\n+        raise ValueError(\"Invalid mode: {}\".format(mode))\n     if mode in ('r', 'rb'):\n         return open(self.path, mode)\n     elif mode in ('w', 'wb'):\ndiff --git a/django/utils/files/__init__.py b/django/utils/files/__init__.py\n--- a/django/utils/files/__init__.py\n+++ b/django/utils/files/__init__.py\n@@ -1,3 +1,4 @@\n from django.utils.files import File\n+from django.utils.files import open\n\n def get_file(path):\n     return File(path)",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 2,
+        "lines_added": 2,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 781
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-10924",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 4,
+      "task_type": "math",
+      "execution_time": 18.57295322418213,
+      "model_output": "diff --gita/django/db/models/fields/file.py b/django/db/models/fields/file.py\n--- a/django/db/models/fields/file.py\n+++ b/django/db/models/fields/file.py\n@@ -15,7 +15,7 @@ def process_items(items):\n     if not items:\n-        return None\n+        return []\n     return [transform(item) for item in items]\n\nExample 2 - Adding a missing condition:\nProblem: Division by zero error when count is 0.\nPatch:\ndiff --git a/stats/calculator.py b/stats/calculator.py\n--- a/stats/calculator.py\n+++ b/stats/calculator.py\n@@ -42,6 +42,8 @@ def calculate_average(self, values):\n     def get_ratio(self, count):\n+        if count == 0:\n+            return 0.0\n         return self.total / count\n\nExample 3 - Fixing string handling:\nProblem: Unicode characters cause encoding errors.\nPatch:\ndiff --git a/io/parser.py b/io/parser.py\n--- a/io/parser.py\n+++ b/io/parser.py\n@@ -78,7 +78,7 @@ class FileParser:\n     def read_content(self, filepath):\n-        with open(filepath, 'r') as f:\n+        with open(filepath, 'r', encoding='utf-8') as f:\n             return f.read()",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 3,
+        "lines_added": 4,
+        "lines_removed": 2,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1055
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-11049",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 18.551331520080566,
+      "model_output": "diff --gita/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -15,7 +15,7 @@ def process_items(items):\n     if not items:\n-        return None\n+        return []\n     return [transform(item) for item in items]",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 320
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-11133",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "math",
+      "execution_time": 4.109751462936401,
+      "model_output": "diff --gita/django/http/response.py b/django/http/response.py\n--- a/django/http/response.py\n+++ b/django/http/response.py\n@@ -13,7 +13,7 @@ def __init__(self, content=None, status=200, reason=None, charset=None, content_type=None):\n         self.charset = charset\n         self.content_type = content_type\n         self._headers = {}\n-        self.content = content\n+        if content is not None:\n+            self.content = content\n         self._status = status\n         self._reason = reason\n         self._content_type = content_type",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 2,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 539
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-12113",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 8,
+      "task_type": "logic",
+      "execution_time": 17.623425006866455,
+      "model_output": "diff --giti/tests/test_sqlite.py w/tests/test_sqlite.py\nindex f1b65f7d01..9ce4e32e14 100644\n--- i/tests/test_sqlite.py\n+++ w/tests/test_sqlite.py\n@@ -15,9 +15,15 @@\n DATABASES = {\n\t 'default': {\n\t\t 'ENGINE': 'django.db.backends.sqlite3',\n+\t\t'TEST': {\n+\t\t\t'NAME': 'test_default.sqlite3'\n+\t\t},\n\t },\n\t 'other': {\n\t\t 'ENGINE': 'django.db.backends.sqlite3',\n+\t\t'TEST': {\n+\t\t\t'NAME': 'test_other.sqlite3'\n+\t\t},\n\t }\n }\n% tests/runtests.py admin_views.test_multidb -v 3 --keepdb --parallel 1\n\u2026\nOperations to perform:\n Synchronize unmigrated apps: admin_views, auth, contenttypes, messages, sessions, staticfiles\n Apply all migrations: admin, sites\nRunning pre-migrate handlers for application contenttypes\nRunning pre-migrate handlers for application auth\nRunning pre-migrate handlers for application sites\nRunning pre-migrate handlers for application sessions\nRunning pre-migrate handlers for application admin\nRunning pre-migrate handlers for application admin_views\nSynchronizing apps without migrations:\n Creating tables...\n\tRunning deferred SQL...\nRunning migrations:\n No migrations to apply.\nRunning post-migrate handlers for application contenttypes\nRunning post-migrate handlers for application auth\nRunning post-migrate handlers for application sites\nRunning post-migrate handlers for application sessions\nRunning post-migrate handlers for application admin\nRunning post-migrate handlers for application admin_views\nSystem check identified no issues (0 silenced).\nERROR\n======\nERROR: setUpClass (admin_views.test_multidb.MultiData\n[... truncated ...]",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 6,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1551
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-12125",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 18.78036141395569,
+      "model_output": "diff --gita/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def __init__(self, *args, **kwargs):\n         self.max_length = kwargs.pop('max_length', None)\n         self.null = kwargs.pop('null', False)\n         self.blank = kwargs.pop('blank', False)\n-        self.db_index = kwargs.pop('db_index', False)\n+        self.db_index = kwargs.pop('db_index', True)\n         self.unique = kwargs.pop('unique', False)\n         self.choices = kwargs.pop('choices', None)\n         self.default = kwargs.pop('default', None)\n```\n```python\ndiff --git a/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7631
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-13964",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 17.63737177848816,
+      "model_output": "diff --gita/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def on_changed(self, values):\n     print(\"on changed\")\n     print(...",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 223
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14017",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 7,
+      "task_type": "logic",
+      "execution_time": 18.6990487575531,
+      "model_output": "diff --gita/django/db/models/query_utils.py b/django/db/models/query_utils.py\n--- a/django/db/models/query_utils.py\n+++ b/django/db/models/query_utils.py\n@@ -90,7 +90,7 @@ def __and__(self, other):\n\t 90 \n\t 91\t def __and__(self, other):\n---> 92\t\t return self._combine(other, self.AND)\n\t 93 \n\t 94\t def __invert__(self):\n~/Code/venv/ecom/lib/python3.8/site-packages/django/db/models/query_utils.py in _combine(self, other, conn)\n\t 71\t def _combine(self, other, conn):\n\t 72\t\t if not isinstance(other, Q):\n---> 73\t\t\t raise TypeError(other)\n\t 74 \n\t 75\t\t # If the other Q() is empty, ignore it and just use `self`.\nTypeError: <django.db.models.expressions.Exists object at 0x7fc18dd0ed90>\nThe & (and |) operators should be commutative on Q-Exists pairs, but it's not\nI think there's a missing definition of __rand__ somewhere. The patch should fix this issue.\nThe patch should be minimal (change only what's necessary)\nThe patch should follow the exact unified diff format shown in examples\nThe patch should not include any explanation, just the patch",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1044
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14238",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 7,
+      "task_type": "logic",
+      "execution_time": 2.4713072776794434,
+      "model_output": "diff --gita/django/db/models/fields.py b/django/db/models/fields.py\n--- a/django/db/models/fields.py\n+++ b/django/db/models/fields.py\n@@ -123,7 +123,7 @@ def on_changed(self, values):\n     print(\"on c...",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 203
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14534",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 17.769719123840332,
+      "model_output": "diff --gita/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class BoundWidget:\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n-        return [\n+        return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n```diff --git a/django/forms/widgets.py b/django/forms/widgets.py\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 8235
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14580",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 3660.927843093872,
+      "model_output": "diff --gita/app/models.py b/app/models.py\n--- a/app/models.py\n+++ b/app/models.py\n@@ -1,2 +1,3 @@\n from django.db import models\n+from django.db import models\n class MyField(models.TextField):\n     pass\n class MyBaseModel(models.Model):\n@@ -10,7 +11,7 @@ class MyMixin:\n     pass\n class MyModel(MyMixin, MyBaseModel):\n     name = MyField(primary_key=True)\n-    class Meta:\n+    class Meta:\n         abstract = False,\ndiff --git a/app/migrations/0001_initial.py b/app/migrations/0001_initial.py\n--- a/app/migrations/0001_initial.py\n+++ b/app/migrations/0001_initial.py\n@@ -1,7 +1,7 @@ import app.models\n from django.db import migrations\n class Migration(migrations.Migration):\n     initial = True\n-    dependencies = [\n+    dependencies = [\n         ]\n     operations = [\n         migrations.CreateModel(\n@@ -23,7 +23,7 @@ class Migration(migrations.Migration):\n             bases=(app.models.MyMixin, models.Model),\n         ),\n     ]\n-    class Meta:\n+    class Meta:\n         abstract = False,\n```",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 998
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14672",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 18.04392170906067,
+      "model_output": "diff --gita/django/db/models/fields/related.py b/django/db/models/fields/related.py\n--- a/django/db/models/fields/related.py\n+++ b/django/db/models/fields/related.py\n@@ -15,7 +15,7 @@ def process_items(items):\n     if not items:\n-        return None\n+        return []\n     return [transform(item) for item in items]",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 316
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-14787",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 8,
+      "task_type": "logic",
+      "execution_time": 18.661961793899536,
+      "model_output": "diff --gita/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -15,7 +15,7 @@ def method_decorator(func):\n     @wraps(func)\n     def inner(*args, **kwargs):\n-        result = func(*args, **kwargs)\n+        result = func(*args, **kwargs) if func else None\n         finally:\n             logger.debug(f\"{func.__name__} called with args: {args} and kwargs: {kwargs} resulting: {result}\")\n return inner\n```diff\ndiff --git a/django/utils/decor",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7264
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15347",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 8,
+      "task_type": "logic",
+      "execution_time": 18.53891634941101,
+      "model_output": "diff --gita/django/contrib/messages/storage/base.py b/django/contrib/messages/storage/base.py\n--- a/django/contrib/messages/storage/base.py\n+++ b/django/contrib/messages/storage/base.py\n@@ -15,7 +15,7 @@ def process_items(items):\n     if not items:\n-        return None\n+        return []\n     return [transform(item) for item in items]",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 336
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15388",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": false,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 17.70732021331787,
+      "model_output": "diff --gita/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors.debug',\n             'django.template.context_processors.request',\n             'django.contrib.auth.context_processors.auth',\n```diff\ndiff --git a/django/conf/settings.py b/django/conf/settings.py\n--- a/django/conf/settings.py\n+++ b/django/conf/settings.py\n@@ -57,7 +57,7 @@ TEMPLATES = [\n     'DIRS': [],\n     'APP_DIRS': True,\n     'OPTIONS': {\n-        'context_processors': [\n+        'context_processors': [\n             'django.template.context_processors",
+      "validation": {
+        "is_valid_syntax": false,
+        "is_valid_format": false,
+        "has_diff_header": false,
+        "has_hunks": false,
+        "files_touched": 0,
+        "lines_added": 0,
+        "lines_removed": 0,
+        "error_message": "Patch contains markdown code blocks (not cleaned)"
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 8664
+      },
+      "success": true,
+      "solution_generated": true
+    },
+    {
+      "instance_id": "django__django-15781",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "generated": true,
+      "valid_patch": true,
+      "agent_id": 3,
+      "task_type": "math",
+      "execution_time": 18.79488229751587,
+      "model_output": "diff --gita/django/core/management/base.py b/django/core/management/base.py\n--- a/django/core/management/base.py\n+++ b/django/core/management/base.py\n@@ -15,7 +15,7 @@ def process_items(items):\n     if not items:\n-        return None\n+        return []\n     return [transform(item) for item in items]",
+      "validation": {
+        "is_valid_syntax": true,
+        "is_valid_format": true,
+        "has_diff_header": true,
+        "has_hunks": true,
+        "files_touched": 1,
+        "lines_added": 1,
+        "lines_removed": 1,
+        "error_message": null
+      },
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 300
+      },
+      "success": true,
+      "solution_generated": true
+    }
+  ],
+  "timestamp": "2026-01-26 05:54:55"
+}

@@ -1,0 +1,73 @@
+{
+  "summary": {
+    "total": 5,
+    "generated": 5,
+    "format_valid": 4,
+    "generation_rate": 1.0,
+    "format_valid_rate": 0.8,
+    "harness_passed": 1,
+    "harness_rate": 0.2
+  },
+  "results": [
+    {
+      "instance_id": "django__django-11179",
+      "generated": true,
+      "format_valid": true,
+      "has_diff_header": true,
+      "has_hunks": true,
+      "files_touched": 1,
+      "lines_added": 1,
+      "lines_removed": 1,
+      "harness_validated": false,
+      "harness_error": "Tests failed (not resolved)"
+    },
+    {
+      "instance_id": "django__django-12908",
+      "generated": true,
+      "format_valid": true,
+      "has_diff_header": true,
+      "has_hunks": true,
+      "files_touched": 1,
+      "lines_added": 60,
+      "lines_removed": 0,
+      "harness_validated": false,
+      "harness_error": "Tests failed (not resolved)"
+    },
+    {
+      "instance_id": "django__django-13230",
+      "generated": true,
+      "format_valid": true,
+      "has_diff_header": true,
+      "has_hunks": true,
+      "files_touched": 1,
+      "lines_added": 1,
+      "lines_removed": 0,
+      "harness_validated": true,
+      "harness_error": null
+    },
+    {
+      "instance_id": "django__django-13447",
+      "generated": true,
+      "format_valid": true,
+      "has_diff_header": true,
+      "has_hunks": true,
+      "files_touched": 1,
+      "lines_added": 1,
+      "lines_removed": 0,
+      "harness_validated": false,
+      "harness_error": "Tests failed (not resolved)"
+    },
+    {
+      "instance_id": "django__django-15814",
+      "generated": true,
+      "format_valid": false,
+      "has_diff_header": false,
+      "has_hunks": false,
+      "files_touched": 0,
+      "lines_added": 0,
+      "lines_removed": 0,
+      "harness_validated": false,
+      "harness_error": "Tests failed (not resolved)"
+    }
+  ]
+}

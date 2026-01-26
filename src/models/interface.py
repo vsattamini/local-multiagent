@@ -8,17 +8,17 @@ class ModelInterface(ABC):
         self.is_loaded = False
         
     @abstractmethod
-    async def load(self) -> None:
+    def load(self) -> None:
         """Load the model into memory"""
         pass
-        
+
     @abstractmethod
-    async def unload(self) -> None:
+    def unload(self) -> None:
         """Unload the model from memory"""
         pass
-        
+
     @abstractmethod
-    async def generate(self, prompt: str, **kwargs) -> str:
+    def generate(self, prompt: str, **kwargs) -> str:
         """Generate text from the model"""
         pass
         

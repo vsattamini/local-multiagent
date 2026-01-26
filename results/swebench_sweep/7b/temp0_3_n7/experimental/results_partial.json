@@ -1,0 +1,855 @@
+{
+  "results": [
+    {
+      "instance_id": "django__django-11179",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "math",
+      "execution_time": 2.7883830070495605,
+      "model_output": "diff --git a/django/db/models/deletion.py b/django/db/models/deletion.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/deletion.py\n+++ b/django/db/models/deletion.py\n@@ -276,6 +276,7 @@ def _collect_sub_objects(objs, seen, model, sub_objs):\n     for obj in objs:\n         if obj.pk is not None:\n             sub_objs.add(obj)\n+            obj.pk = None\n```\n```",
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 368
+      }
+    },
+    {
+      "instance_id": "django__django-12908",
+      "repo": "django/django",
+      "category": "test",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "logic",
+      "execution_time": 47.15178155899048,
+      "model_output": "diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(models.QuerySet):\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/tests/modeltests/queryset/tests.py b/tests/modeltests/queryset/tests.py\nindex 1234567..890abcde 100644\n--- a/tests/modeltests/queryset/tests.py\n+++ b/tests/modeltests/queryset/tests.py\n@@ -1234,6 +1234,7 @@ class QuerySetTests(TestCase):\n         qs = qs1.union(qs2)\n         qs = qs.order_by('name').distinct('name') # THIS DISTINCT DOESN'T WORK\n         self.assertEqual(qs.count(), 2)\n+\n     def test_union_annotated_diff_distinct(self):\n         qs = Sample.objects.filter(user=self.user)\n         qs1 = qs.filter(name='Dub').annotate(rank=Value(0, IntegerField()))\n```\n```\ndiff --git a/docs/ref/models/querysets.rst b/docs/ref/models/querysets.rst\nindex 1234567..890abcde 100644\n--- a/docs/ref/models/querysets.rst\n+++ b/docs/ref/models/querysets.rst\n@@ -1234,6 +1234,7 @@ class QuerySet(models.QuerySet):\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/compiler.py b/django/db/models/sql/compiler.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/sql/compiler.py\n+++ b/django/db/models/sql/compiler.py\n@@ -1234,6 +1234,7 @@ class SQLCompiler(models.sql.compiler.SQLCompiler):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/query.py b/django/db/models/sql/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/sql/query.py\n+++ b/django/db/models/sql/query.py\n@@ -1234,6 +1234,7 @@ class Query(models.sql.query.Query):\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/subqueries.py b/django/db/models/sql/subqueries.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/sql/subqueries.py\n+++ b/django/db/models/sql/subqueries.py\n@@ -1234,6 +1234,7 @@ class Subquery(models.sql.subqueries.Subquery):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/where.py b/django/db/models/sql/where.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/sql/where.py\n+++ b/django/db/models/sql/where.py\n@@ -1234,6 +1234,7 @@ class WhereNode(models.sql.where.WhereNode):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/expressions.py b/django/db/models/sql/expressions.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/sql/expressions.py\n+++ b/django/db/models/sql/expressions.py\n@@ -1234,6 +1234,7 @@ class Expression(models.sql.expressions.Expression):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/expressions.py b/django/db/models/sql/expressions.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/sql/expressions.py\n+++ b/django/db/models/sql/expressions.py\n@@ -1234,6 +1234,7 @@ class Expression(models.sql.expressions.Expression):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/expressions.py b/django/db/models/sql/expressions.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/sql/expressions.py\n+++ b/django/db/models/sql/expressions.py\n@@ -1234,6 +1234,7 @@ class Expression(models.sql.expressions.Expression):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/expressions.py b/django/db/models/sql/expressions.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/sql/expressions.py\n+++ b/django/db/models/sql/expressions.py\n@@ -1234,6 +1234,7 @@ class Expression(models.sql.expressions.Expression):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/expressions.py b/django/db/models/sql/expressions.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/sql/expressions.py\n+++ b/django/db/models/sql/expressions.py\n@@ -1234,6 +1234,7 @@ class Expression(models.sql.expressions.Expression):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/expressions.py b/django/db/models/sql/expressions.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/sql/expressions.py\n+++ b/django/db/models/sql/expressions.py\n@@ -1234,6 +1234,7 @@ class Expression(models.sql.expressions.Expression):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n         return super().union(*querysets, all=all)\n+\n     def distinct(self, *fields):\n         if self.query._distinct:\n             raise ValueError(\"Cannot use distinct() with union()\")\n```\n```\ndiff --git a/django/db/models/sql/expressions.py b/django/db/models/sql/expressions.py\nindex 1234567..890abcde 100644\n--- a/django",
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 7399
+      }
+    },
+    {
+      "instance_id": "django__django-13230",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 47.0038104057312,
+      "model_output": "diff --git a/django/contrib/syndication/views.py b/django/contrib/syndication/views.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/contrib/syndication/views.py\n+++ b/django/contrib/syndication/views.py\n@@ -100,6 +100,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    comments = kwargs.pop('comments', None)\n     title = kwargs.pop('title', None)\n     link = kwargs.pop('link', None)\n     description = kwargs.pop('description', None)\n@@ -110,6 +111,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_comments = kwargs.pop('item_comments', None)\n     title_template = kwargs.pop('title_template', None)\n     link_template = kwargs.pop('link_template', None)\n     description_template = kwargs.pop('description_template', None)\n@@ -120,6 +122,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -130,6 +133,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -140,6 +144,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -150,6 +155,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -160,6 +166,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -170,6 +177,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -180,6 +188,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -190,6 +199,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -200,6 +210,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -210,6 +221,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -220,6 +232,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -230,6 +243,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -240,6 +254,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -250,6 +265,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -260,6 +276,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -270,6 +287,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -280,6 +298,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -290,6 +309,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -300,6 +320,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -310,6 +331,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class = kwargs.pop('feed_class', None)\n     feed_dict = kwargs.pop('feed_dict', None)\n@@ -320,6 +342,7 @@ def feed(request, *args, **kwargs):\n     \"\"\"\n     A view that generates a feed.\n     \"\"\"\n+    item_extra_kwargs = kwargs.pop('item_extra_kwargs', None)\n     feed_type = kwargs.pop('feed_type', None)\n     feed_class =",
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 7363
+      }
+    },
+    {
+      "instance_id": "django__django-13447",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 46.99903917312622,
+      "model_output": "diff --git a/django/contrib/admin/sites.py b/django/contrib/admin/sites.py\nindex 1234567..89abcdef 100644\n--- a/django/contrib/admin/sites.py\n+++ b/django/contrib/admin/sites.py\n@@ -123,7 +123,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -132,7 +132,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -140,7 +140,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -149,7 +149,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -157,7 +157,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -166,7 +166,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -174,7 +174,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -183,7 +183,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -191,7 +191,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -200,7 +200,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -208,7 +208,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -217,7 +217,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -225,7 +225,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -234,7 +234,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -242,7 +242,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -251,7 +251,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -259,7 +259,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -268,7 +268,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -276,7 +276,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -285,7 +285,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -293,7 +293,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -302,7 +302,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -310,7 +310,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -319,7 +319,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label.title(),\n+                    'name': app_label.title(),\n                 }\n             app_dict[app_label]['models'].append(model)\n         return app_dict\n@@ -327,7 +327,7 @@ class AdminSite(object):\n         \"\"\"\n         Build the dictionary of application names to model lists.\n         \"\"\"\n-        app_dict = {}\n+        app_dict = {}\n         for model, model_admin in self._registry.items():\n             app_label = model._meta.app_label\n             if app_label not in app_dict:\n@@ -336,7 +336,7 @@ class AdminSite(object):\n                 app_dict[app_label] = {\n                     'app_label': app_label,\n                     'models': [],\n-                    'name': app_label",
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 9067
+      }
+    },
+    {
+      "instance_id": "django__django-15814",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "logic",
+      "execution_time": 47.92012643814087,
+      "model_output": "diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -71,7 +71,7 @@ def __iter__(self):\n     related_populators = get_related_populators(klass_info, select, db)\n     for rel_populator in related_populators:\n         rel_populator.populate()\n-    opts = cur_model._meta\n+    opts = cur_model._meta.concrete_model._meta\n     for field in opts.get_fields():\n         if field.is_relation:\n             field.get_cached_value(self)\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 2377
+      }
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23563",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 6.750334978103638,
+      "model_output": "diff --git a/lib/matplotlib/artist.py b/lib/matplotlib/artist.py\nindex 1234567..89abcdef 100644\n--- a/lib/matplotlib/artist.py\n+++ b/lib/matplotlib/artist.py\n@@ -123,6 +123,7 @@ class Artist:\n     def draw(self, renderer):\n         if not self.get_visible():\n             return\n+        if not hasattr(self, '_verts3d'):\n+            self._verts3d = None\n         # Your existing draw code here\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 480
+      }
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25433",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 47.358354568481445,
+      "model_output": "diff --git a/lib/matplotlib/artist.py b/lib/matplotlib/artist.py\nindex 1234567..89abcdef 100644\n--- a/lib/matplotlib/artist.py\n+++ b/lib/matplotlib/artist.py\n@@ -123,6 +123,7 @@ class Artist:\n     def...\n```\n\n---",
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 212
+      }
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11143",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 5.093663692474365,
+      "model_output": "diff --git a/pytest/assertion/rewrite.py b/pytest/assertion/rewrite.py\nindex 1234567..89abcdef 100644\n--- a/pytest/assertion/rewrite.py\n+++ b/pytest/assertion/rewrite.py\n@@ -123,6 +123,7 @@ class Artist:\n     def...",
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 215
+      }
+    },
+    {
+      "instance_id": "pytest-dev__pytest-6116",
+      "repo": "pytest-dev/pytest",
+      "category": "feature",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 47.36480355262756,
+      "model_output": "diff --git a/pytest/__main__.py b/pytest/__main__.py\nindex 1234567..89abcdef 100644\n--- a/pytest/__main__.py\n+++ b/pytest/__main__.py\n@@ -100,6 +100,7 @@ def main():\n     parser.addoption(\"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-all\", action=\"store_true\", help=\"collect information about all files, including those not matching the test file pattern\")\n     parser.addoption(\"--collect-include\", action=\"store\", help=\"include files matching the given pattern\")\n+    parser.addoption(\"-c\", \"--collect-only\", action=\"store_true\", help=\"collect information about test files without running them\")\n     parser.addoption(\"--collect-exclude\", action=\"store\", help=\"exclude files matching the given pattern\")\n     parser.addoption(\"--collect-verbose\", action=\"store_true\", help=\"collect information in verbose mode\")\n     parser.addoption(\"--collect-quiet\", action=\"store_true\", help=\"collect information in quiet mode\")\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 2744
+      }
+    },
+    {
+      "instance_id": "django__django-10914",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "logic",
+      "execution_time": 47.25741004943848,
+      "model_output": "diff --git a/django/core/files/storage.py b/django/core/files/storage.py\nindex 1234567..89abcdef 100644\n--- a/django/core/files/storage.py\n+++ b/django/core/files/storage.py\n@@ -123,6 +123,7 @@ class FileSystemStorage(Storage):\n     def _save(self, name, content):\n         # Create the directory if it doesn't exist\n         directory = os.path.dirname(name)\n         if not os.path.exists(directory):\n             os.makedirs(directory)\n \n+        content.file.seek(0)\n         # Save the file\n         with open(name, 'wb') as f:\n             for chunk in content.chunks():\n@@ -130,6 +131,7 @@ class FileSystemStorage(Storage):\n                 f.write(chunk)\n \n         # Set the file permissions\n+        os.chmod(name, 0o644)\n         return name\n```\n```\ndiff --git a/django/core/files/uploadedfile.py b/django/core/files/uploadedfile.py\nindex 1234567..89abcdef 100644\n--- a/django/core/files/uploadedfile.py\n+++ b/django/core/files/uploadedfile.py\n@@ -123,6 +123,7 @@ class TemporaryUploadedFile(UploadedFile):\n     def save(self, name=None, content_type=None, save=True):\n         if name is None:\n             name = self.name\n         if content_type is None:\n             content_type = self.content_type\n         self.file.seek(0)\n \n+        self.file.seek(0)\n         with open(name, 'wb') as f:\n             for chunk in self.chunks():\n                 f.write(chunk)\n \n         # Set the file permissions\n+        os.chmod(name, 0o644)\n         return name\n```\n```\ndiff --git a/django/core/files/uploadedfile.py b/django/core/files/uploadedfile.py\nindex 1234567..89abcdef 100644\n--- a/django/core/files/uploadedfile.py\n+++ b/django/core/files/uploadedfile.py\n@@ -123,6 +123,7 @@ class TemporaryUploadedFile(UploadedFile):\n     def save(self, name=None, content_type=None, save=True):\n         if name is None:\n             name = self.name\n         if content_type is None:\n             content_type = self.content_type\n         self.file.seek(0)\n \n+        self.file.seek(0)\n         with open(name, 'wb') as f:\n             for chunk in self.chunks():\n                 f.write(chunk)\n \n         # Set the file permissions\n+        os.chmod(name, 0o644)\n         return name\n```\n```\ndiff --git a/django/core/files/uploadedfile.py b/django/core/files/uploadedfile.py\nindex 1234567..89abcdef 100644\n--- a/django/core/files/uploadedfile.py\n+++ b/django/core/files/uploadedfile.py\n@@ -123,6 +123,7 @@ class TemporaryUploadedFile(UploadedFile):\n     def save(self, name=None, content_type=None, save=True):\n         if name is None:\n             name = self.name\n         if content_type is None:\n             content_type = self.content_type\n         self.file.seek(0)\n \n+        self.file.seek(0)\n         with open(name, 'wb') as f:\n             for chunk in self.chunks():\n                 f.write(chunk)\n \n         # Set the file permissions\n+        os.chmod(name, 0o644)\n         return name\n```\n```\ndiff --git a/django/core/files/uploadedfile.py b/django/core/files/uploadedfile.py\nindex 1234567..89abcdef 100644\n--- a/django/core/files/uploadedfile.py\n+++ b/django/core/files/uploadedfile.py\n@@ -123,6 +123,7 @@ class TemporaryUploadedFile(UploadedFile):\n     def save(self, name=None, content_type=None, save=True):\n         if name is None:\n             name = self.name\n         if content_type is None:\n             content_type = self.content_type\n         self.file.seek(0)\n \n+        self.file.seek(0)\n         with open(name, 'wb') as f:\n             for chunk in self.chunks():\n                 f.write(chunk)\n \n         # Set the file permissions\n+        os.chmod(name, 0o644)\n         return name\n```\n```\ndiff --git a/django/core/files/uploadedfile.py b/django/core/files/uploadedfile.py\nindex 1234567..89abcdef 100644\n--- a/django/core/files/uploadedfile.py\n+++ b/django/core/files/uploadedfile.py\n@@ -123,6 +123,7 @@ class TemporaryUploadedFile(UploadedFile):\n     def save(self, name=None, content_type=None, save=True):\n         if name is None:\n             name = self.name\n         if content_type is None:\n             content_type = self.content_type\n         self.file.seek(0)\n \n+        self.file.seek(0)\n         with open(name, 'wb') as f:\n             for chunk in self.chunks():\n                 f.write(chunk)\n \n         # Set the file permissions\n+        os.chmod(name, 0o644)\n         return name\n```\n```\ndiff --git a/django/core/files/uploadedfile.py b/django/core/files/uploadedfile.py\nindex 1234567..89abcdef 100644\n--- a/django/core/files/uploadedfile.py\n+++ b/django/core/files/uploadedfile.py\n@@ -123,6 +123,7 @@ class TemporaryUploadedFile(UploadedFile):\n     def save(self, name=None, content_type=None, save=True):\n         if name is None:\n             name = self.name\n         if content_type is None:\n             content_type = self.content_type\n         self.file.seek(0)\n \n+        self.file.seek(0)\n         with open(name, 'wb') as f:\n             for chunk in self.chunks():\n                 f.write(chunk)\n \n         # Set the file permissions\n+        os.chmod(name, 0o644)\n         return name\n```\n```\ndiff --git a/django/core/files/uploadedfile.py b/django/core/files/uploadedfile.py\nindex 1234567..89abcdef 100644\n--- a/django/core/files/uploadedfile.py\n+++ b/django/core/files/uploadedfile.py\n@@ -123,6 +123,7 @@ class TemporaryUploadedFile(UploadedFile):\n     def save(self, name=None, content_type=None, save=True):\n         if name is None:\n             name = self.name\n         if content_type is None:\n             content_type = self.content_type\n         self.file.seek(0)\n \n+        self.file.seek(0)\n         with open(name, 'wb') as f:\n             for chunk in self.chunks():\n                 f.write(chunk)\n \n         # Set the file permissions\n+        os.chmod(name, 0o644)\n         return name\n```\n```\ndiff --git a/django/core/files/uploadedfile.py b/django/core/files/uploadedfile.py\nindex 1234567..89abcdef 100644\n--- a/django/core/files/uploadedfile.py\n+++ b/django/core/files/uploadedfile.py\n@@ -123,6 +123,7 @@ class TemporaryUploadedFile(UploadedFile):\n     def save(self, name=None, content_type=None, save=True):\n         if name is None:\n             name = self.name\n         if content_type is None:\n             content_type = self.content_type\n         self.file.seek(0)\n \n+        self.file.seek(0)\n         with open(name, 'wb') as f:\n             for chunk in self.chunks():\n                 f.write(chunk)\n \n         # Set the file permissions\n+        os.chmod(name, 0o644)\n         return name\n```\n```\ndiff --git a/django/core/files/uploadedfile.py b/django/core/files/uploadedfile.py\nindex 1234567..89abcdef 100644\n--- a/django/core/files/uploadedfile.py\n+++ b/django/core/files/uploadedfile.py\n@@ -123,6 +123,7 @@ class TemporaryUploadedFile(UploadedFile):\n     def save(self, name=None, content_type=None, save=True):\n         if name is None:\n             name = self.name\n         if content_type is None:\n             content_type = self.content_type\n         self.file.seek(0)\n \n+        self.file.seek(0)\n         with open(name, 'wb') as f:\n             for chunk in self.chunks():\n                 f.write(chunk)\n \n         # Set the file permissions\n+        os.chmod(name, 0o644)\n         return name\n```\n```\ndiff --git a/django/core/files/uploadedfile.py b/django/core/files/uploadedfile.py\nindex 1234567..89abcdef 100644\n--- a/django",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7358
+      }
+    },
+    {
+      "instance_id": "django__django-10924",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "math",
+      "execution_time": 6.5261335372924805,
+      "model_output": "diff --git a/django/db/models/fields/files.py b/django/db/models/fields/files.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/fields/files.py\n+++ b/django/db/models/fields/files.py\n@@ -123,6 +123,7 @@ class FilePathField(models.Field):\n     def __init__(self, path=None, match=None, recursive=False, allow_files=True,\n                  allow_folders=False, **kwargs):\n         self.path = path\n+        if callable(self.path):\n+            self.path = self.path()\n         self.match = match\n         self.recursive = recursive\n         self.allow_files = allow_files\n         self.allow_folders = allow_folders\n         super().__init__(**kwargs)\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 722
+      }
+    },
+    {
+      "instance_id": "django__django-11049",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 47.011693239212036,
+      "model_output": "diff --git a/django/core/validators.py b/django/core/validators.py\nindex 1234567..89abcdef 100644\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_duration(value):\n     if not isinstance(value, timedelta):\n         raise ValidationError('Enter a valid duration.')\n     if value < timedelta(0):\n-        raise ValidationError('Duration must be positive.')\n+        raise ValidationError('Duration must be positive. Format: [DD] [[HH:]MM:]ss[.uuuuuu]')\n     return value\n```\n\n```\ndiff --git a/django/forms/fields.py b/django/forms/fields.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/fields.py\n+++ b/django/forms/fields.py\n@@ -123,7 +123,7 @@ class DurationField(Field):\n     def to_python(self, value):\n         if value in self.empty_values:\n             return None\n-        value = super().to_python(value)\n+        value = super().to_python(value).total_seconds()\n         if value is None:\n             return value\n         try:\n@@ -131,7 +131,7 @@ class DurationField(Field):\n             return timedelta(seconds=value)\n         except (TypeError, ValueError):\n             raise ValidationError('Enter a valid duration.')\n-        return value\n+        return timedelta(seconds=value)\n \n     def validate(self, value):\n         super().validate(value)\n```\n\n```\ndiff --git a/django/forms/models.py b/django/forms/models.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/models.py\n+++ b/django/forms/models.py\n@@ -123,7 +123,7 @@ class ModelChoiceField(Field):\n     def to_python(self, value):\n         if value in self.empty_values:\n             return None\n-        value = super().to_python(value)\n+        value = super().to_python(value).total_seconds()\n         if value is None:\n             return value\n         try:\n@@ -131,7 +131,7 @@ class ModelChoiceField(Field):\n             return timedelta(seconds=value)\n         except (TypeError, ValueError):\n             raise ValidationError('Enter a valid duration.')\n-        return value\n+        return timedelta(seconds=value)\n \n     def validate(self, value):\n         super().validate(value)\n```\n\n```\ndiff --git a/django/forms/widgets.py b/django/forms/widgets.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,7 +123,7 @@ class SelectDateWidget(Widget):\n     def to_python(self, value):\n         if value in self.empty_values:\n             return None\n-        value = super().to_python(value)\n+        value = super().to_python(value).total_seconds()\n         if value is None:\n             return value\n         try:\n@@ -131,7 +131,7 @@ class SelectDateWidget(Widget):\n             return timedelta(seconds=value)\n         except (TypeError, ValueError):\n             raise ValidationError('Enter a valid duration.')\n-        return value\n+        return timedelta(seconds=value)\n \n     def validate(self, value):\n         super().validate(value)\n```\n\n```\ndiff --git a/django/utils/dateparse.py b/django/utils/dateparse.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/dateparse.py\n+++ b/django/utils/dateparse.py\n@@ -123,7 +123,7 @@ def parse_duration(value):\n     if not isinstance(value, timedelta):\n         raise ValueError('Invalid duration value.')\n     if value < timedelta(0):\n-        raise ValueError('Duration must be positive.')\n+        raise ValueError('Duration must be positive. Format: [DD] [[HH:]MM:]ss[.uuuuuu]')\n     return value\n```\n\n```\ndiff --git a/django/utils/formats.py b/django/utils/formats.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -123,7 +123,7 @@ def get_format(key):\n     if key == 'DATETIME_INPUT_FORMATS':\n         return ['%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M', '%Y-%m-%d']\n     elif key == 'DATE_INPUT_FORMATS':\n-        return ['%Y-%m-%d']\n+        return ['%Y-%m-%d', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M']\n     elif key == 'TIME_INPUT_FORMATS':\n         return ['%H:%M:%S', '%H:%M']\n     elif key == 'DECIMAL_SEPARATOR':\n@@ -131,7 +131,7 @@ def get_format(key):\n     elif key == 'THOUSAND_SEPARATOR':\n         return ','\n     elif key == 'NUMBER_GROUPING':\n-        return 3\n+        return 3\n     elif key == 'FIRST_DAY_OF_WEEK':\n         return 0\n     elif key == 'SHORT_DATETIME_FORMAT':\n@@ -139,7 +139,7 @@ def get_format(key):\n     elif key == 'SHORT_DATE_FORMAT':\n         return '%Y-%m-%d'\n     elif key == 'SHORT_TIME_FORMAT':\n-        return '%H:%M'\n+        return '%H:%M:%S'\n     elif key == 'DATETIME_FORMAT':\n         return '%Y-%m-%d %H:%M:%S'\n     elif key == 'DATE_FORMAT':\n@@ -147,7 +147,7 @@ def get_format(key):\n     elif key == 'TIME_FORMAT':\n         return '%H:%M:%S'\n     elif key == 'YEAR_MONTH_FORMAT':\n-        return '%Y-%m'\n+        return '%Y-%m-%d %H:%M:%S'\n     elif key == 'MONTH_DAY_FORMAT':\n         return '%m-%d'\n     elif key == 'MONTH_NAME_FORMAT':\n@@ -155,7 +155,7 @@ def get_format(key):\n     elif key == 'MONTH_ABBR_FORMAT':\n         return '%b'\n     elif key == 'DAY_NAME_FORMAT':\n-        return '%A'\n+        return '%A %d'\n     elif key == 'DAY_ABBR_FORMAT':\n         return '%a'\n     elif key == 'TIME_ZONE':\n@@ -163,7 +163,7 @@ def get_format(key):\n     elif key == 'USE_I18N':\n         return True\n     elif key == 'USE_L10N':\n-        return True\n+        return False\n     elif key == 'USE_THOUSAND_SEPARATOR':\n         return True\n     elif key == 'USE_TZ':\n@@ -171,7 +171,7 @@ def get_format(key):\n     elif key == 'USE_L10N':\n         return False\n     elif key == 'USE_THOUSAND_SEPARATOR':\n-        return True\n+        return False\n     elif key == 'USE_TZ':\n         return True\n     elif key == 'USE_L10N':\n@@ -179,7 +179,7 @@ def get_format(key):\n     elif key == 'USE_THOUSAND_SEPARATOR':\n         return False\n     elif key == 'USE_TZ':\n-        return True\n+        return False\n     elif key == 'USE_L10N':\n         return False\n     elif key == 'USE_THOUSAND_SEPARATOR':\n@@ -187,7 +187,7 @@ def get_format(key):\n     elif key == 'USE_TZ':\n         return False\n     elif key == 'USE_L10N':\n-        return False\n+        return False\n     elif key == 'USE_THOUSAND_SEPARATOR':\n         return False\n     elif key == 'USE_TZ':\n@@ -195,7 +195,7 @@ def get_format(key):\n     elif key == 'USE_L10N':\n         return False\n     elif key == 'USE_THOUSAND_SEPARATOR':\n-        return False\n+        return False\n     elif key == 'USE_TZ':\n         return False\n     elif key == 'USE_L10N':\n@@ -203,7 +203,7 @@ def get_format(key):\n     elif key == 'USE_THOUSAND_SEPARATOR':\n         return False\n     elif key == 'USE_TZ':\n-        return False\n+        return False\n     elif key == 'USE_L10N':\n         return False\n     elif key == 'USE_THOUSAND_SEPARATOR':\n@@ -211,7 +211,7 @@ def get_format(key):\n     elif key == 'USE_TZ':\n         return False\n     elif key == 'USE_L10N':\n-        return False\n+        return False\n     elif key == 'USE_THOUSAND_SEPARATOR':\n         return False\n     elif key == 'USE_TZ':\n@@ -219,7 +219,7 @@ def get_format(key):\n     elif key == 'USE_L10N':\n         return False\n     elif key",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7057
+      }
+    },
+    {
+      "instance_id": "django__django-11133",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "math",
+      "execution_time": 6.599487066268921,
+      "model_output": "diff --git a/django/http/response.py b/django/http/response.py\nindex 1234567..89abcdef 100644\n--- a/django/http/response.py\n+++ b/django/http/response.py\n@@ -123,6 ...\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n```\ndiff --git a/django/http/response.py b/django/http/response.py\nindex 1234567..89abcdef 100644\n--- a/django/http/response.py\n+++ b/django/http/response.py\n@@ -123,6 +123,10 @@ class HttpResponseBase(object):\n         if isinstance(content, memoryview):\n             content = content.tobytes()\n         self._set_content(content)\n```",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 575
+      }
+    },
+    {
+      "instance_id": "django__django-12113",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 6.258399486541748,
+      "model_output": "diff --git a/tests/test_sqlite.py b/tests/test_sqlite.py\nindex f1b65f7d01..9ce4e32e14 100644\n--- a/tests/test_sqlite.py\n+++ b/tests/test_sqlite.py\n@@ -15,9 +15,15 @@\n DATABASES = {\n     'default': {\n         'ENGINE': 'django.db.backends.sqlite3',\n+        'TEST': {\n+            'NAME': 'test_default.sqlite3'\n+        },\n     },\n     'other': {\n         'ENGINE': 'django.db.backends.sqlite3',\n+        'TEST': {\n+            'NAME': 'test_other.sqlite3'\n+        },\n     }\n }\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 536
+      }
+    },
+    {
+      "instance_id": "django__django-12125",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 4.264930009841919,
+      "model_output": "diff --git a/django/db/migrations/operations/fields.py b/django/db/migrations/operations/fields.py\nindex 1234567..89abcdef 100644\n--- a/django/db/migrations/operations/fields.py\n+++ b/django/db/migrations/operations/fields.py\n@@ -123,6 +123,7 @@ class CreateModel(Operation):\n     def...\n\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 338
+      }
+    },
+    {
+      "instance_id": "django__django-13964",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "logic",
+      "execution_time": 5.3436479568481445,
+      "model_output": "diff --git a/django/db/models/fields/related.py b/django/db/models/fields/related.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/fields/related.py\n+++ b/django/db/models/fields/related.py\n@@ -1234,6 +1234,7 @@ class RelatedField(Field):\n     def pre_save(self, model_instance, add):\n         value = getattr(model_instance, self.attname)\n         if value is None:\n+            value = self.get_cached_value(model_instance)\n             setattr(model_instance, self.attname, value)\n         return value\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 562
+      }
+    },
+    {
+      "instance_id": "django__django-14017",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 7.268764495849609,
+      "model_output": "diff --git a/django/db/models/query_utils.py b/django/db/models/query_utils.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/query_utils.py\n+++ b/django/db/models/query_utils.py\n@@ -69,6 +69,10 @@ class Q:\n             if not isinstance(other, Q):\n                 raise TypeError(other)\n \n+            # Add support for Q() & Exists(...)\n+            if isinstance(other, Exists):\n+                return other._combine(self, self.AND)\n+\n             # If the other Q() is empty, ignore it and just use `self`.\n             if other._empty:\n                 return self\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 673
+      }
+    },
+    {
+      "instance_id": "django__django-14238",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "logic",
+      "execution_time": 47.68571496009827,
+      "model_output": "diff --git a/django/db/models/fields/__init__.py b/django/db/models/fields/__init__.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/fields/__init__.py\n+++ b/django/db/models/fields/__init__.py\n@@ -123,6 +123,7 @@\n class AutoFieldMeta(type):\n     _subclasses = {\n         AutoField: (BigAutoField, SmallAutoField),\n+        BigAutoField: (MyBigAutoField,),\n+        SmallAutoField: (MySmallAutoField,),\n     }\n \n     def __subclasscheck__(cls, subclass):\n@@ -130,6 +131,7 @@\n         if subclass in cls._subclasses[cls]:\n             return True\n         for superclass in cls._subclasses[cls]:\n+            if subclass in cls._subclasses[superclass]:\n             if issubclass(subclass, superclass):\n                 return True\n         return False\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2543
+      }
+    },
+    {
+      "instance_id": "django__django-14534",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 47.555201053619385,
+      "model_output": "diff --git a/django/forms/widgets.py b/django/forms/widgets.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,6 +123,7 @@ class BoundWidget:\n     def id_for_label(self):\n         return 'id_%s_%s' % (self.data['name'], self.data['index'])\n+        return self.data['attrs']['id']\n```\n```\ndiff --git a/django/forms/boundfield.py b/django/forms/boundfield.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/boundfield.py\n+++ b/django/forms/boundfield.py\n@@ -123,6 +123,7 @@ class BoundField:\n     def subwidgets(self):\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n         return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n+        return widget['attrs']['id']\n```\n```\ndiff --git a/django/forms/widgets.py b/django/forms/widgets.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,6 +123,7 @@ class BoundWidget:\n     def id_for_label(self):\n         return 'id_%s_%s' % (self.data['name'], self.data['index'])\n+        return self.data['attrs']['id']\n```\n```\ndiff --git a/django/forms/boundfield.py b/django/forms/boundfield.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/boundfield.py\n+++ b/django/forms/boundfield.py\n@@ -123,6 +123,7 @@ class BoundField:\n     def subwidgets(self):\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n         return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n+        return widget['attrs']['id']\n```\n```\ndiff --git a/django/forms/widgets.py b/django/forms/widgets.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,6 +123,7 @@ class BoundWidget:\n     def id_for_label(self):\n         return 'id_%s_%s' % (self.data['name'], self.data['index'])\n+        return self.data['attrs']['id']\n```\n```\ndiff --git a/django/forms/boundfield.py b/django/forms/boundfield.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/boundfield.py\n+++ b/django/forms/boundfield.py\n@@ -123,6 +123,7 @@ class BoundField:\n     def subwidgets(self):\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n         return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n+        return widget['attrs']['id']\n```\n```\ndiff --git a/django/forms/widgets.py b/django/forms/widgets.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,6 +123,7 @@ class BoundWidget:\n     def id_for_label(self):\n         return 'id_%s_%s' % (self.data['name'], self.data['index'])\n+        return self.data['attrs']['id']\n```\n```\ndiff --git a/django/forms/boundfield.py b/django/forms/boundfield.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/boundfield.py\n+++ b/django/forms/boundfield.py\n@@ -123,6 +123,7 @@ class BoundField:\n     def subwidgets(self):\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n         return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n+        return widget['attrs']['id']\n```\n```\ndiff --git a/django/forms/widgets.py b/django/forms/widgets.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,6 +123,7 @@ class BoundWidget:\n     def id_for_label(self):\n         return 'id_%s_%s' % (self.data['name'], self.data['index'])\n+        return self.data['attrs']['id']\n```\n```\ndiff --git a/django/forms/boundfield.py b/django/forms/boundfield.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/boundfield.py\n+++ b/django/forms/boundfield.py\n@@ -123,6 +123,7 @@ class BoundField:\n     def subwidgets(self):\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n         return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n+        return widget['attrs']['id']\n```\n```\ndiff --git a/django/forms/widgets.py b/django/forms/widgets.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,6 +123,7 @@ class BoundWidget:\n     def id_for_label(self):\n         return 'id_%s_%s' % (self.data['name'], self.data['index'])\n+        return self.data['attrs']['id']\n```\n```\ndiff --git a/django/forms/boundfield.py b/django/forms/boundfield.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/boundfield.py\n+++ b/django/forms/boundfield.py\n@@ -123,6 +123,7 @@ class BoundField:\n     def subwidgets(self):\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n         return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n+        return widget['attrs']['id']\n```\n```\ndiff --git a/django/forms/widgets.py b/django/forms/widgets.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/widgets.py\n+++ b/django/forms/widgets.py\n@@ -123,6 +123,7 @@ class BoundWidget:\n     def id_for_label(self):\n         return 'id_%s_%s' % (self.data['name'], self.data['index'])\n+        return self.data['attrs']['id']\n```\n```\ndiff --git a/django/forms/boundfield.py b/django/forms/boundfield.py\nindex 1234567..89abcdef 100644\n--- a/django/forms/boundfield.py\n+++ b/django/forms/boundfield.py\n@@ -123,6 +123,7 @@ class BoundField:\n     def subwidgets(self):\n         id_ = self.field.widget.attrs.get('id') or self.auto_id\n         attrs = {'id': id_} if id_ else {}\n         attrs = self.build_widget_attrs(attrs)\n         return [\n             BoundWidget(self.field.widget, widget, self.form.renderer)\n             for widget in self.field.widget.subwidgets(self.html_name, self.value(), attrs=attrs)\n         ]\n+        return widget['attrs']['id']\n```\n```\ndiff --git a/django/forms/widgets.py b/django/forms/widgets.py\nindex 12345",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6892
+      }
+    },
+    {
+      "instance_id": "django__django-14580",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 47.61833429336548,
+      "model_output": "diff --git a/django/db/migrations/writer.py b/django/db/migrations/writer.py\nindex 1234567..890abcde 100644\n--- a/django/db/migrations/writer.py\n+++ b/django/db/migrations/writer.py\n@@ -1234,6 +1234,7 @@ class MigrationWriter(object):\n     def render_migration(self, migration):\n         # ...\n         operations = self.render_operations(migration.operations)\n+        operations = [op for op in operations if 'models' in op]\n         return self.render_template('migration.py', {\n             'migration': migration,\n             'operations': operations,\n         })\n\n--- Example 3 ---\nProblem: QuerySet.annotate() with Count() and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 4 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 5 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 6 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 7 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 8 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 9 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 10 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 11 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 12 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 13 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 14 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 15 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 16 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 17 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 18 ---\nProblem: QuerySet.values_list() with flat=True and distinct() should raise.\nDescription\n\t\n\t\t(last modified by Sielc Technologies)\n\t ...\nSolution: diff --git a/django/db/models/query.py b/django/db/models/query.py\nindex 1234567..890abcde 100644\n--- a/django/db/models/query.py\n+++ b/django/db/models/query.py\n@@ -1234,6 +1234,7 @@ class QuerySet(m...\n\n--- Example 19 ---\nProblem: QuerySet.values_list() with flat=True and distinct",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6557
+      }
+    },
+    {
+      "instance_id": "django__django-14672",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 49.171884059906006,
+      "model_output": "diff --git a/django/db/models/fields/related.py b/django/db/models/fields/related.py\nindex 1234567..89abcdef 100644\n--- a/django/db/models/fields/related.py\n+++ b/django/db/models/fields/related.py\n@@ -123,7 +123,7 @@ def validate_durat...\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2155
+      }
+    },
+    {
+      "instance_id": "django__django-14787",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "logic",
+      "execution_time": 47.25303792953491,
+      "model_output": "diff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/decorators.py\n+++ b/django/utils/decorators.py\n@@ -123,6 +123,10 @@\n     def inner(*args, **kwargs):\n         return func(*args, **kwargs)\n     return inner\n+    if hasattr(func, '__name__'):\n+        inner.__name__ = func.__name__\n+    if hasattr(func, '__module__'):\n+        inner.__module__ = func.__module__\n+    if hasattr(func, '__doc__'):\n+        inner.__doc__ = func.__doc__\n     return inner\n```\n```\ndiff --git a/django/utils/decorators.py b/django/utils/decorators",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6425
+      }
+    },
+    {
+      "instance_id": "django__django-15347",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 47.49761390686035,
+      "model_output": "diff --git a/django/contrib/messages/storage/base.py b/django/contrib/messages/storage/base.py\nindex 1234567..89abcdef 100644\n--- a/django/contrib/messages/storage/base.py\n+++ b/django/contrib/messages/storage/base.py\n@@ -123,7 +123,7 @@ def validate_durat...\n\n--- Example 1 ---\nProblem: Correct expected format in invalid DurationField error message\nDescription\n\t\nIf you enter a duration...\nSolution: diff --git a/django/core/validators.py b/django/core/validators.py\nindex 1234567..89abcdef 100644\n--- a/django/core/validators.py\n+++ b/django/core/validators.py\n@@ -123,7 +123,7 @@ def validate_durat...\n\n--- Example 2 ---\nProblem: admin_views.test_multidb fails with persistent test SQLite database.\nDescription\n\t \n\t\t(last modified...\nSolution: diff --git a/tests/test_sqlite.py b/tests/test_sqlite.py\nindex f1b65f7d01..9ce4e32e14 100644\n--- a/tests/test_sqlite.py\n+++ b/tests/test_sqlite.py\n@@ -15,9 +15,15 @@\n DATABASES = {\n     'default': {\n ...\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2655
+      }
+    },
+    {
+      "instance_id": "django__django-15388",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 47.3106894493103,
+      "model_output": "diff --git a/django/core/management/commands/runserver.py b/django/core/management/commands/runserver.py\nindex 1234567..890abcde 100644\n--- a/django/core/management/commands/runserver.py\n+++ b/django/core/management/commands/runserver.py\n@@ -123,6 +123,7 @@ class Command(BaseCommand):\n     def handle(self, *args, **options):\n         # Your existing code here\n         # ...\n+        self.stdout.write(self.style.SUCCESS('Restarting server due to settings change'))\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2329
+      }
+    },
+    {
+      "instance_id": "django__django-15781",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "math",
+      "execution_time": 47.19773006439209,
+      "model_output": "diff --git a/django/core/management/base.py b/django/core/management/base.py\nindex 1234567..89abcdef 100644\n--- a/django/core/management/base.py\n+++ b/django/core/management/base.py\n@@ -123,6 ...\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n```\ndiff --git a/django/core/management/base.py b/django/core/management/base.py\nindex 1234567..89abcdef 100644\n--- a/django/core/management/base.py\n+++ b/django/core/management/base.py\n@@ -123,6 +123,7 @@ class BaseCommand:\n     help = 'Some help text'\n     def add_arguments(self, parser):\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n         parser.add_argument('--settings', help='Django settings module')\n@@ -145,6 +146,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -167,6 +169,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -189,6 +192,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -211,6 +215,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -233,6 +238,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -255,6 +261,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -277,6 +284,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -299,6 +307,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -321,6 +330,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -343,6 +353,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -365,6 +376,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks', action='store_true', help='Skip checks')\n+        parser.add_argument('target', help='Id of the contract to import')\n         parser.add_argument('blockchain', help='Name of the blockchain to import into')\n         parser.add_argument('--api', help='API endpoint')\n         parser.add_argument('--version', action='version', version='%(prog)s 1.0')\n@@ -387,6 +399,7 @@ class BaseCommand:\n         parser.add_argument('--no-color', action='store_true', help='Disable colorized output')\n         parser.add_argument('--force-color', action='store_true', help='Force colorized output')\n         parser.add_argument('--skip-checks',",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 8139
+      }
+    },
+    {
+      "instance_id": "django__django-15851",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 47.21886110305786,
+      "model_output": "diff --git a/django/core/management/commands/dbshell.py b/django/core/management/commands/dbshell.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/core/management/commands/dbshell.py\n+++ b/django/core/management/commands/dbshell.py\n@@ -100,7 +100,7 @@ class Command(BaseCommand):\n         args = []\n         if options.get('database'):\n             args.append(options['database'])\n-        args.extend(options.get('extra_args', []))\n+        args.extend([arg for arg in options.get('extra_args', []) if not arg.startswith('-')])\n         args.extend(['-d', options['database']])\n         return call_command('shell', *args, **options)\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2448
+      }
+    },
+    {
+      "instance_id": "django__django-15902",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "math",
+      "execution_time": 2.454624891281128,
+      "model_output": "diff --git a/django/forms/templates/default.html b/django/forms/templates/default.html\nindex 1234567..89abcdef 100644\n--- a/django/forms/templates/default.html\n+++ b/django/forms/templates/default.html\n@@ -1,2 +1,3 @@\n {% if form.management_form %}\n-    {{ form.management_form }}\n+    {% if form.management_form %}\n+        {{ form.management_form }}\n+    {% endif %}\n {% endif %}\n```",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 385
+      }
+    },
+    {
+      "instance_id": "django__django-16046",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 47.093844413757324,
+      "model_output": "diff --git a/django/utils/formats.py b/django/utils/formats.py\nindex 1234567..89abcdef 100644\n--- a/django/utils/formats.py\n+++ b/django/utils/formats.py\n@@ -1234,6 +1234,7 @@\n     if str_number[0] == \"-\":\n         str_number = str_number[1:]\n     # Check if str_number is not None before accessing its first character\n     if str_number is not None and str_number[0] == \"-\":\n         str_number = str_number[1:]\n     return str_number\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2287
+      }
+    },
+    {
+      "instance_id": "django__django-16255",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 6.340992450714111,
+      "model_output": "diff --git a/django/contrib/sitemaps/__init__.py b/django/contrib/sitemaps/__init__.py\nindex 1234567..890abcde 100644\n--- a/django/contrib/sitemaps/__init__.py\n+++ b/django/contrib/sitemaps/__init__.py\n@@ -167,7 +167,7 @@ class Sitemap:\n     def get_latest_lastmod(self):\n         if not hasattr(self, \"lastmod\"):\n             return None\n-        if callable(self.lastmod):\n+        if callable(self.lastmod) and self.items():\n             try:\n                 return max([self.lastmod(item) for item in self.items()])\n             except TypeError:\n                 return None\n             else:\n                 return self.lastmod\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 695
+      }
+    },
+    {
+      "instance_id": "django__django-16527",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "string",
+      "execution_time": 4.164352655410767,
+      "model_output": "diff --git a/django/contrib/admin/templatetags/admin_modify.py b/django/contrib/admin/templatetags/admin_modify.py\nindex 1a2b3c4..5d6e7f8 100644\n--- a/django/contrib/admin/templatetags/admin_modify.py\n+++ b/django/contrib/admin/templatetags/admin_modify.py\n@@ -102,7 +102,7 @@ def show_save_as_new(context):\n     change = context.get('change', False)\n     save_as = context.get('save_as', False)\n     is_popup = context.get('is_popup', False)\n-    return not is_popup and has_change_permission and change and save_as\n+    return not is_popup and has_add_permission and has_change_permission and change and save_as\n```\n```",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 621
+      }
+    },
+    {
+      "instance_id": "django__django-17087",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 3.803143262863159,
+      "model_output": "diff --git a/django/db/migrations/writer.py b/django/db/migrations/writer.py\nindex 1234567..890abcde 100644\n--- a/django/db/migrations/writer.py\n+++ b/django/db/migrations/writer.py\n@@ -1234,6 +1234,7...\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 248
+      }
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23314",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 7.133424997329712,
+      "model_output": "diff --git a/lib/matplotlib/axes/_subplots.py b/lib/matplotlib/axes/_subplots.py\nindex 1234567..89abcdef 100644\n--- a/lib/matplotlib/axes/_subplots.py\n+++ b/lib/matplotlib/axes/_subplots.py\n@@ -123,7 +123,7 @@ class SubplotBase(mpl.axes.Axes):\n     def set_visible(self, visible):\n         \"\"\"\n         Set the visibility of the subplot.\n-        \"\"\"\n+        super().set_visible(visible)\n         self._visible = visible\n         self.figure.canvas.draw_idle()\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 559
+      }
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11148",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "logic",
+      "execution_time": 47.85814571380615,
+      "model_output": "diff --git a/tests/unit/test_commands.py b/tests/unit/test_commands.py\nindex 1234567..89abcdef 100644\n--- a/tests/unit/test_commands.py\n+++ b/tests/unit/test_commands.py\n@@ -36,6 +36,7 @@\n import os\n import pmxbot.dictlib\n import pmxbot.core\n+import pmxbot.logging\n import pytest\n\n class TestCommands:\n@@ -37,7 +38,7 @@ class TestCommands:\n         path = os.path.dirname(os.path.abspath(__file__))\n         configfile = os.path.join(path, 'testconf.yaml')\n         config = pmxbot.dictlib.ConfigDict.from_yaml(configfile)\n-        cls.bot = core.initialize(config)\n+        cls.bot = core.initialize(config)\n         logging.Logger.store.message(\"logged\", \"testrunner\", \"some text\")\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2500
+      }
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5227",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "logic",
+      "execution_time": 47.49471092224121,
+      "model_output": "diff --git a/pytest/logging.py b/pytest/logging.py\nindex 1234567..89abcdef 100644\n--- a/pytest/logging.py\n+++ b/pytest/logging.py\n@@ -12,7 +12,7 @@\n DEFAULT_LOG_FORMAT = \"%(filename)-25s %(lineno)4d %(levelname)-8s %(message)s\"\n \n def setup_logging():\n-    logging.basicConfig(format=DEFAULT_LOG_FORMAT)\n+    logging.basicConfig(format=\"%(levelname)-8s %(name)s:%(filename)s:%(lineno)d %(message)s\")\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2277
+      }
+    },
+    {
+      "instance_id": "pytest-dev__pytest-7168",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 4.473620414733887,
+      "model_output": "diff --git a/pytest/runner.py b/pytest/runner.py\nindex 1234567..89abcdef 100644\n--- a/pytest/runner.py\n+++ b/pytest/runner.py\n@@ -123,6 +123,7 @@ class Arti...\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 203
+      }
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13584",
+      "repo": "scikit-learn/scikit-learn",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "logic",
+      "execution_time": 47.09805226325989,
+      "model_output": "diff --git a/sklearn/utils/_repr_html.py b/sklearn/utils/_repr_html.py\nindex 1234567..89abcdef 100644\n--- a/sklearn/utils/_repr_html.py\n+++ b/sklearn/utils/_repr_html.py\n@@ -123,6 +123,7 @@ class BoundWidget:\n     de...\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2143
+      }
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13779",
+      "repo": "scikit-learn/scikit-learn",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 47.30934405326843,
+      "model_output": "diff --git a/sklearn/ensemble/voting.py b/sklearn/ensemble/voting.py\nindex 1234567..89abcdef 100644\n--- a/sklearn/ensemble/voting.py\n+++ b/sklearn/ensemble/voting.py\n@@ -123,6 +123,7 @@\n         for name, clf in self.estimators:\n             if clf is None:\n                 continue\n+            if not hasattr(clf, 'fit'):\n+                raise AttributeError(f\"Estimator {name} does not have a 'fit' method\")\n             if sample_weight is not None:\n                 clf.fit(X, y, sample_weight=sample_weight[name])\n             else:\n                 clf.fit(X, y)\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2405
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-13480",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 5.706489086151123,
+      "model_output": "diff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\nindex 1234567..890abcde 100644\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -589,6 +589,7 @@\n     if cotm is S.ComplexInfinity:\n         return S.ComplexInfinity\n     if cotm is S.Infinity:\n+        return S.Infinity\n     if cotm is S.NegativeInfinity:\n         return S.NegativeInfinity\n     if cotm is S.Zero:\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 514
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-13647",
+      "repo": "sympy/sympy",
+      "category": "refactor",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "list",
+      "execution_time": 10.842813491821289,
+      "model_output": "diff --git a/sympy/matrices/common.py b/sympy/matrices/common.py\nindex 0a1b2c3..4d5e6f7 100644\n--- a/sympy/matrices/common.py\n+++ b/sympy/matrices/common.py\n@@ -123,7 +123,7 @@ def col_insert(self, pos, other):\n         if not isinstance(other, MatrixBase):\n             raise TypeError(\"other must be a Matrix\")\n         if other.rows != self.rows:\n-            raise ValueError(\"other must have the same number of rows as self\")\n+            raise ValueError(\"other must have the same number of rows as self, but got %d rows\" % other.rows)\n         if pos < 0 or pos > self.cols:\n             raise ValueError(\"pos must be between 0 and self.cols\")\n         if other.cols != 1:\n@@ -131,7 +131,7 @@ def col_insert(self, pos, other):\n             raise ValueError(\"other must have only one column\")\n         if other.shape[0] != self.rows:\n             raise ValueError(\"other must have the same number of rows as self\")\n-        return Matrix(self.tolist()[:pos] + [other.tolist()] + self.tolist()[pos:])\n+        return Matrix(self.tolist()[:pos] + [other.tolist()] + self.tolist()[pos:])",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 1090
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-14774",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 6.555082082748413,
+      "model_output": "diff --git a/sympy/printing/latex.py b/sympy/printing/latex.py\nindex 1234567..89abcdef 100644\n--- a/sympy/printing/latex.py\n+++ b/sympy/printing/latex.py\n@@ -743,7 +743,7 @@ def _print_inverse_trig(self, e):\n         inv_trig_table = [\"asin\", \"acos\", \"atan\", \"acot\"]\n         if e.func.__name__ in inv_trig_table:\n             return \"\\\\operatorname{%s}{\\\\left (%s \\\\right )}\" % (e.func.__name__, self._print(e.args[0]))\n-        return \"\\\\operatorname{%s}{\\\\left (%s \\\\right )}\" % (e.func.__name__, self._print(e.args[0]))\n+        return \"\\\\operatorname{%s}{\\\\left (%s \\\\right )}\" % (e.func.__name__.replace('acsc', 'arccsc').replace('asec', 'arcsec'), self._print(e.args[0]))\n```\n\nThis patch adds 'acsc' and 'asec' to the `inv_trig_table` and modifies the return statement to replace 'acsc' with 'arccsc' and 'asec' with 'arcsec' in the LaTeX output.",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 853
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-15346",
+      "repo": "sympy/sympy",
+      "category": "test",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 4,
+      "task_type": "logic",
+      "execution_time": 3.009361982345581,
+      "model_output": "diff --git a/sympy/functions/trigonometric.py b/sympy/functions/trigonometric.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/trigonometric.py\n+++ b/sympy/functions/trigonometric.py\n@@ -123,6 +123,7 @@\n     if isinstance(arg, Rational):\n         # Simplify sin/cos with Rational\n         return sin(arg).simplify() * cos(arg).simplify()\n+    return arg\n```",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 364
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-16988",
+      "repo": "sympy/sympy",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "math",
+      "execution_time": 47.23564887046814,
+      "model_output": "diff --git a/sympy/sets/intersection.py b/sympy/sets/intersection.py\nindex 3a4b5c6..7d8e9f0 100644\n--- a/sympy/sets/intersection.py\n+++ b/sympy/sets/intersection.py\n@@ -10,6 +10,7 @@\n from sympy.core.sympify import sympify\n from sympy.core.singleton import Singleton, S\n from sympy.core.compatibility import is_sequence\n+from sympy.core.containers import Dict\n from sympy.core.decorators import deprecated\n from sympy.core.evalf import evalf\n from sympy.core.function import Function\n@@ -25,6 +26,7 @@\n from sympy.sets.sets import Set, EmptySet, FiniteSet, Interval, Union, Complement, ProductSet\n from sympy.sets.fancysets import ImageSet, Range\n from sympy.sets.finite_set import FiniteSet\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -40,6 +42,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -55,6 +58,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -70,6 +74,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -85,6 +90,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -100,6 +106,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -115,6 +122,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -130,6 +138,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -145,6 +154,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -160,6 +169,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -175,6 +185,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -190,6 +201,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -205,6 +217,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -220,6 +233,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -235,6 +249,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -250,6 +265,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -265,6 +281,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -280,6 +297,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -295,6 +313,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise\n from sympy.sets.fancysets import Interval\n from sympy.sets.fancysets import Union\n from sympy.sets.fancysets import Complement\n@@ -310,6 +329,7 @@\n from sympy.sets.fancysets import ProductSet\n from sympy.sets.fancysets import ImageSet\n from sympy.sets.fancysets import Range\n+from sympy.sets.fancysets import Piecewise",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6807
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-17139",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 6,
+      "task_type": "logic",
+      "execution_time": 7.136369943618774,
+      "model_output": "diff --git a/sympy/simplify/fu.py b/sympy/simplify/fu.py\nindex 1234567..89abcdef 100644\n--- a/sympy/simplify/fu.py\n+++ b/sympy/simplify/fu.py\n@@ -566,7 +566,7 @@ def TR6(rv, cos, sin, lambda x: 1 - x, max=max, pow=pow)\n     return _TR56(rv, cos, sin, lambda x: 1 - x, max=max, pow=pow)\n \n def _TR56(rv, cos, sin, lambda x: 1 - x, max=max, pow=pow):\n-    return bottom_up(rv, _f)\n+    return bottom_up(rv, lambda x: _f(x))\n \n def _f(rv):\n     if (rv.exp < 0) == True:\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 524
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-17630",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 48.82329535484314,
+      "model_output": "diff --git a/sympy/matrices/expressions/blockmatrix.py b/sympy/matrices/expressions/blockmatrix.py\nindex 1234567..89abcdef 100644\n--- a/sympy/matrices/expressions/blockmatrix.py\n+++ b/sympy/matrices/expressions/blockmatrix.py\n@@ -80,7 +80,7 @@ class BlockMatrix(MatrixBase):\n         return [self.blocks[0, i].cols for i in range(self.blockshape[1])]\n \n     def _blockmul(self, other):\n-        if self.colblocksizes == other.rowblocksizes:\n+        if self.colblocksizes == other.rowblocksizes and all(isinstance(b, ZeroMatrix) for b in self.blocks.flatten()):\n             return self._blockmul_optimized(other)\n         else:\n             return self._blockmul_generic(other)\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2474
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-18057",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 4.277925252914429,
+      "model_output": "diff --git a/sympy/core/expr.py b/sympy/core/expr.py\nindex 1234567..89abcdef 100644\n--- a/sympy/core/expr.py\n+++ b/sympy/core/expr.py\n@@ -124,7 ...\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 204
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-18189",
+      "repo": "sympy/sympy",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "math",
+      "execution_time": 2.2996010780334473,
+      "model_output": "diff --git a/sympy/solvers/diophantine.py b/sympy/solvers/diophantine.py\nindex 1234567..89abcdef 100644\n--- a/sympy/solvers/diophantine.py\n+++ b/sympy/solvers/diophantine.py\n@@ -276,6 +276,7 @@ def _c...",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 203
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-18621",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 5,
+      "task_type": "logic",
+      "execution_time": 47.875996351242065,
+      "model_output": "diff --git a/sympy/matrices/expressions/blockmatrix.py b/sympy/matrices/expressions/blockmatrix.py\nindex 1234567..89abcdef 100644\n--- a/sympy/matrices/expressions/blockmatrix.py\n+++ b/sympy/matrices/expressions/blockmatrix.py\n@@ -248,6 +248,10 @@ class BlockMatrix(MatrixBase):\n     def _entry(self, i, j):\n         row_block, col_block = self._block_index(i, j)\n         if row_block == col_block:\n+            if isinstance(self.blocks[row_block, col_block], One):\n+                return self.blocks[row_block, col_block]\n             return self.blocks[row_block, col_block][i, j]\n         else:\n             return 0\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2433
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-20212",
+      "repo": "sympy/sympy",
+      "category": "docs",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 4,
+      "task_type": "list",
+      "execution_time": 47.067439556121826,
+      "model_output": "diff --git a/sympy/matrices/common.py b/sympy/matrices/common.py\nindex 0a1b2c3..4d5e6f7 100644\n--- a/sympy/matrices/common.py\n+++ b/sympy/matrices/common.py\n@@ -123,7 +123,7 @@ def col_insert(self, po...\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ns\n\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 2124
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-21612",
+      "repo": "sympy/sympy",
+      "category": "test",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 7.881315469741821,
+      "model_output": "diff --git a/sympy/parsing/latex.py b/sympy/parsing/latex.py\nindex 1234567..890abcde 100644\n--- a/sympy/parsing/latex.py\n+++ b/sympy/parsing/latex.py\n@@ -1234,6 +1234,7 @@\n     # Your fix here\n```\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n```\ndiff --git a/sympy/parsing/latex.py b/sympy/parsing/latex.py\nindex 1234567..890abcde 100644\n--- a/sympy/parsing/latex.py\n+++ b/sympy/parsing/latex.py\n@@ -1234,6 +1234,7 @@\n     # Your fix here\n     return parse_latex(latex_str, **kwargs)\n \n+    return parse_latex(f\"({latex_str})\", **kwargs)",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 560
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-21627",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 3,
+      "task_type": "logic",
+      "execution_time": 47.43845772743225,
+      "model_output": "diff --git a/sympy/functions/elementary/trigonometric.py b/sympy/functions/elementary/trigonometric.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/trigonometric.py\n+++ b/sympy/functions/elementary/trigonometric.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/trigonometric.py b/sympy/functions/elementary/trigonometric.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/trigonometric.py\n+++ b/sympy/functions/elementary/trigonometric.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/trigonometric.py b/sympy/functions/elementary/trigonometric.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/trigonometric.py\n+++ b/sympy/functions/elementary/trigonometric.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/trigonometric.py b/sympy/functions/elementary/trigonometric.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/trigonometric.py\n+++ b/sympy/functions/elementary/trigonometric.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/trigonometric.py b/sympy/functions/elementary/trigonometric.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/trigonometric.py\n+++ b/sympy/functions/elementary/trigonometric.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/trigonometric.py b/sympy/functions/elementary/trigonometric.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/trigonometric.py\n+++ b/sympy/functions/elementary/trigonometric.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/trigonometric.py b/sympy/functions/elementary/trigonometric.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/trigonometric.py\n+++ b/sympy/functions/elementary/trigonometric.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/trigonometric.py b/sympy/functions/elementary/trigonometric.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/trigonometric.py\n+++ b/sympy/functions/elementary/trigonometric.py\n@@ -123,6 +123,7 @@\n     def is_zero(self):\n         if self.args[0].is_zero:\n             return True\n+        return False\n         return None\n```\n```\ndiff --git a/sympy/functions/elementary/hyperbolic.py b/sympy/functions/elementary/hyperbolic.py\nindex 1234567..89abcdef 100644\n--- a/sympy/functions/elementary/hyperbolic.py\n+++ b/sympy/functions/elementary/hyperbolic.py\n@@ -123,6 +123,7",
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 5974
+      }
+    }
+  ],
+  "timestamp": "2026-01-25 07:22:27"
+}
