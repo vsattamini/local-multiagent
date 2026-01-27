@@ -28,6 +28,7 @@ from src.swarm.agent import SwarmAgent
 from src.swarm.router import AffinityRouter, RandomRouter
 from src.swarm.types import TaskType
 from src.swebench.validation import validate_patch
+from src.swebench.prompts import build_swebench_prompt, get_prompt_info, list_versions
 
 logging.basicConfig(
     level=logging.INFO,
@@ -87,106 +88,6 @@ def categorize_issue_to_task_type(issue: Dict) -> TaskType:
         return TaskType.LIST
     else:
         return TaskType.MATH
-# Few-shot example patches (from generic Python repos, NOT from SWE-bench test set)
-FEW_SHOT_EXAMPLES = '''
-Example 1 - Fixing a simple bug:
-Problem: The function returns None instead of an empty list when input is empty.
-Patch:
-diff --git a/utils/helpers.py b/utils/helpers.py
---- a/utils/helpers.py
-+++ b/utils/helpers.py
-@@ -15,7 +15,7 @@ def process_items(items):
-     if not items:
--        return None
-+        return []
-     return [transform(item) for item in items]
-
-Example 2 - Adding a missing condition:
-Problem: Division by zero error when count is 0.
-Patch:
-diff --git a/stats/calculator.py b/stats/calculator.py
---- a/stats/calculator.py
-+++ b/stats/calculator.py
-@@ -42,6 +42,8 @@ def calculate_average(self, values):
-     def get_ratio(self, count):
-+        if count == 0:
-+            return 0.0
-         return self.total / count
-
-Example 3 - Fixing string handling:
-Problem: Unicode characters cause encoding errors.
-Patch:
-diff --git a/io/parser.py b/io/parser.py
---- a/io/parser.py
-+++ b/io/parser.py
-@@ -78,7 +78,7 @@ class FileParser:
-     def read_content(self, filepath):
--        with open(filepath, 'r') as f:
-+        with open(filepath, 'r', encoding='utf-8') as f:
-             return f.read()
-'''
-
-
-def build_swebench_prompt(issue: Dict, context_examples: List[Dict] = None) -> str:
-    """
-    Build prompt for SWE-bench issue resolution.
-    
-    Uses best practices:
-    - Few-shot examples showing correct patch format
-    - Clear, structured instructions
-    - Explicit format requirements
-    
-    Args:
-        issue: SWE-bench issue dictionary
-        context_examples: Optional list of similar past solutions for context
-    
-    Returns:
-        Formatted prompt string
-    """
-    # Truncate problem statement if too long (keep first 2000 chars)
-    problem = issue['problem_statement'].strip()
-    if len(problem) > 2000:
-        problem = problem[:2000] + "\n[... truncated ...]"
-    
-    prompt = f'''You are an expert software engineer. Your task is to fix a bug in a Python repository by generating a minimal git patch.
-
-## Repository
-{issue['repo']}
-
-## Problem Description
-{problem}
-
-## Patch Format Requirements
-Your patch MUST follow this exact format:
-1. Start with: diff --git a/<filepath> b/<filepath>
-2. Include --- a/<filepath> and +++ b/<filepath> lines
-3. Include @@ line numbers @@ hunk headers
-4. Use - for removed lines and + for added lines
-5. Include 3 lines of context before and after changes
-
-{FEW_SHOT_EXAMPLES}
-
-## Your Task
-Generate a patch that fixes the issue described above. The patch should:
-- Be minimal (change only what's necessary)
-- Follow the exact unified diff format shown in examples
-- Not include any explanation, just the patch
-
-## Patch
-diff --git'''
-
-    # Add agent-specific context examples if provided (for emergent specialization)
-    if context_examples and len(context_examples) > 0:
-        agent_examples = "\n## Similar Issues This Agent Has Solved:\n"
-        for i, ex in enumerate(context_examples[:2], 1):
-            agent_examples += f"\nPrevious Fix {i}:\n"
-            agent_examples += f"Problem: {ex.problem[:150]}...\n"
-            agent_examples += f"Solution snippet: {ex.solution[:300]}...\n"
-        
-        # Insert before "Your Task" section
-        prompt = prompt.replace("## Your Task", agent_examples + "\n## Your Task")
-    
-    return prompt
 
 
 def generate_real_solution(
@@ -194,7 +95,8 @@ def generate_real_solution(
     condition: str,
     model: Optional[LlamaCppModel],
     agents: List[SwarmAgent],
-    router: Any
+    router: Any,
+    prompt_version: str = "v1"
 ) -> str:
     """
     Generate real solution using swarm system.
@@ -233,8 +135,9 @@ def generate_real_solution(
         if context_examples:
             logger.info(f"  Using {len(context_examples)} context examples from agent's memory")
 
-    # Build prompt
-    prompt = build_swebench_prompt(issue, context_examples)
+    # Build prompt using specified version
+    prompt = build_swebench_prompt(issue, version=prompt_version, context_examples=context_examples)
+    logger.info(f"  Using prompt version: {prompt_version}")
 
     # Generate solution
     logger.info(f"  Generating solution with {model.model_name}...")
@@ -254,9 +157,9 @@ def generate_real_solution(
             lines = solution.split('\n')
             solution = '\n'.join(lines[1:-1] if lines[-1].strip() == '```' else lines[1:])
         
-        # The prompt ends with "diff --git" to prime the model
-        # Prepend it to the solution to form complete patch
-        if not solution.startswith("diff --git"):
+        # V2 prompt ends with "diff --git" priming - prepend if needed
+        # V1/V3 prompts don't have this issue
+        if prompt_version == "v2" and not solution.startswith("diff --git"):
             solution = "diff --git" + solution
         
         # Clean up any trailing explanation after the patch
@@ -282,7 +185,8 @@ def run_experiment(
     model_path: str = "models/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf",
     use_mock: bool = False,
     n_agents: int = 3,
-    router_temp: float = 0.5
+    router_temp: float = 0.5,
+    prompt_version: str = "v1"
 ):
     """
     Run SWE-bench experiment with swarm system.
@@ -298,6 +202,7 @@ def run_experiment(
     logger.info(f"\n{'#'*80}")
     logger.info(f"STARTING SWE-BENCH EXPERIMENT: {condition.upper()}")
     logger.info(f"Mode: {'MOCK (Infrastructure Test)' if use_mock else 'REAL (Model Inference)'}")
+    logger.info(f"Prompt Version: {prompt_version}")
     logger.info(f"{'#'*80}\n")
 
     # Create output directory
@@ -394,7 +299,7 @@ def run_experiment(
                 solution = generate_mock_solution(issue, condition)
                 agent_id = 0
             else:
-                solution = generate_real_solution(issue, condition, model, agents, router)
+                solution = generate_real_solution(issue, condition, model, agents, router, prompt_version)
                 # Track which agent was used
                 task_type = categorize_issue_to_task_type(issue)
                 if condition == "baseline":
@@ -638,6 +543,13 @@ Examples:
         default=0.5,
         help="Router temperature for affinity routing (default: 0.5, lower = more exploitation)"
     )
+    parser.add_argument(
+        "--prompt-version",
+        type=str,
+        default="v1",
+        choices=[f"v{i}" for i in range(1, 16)],
+        help="Prompt version to use: v1 (simple), v2 (few-shot with bug), v3 (fixed few-shot)"
+    )
 
     args = parser.parse_args()
 
@@ -646,6 +558,10 @@ Examples:
         logger.error(f"Model file not found: {args.model_path}")
         logger.error("Either provide a valid --model-path or use --mock for testing")
         sys.exit(1)
+
+    # Log prompt version info
+    prompt_info = get_prompt_info(args.prompt_version)
+    logger.info(f"Prompt: {prompt_info.version} - {prompt_info.description}")
 
     # Run experiment
     run_experiment(
@@ -656,7 +572,8 @@ Examples:
         model_path=args.model_path,
         use_mock=args.mock,
         n_agents=args.n_agents,
-        router_temp=args.router_temp
+        router_temp=args.router_temp,
+        prompt_version=args.prompt_version
     )
 
 

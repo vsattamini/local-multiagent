@@ -1,22 +1,28 @@
 #!/bin/bash
-# SWE-bench Combination Sweep (v2 - Improved Prompt)
+# SWE-bench Combination Sweep
 # Tests combinations of temp (0.1-0.3) and agents (5-15, step 2) for both 1.5B and 7B models
 #
-# v2 Changes:
-# - Improved prompt with few-shot examples
-# - Better format validation
-# - Resume capability (re-run to continue where you left off)
+# Usage:
+#   ./scripts/run_swebench_sweep.sh           # Use default prompt (v1)
+#   PROMPT_VERSION=v3 ./scripts/run_swebench_sweep.sh  # Use v3 prompt
+#
+# Prompt Versions:
+#   v1 - Simple prompt (original, 6 unique issues solved)
+#   v2 - Few-shot with bug (worse results)
+#   v3 - Fixed few-shot
 #
 # Total experiments: 3 temps × 6 agent counts × 2 models = 36 experiments
 
 set -e
 
-# Output directory - change this to start fresh or use existing
-OUTPUT_BASE="results/swebench_sweep_v2"
+# Configuration - customize these
+PROMPT_VERSION="${PROMPT_VERSION:-v1}"  # Default to v1 (best performing)
+OUTPUT_BASE="results/swebench_sweep_${PROMPT_VERSION}"
 
 echo "=============================================="
-echo "SWE-BENCH COMBINATION SWEEP (v2 - New Prompt)"
+echo "SWE-BENCH COMBINATION SWEEP"
 echo "=============================================="
+echo "Prompt Version: ${PROMPT_VERSION}"
 echo "Temps: 0.1, 0.2, 0.3"
 echo "Agents: 5, 7, 9, 11, 13, 15"
 echo "Models: 1.5B, 7B"
@@ -38,13 +44,14 @@ run_combination() {
     temp_str=$(echo $temp | tr '.' '_')
     output_dir="${OUTPUT_BASE}/${model_name}/temp${temp_str}_n${n_agents}"
     
-    echo "[${model_name}] temp=${temp}, n_agents=${n_agents} -> ${output_dir}"
+    echo "[${model_name}] temp=${temp}, n_agents=${n_agents}, prompt=${PROMPT_VERSION} -> ${output_dir}"
     
     python scripts/run_swebench_experiment.py \
         --condition experimental \
         --model-path "$model_path" \
         --n-agents $n_agents \
         --router-temp $temp \
+        --prompt-version "$PROMPT_VERSION" \
         --output-dir "$output_dir"
     
     echo ""
