@@ -3,6 +3,7 @@ __pycache__/
 .pytest_cache/
 .env
 venv/
+.venv/
 .idea/
 .vscode/
 *.swp
@@ -10,3 +11,6 @@ venv/
 
 /models
 *execution_log*.txt
+
+# Windows "downloaded from internet" metadata cruft
+*Zone.Identifier

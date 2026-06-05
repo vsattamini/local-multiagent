@@ -1,0 +1,170 @@
+[
+  {
+    "name": "exp2.1_experimental",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 3.0236089910508506,
+      "df": 6,
+      "p_value": 0.8058778728356162,
+      "cramers_v": 0.1268188729966594,
+      "significant": false,
+      "n_successes": 94
+    },
+    "lr_test": {
+      "method": "logit_lr_test",
+      "log_lik_null": -108.06543176383471,
+      "log_lik_full": -106.21786529378906,
+      "chi2": 3.6951329400912982,
+      "df": 6,
+      "p_value": 0.7178527548918643,
+      "significant": false
+    }
+  },
+  {
+    "name": "exp_low_temp",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 69.80328608589477,
+      "df": 6,
+      "p_value": 4.486880286088643e-13,
+      "cramers_v": 0.6297694657837049,
+      "significant": true,
+      "n_successes": 88
+    },
+    "lr_test": {
+      "error": "Logit: Singular matrix"
+    }
+  },
+  {
+    "name": "exp_5_agents",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 5,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 36.90486603624901,
+      "df": 12,
+      "p_value": 0.00023148035165277238,
+      "cramers_v": 0.34728106394297226,
+      "significant": true,
+      "n_successes": 102
+    },
+    "lr_test": {
+      "error": "Logit: Singular matrix"
+    }
+  },
+  {
+    "name": "exp_3b_baseline",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 7.706712470449173,
+      "df": 6,
+      "p_value": 0.2603872851281179,
+      "cramers_v": 0.17085693632713703,
+      "significant": false,
+      "n_successes": 132
+    },
+    "lr_test": {
+      "method": "logit_lr_test",
+      "log_lik_null": -77.58534710778656,
+      "log_lik_full": -75.20135689644003,
+      "chi2": 4.767980422693057,
+      "df": 6,
+      "p_value": 0.5738971105284345,
+      "significant": false
+    }
+  },
+  {
+    "name": "exp_3b_model",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 19.123915763639722,
+      "df": 6,
+      "p_value": 0.003959397240242529,
+      "cramers_v": 0.27995839681878293,
+      "significant": true,
+      "n_successes": 122
+    },
+    "lr_test": {
+      "method": "logit_lr_test",
+      "log_lik_null": -86.47754307785904,
+      "log_lik_full": -84.36698041829379,
+      "chi2": 4.221125319130493,
+      "df": 5,
+      "p_value": 0.5180383729141194,
+      "significant": false
+    }
+  },
+  {
+    "name": "exp_3b_low_temp",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 115.89806077856363,
+      "df": 6,
+      "p_value": 1.1833253437669153e-22,
+      "cramers_v": 0.6600810521505173,
+      "significant": true,
+      "n_successes": 133
+    },
+    "lr_test": {
+      "error": "Logit: Singular matrix"
+    }
+  },
+  {
+    "name": "exp_3b_5_agents",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 5,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 42.66768057189015,
+      "df": 12,
+      "p_value": 2.569988897138918e-05,
+      "cramers_v": 0.3294983486461423,
+      "significant": true,
+      "n_successes": 131
+    },
+    "lr_test": {
+      "error": "Logit: Singular matrix"
+    }
+  },
+  {
+    "name": "exp_7b_model",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 65.01339483863994,
+      "df": 6,
+      "p_value": 4.286872791520291e-12,
+      "cramers_v": 0.48359190699710153,
+      "significant": true,
+      "n_successes": 139
+    },
+    "lr_test": {
+      "method": "logit_lr_test",
+      "log_lik_null": -66.99277998022572,
+      "log_lik_full": -59.19491433900002,
+      "chi2": 15.595731282451396,
+      "df": 5,
+      "p_value": 0.00809825700878486,
+      "significant": true
+    }
+  }
+]

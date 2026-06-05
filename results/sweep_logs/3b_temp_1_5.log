@@ -1,0 +1,1930 @@
+ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA GeForce RTX 4070 Laptop GPU, compute capability 8.9, VMM: yes
+llama_model_load_from_file_impl: using device CUDA0 (NVIDIA GeForce RTX 4070 Laptop GPU) - 7054 MiB free
+llama_model_loader: loaded meta data with 26 key-value pairs and 435 tensors from models/qwen2.5-coder-3b-instruct-q4_k_m.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = qwen2
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Qwen2.5 Coder 3B Instruct AWQ
+llama_model_loader: - kv   3:                           general.finetune str              = Instruct-AWQ
+llama_model_loader: - kv   4:                           general.basename str              = Qwen2.5-Coder
+llama_model_loader: - kv   5:                         general.size_label str              = 3B
+llama_model_loader: - kv   6:                          qwen2.block_count u32              = 36
+llama_model_loader: - kv   7:                       qwen2.context_length u32              = 32768
+llama_model_loader: - kv   8:                     qwen2.embedding_length u32              = 2048
+llama_model_loader: - kv   9:                  qwen2.feed_forward_length u32              = 11008
+llama_model_loader: - kv  10:                 qwen2.attention.head_count u32              = 16
+llama_model_loader: - kv  11:              qwen2.attention.head_count_kv u32              = 2
+llama_model_loader: - kv  12:                       qwen2.rope.freq_base f32              = 1000000.000000
+llama_model_loader: - kv  13:     qwen2.attention.layer_norm_rms_epsilon f32              = 0.000001
+llama_model_loader: - kv  14:                          general.file_type u32              = 15
+llama_model_loader: - kv  15:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  16:                         tokenizer.ggml.pre str              = qwen2
+llama_model_loader: - kv  17:                      tokenizer.ggml.tokens arr[str,151936]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+llama_model_loader: - kv  18:                  tokenizer.ggml.token_type arr[i32,151936]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  19:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+llama_model_loader: - kv  20:                tokenizer.ggml.eos_token_id u32              = 151645
+llama_model_loader: - kv  21:            tokenizer.ggml.padding_token_id u32              = 151643
+llama_model_loader: - kv  22:                tokenizer.ggml.bos_token_id u32              = 151643
+llama_model_loader: - kv  23:               tokenizer.ggml.add_bos_token bool             = false
+llama_model_loader: - kv  24:                    tokenizer.chat_template str              = {%- if tools %}\n    {{- '<|im_start|>...
+llama_model_loader: - kv  25:               general.quantization_version u32              = 2
+llama_model_loader: - type  f32:  181 tensors
+llama_model_loader: - type q4_K:  217 tensors
+llama_model_loader: - type q6_K:   37 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_K - Medium
+print_info: file size   = 1.95 GiB (4.94 BPW) 
+init_tokenizer: initializing tokenizer for type 2
+load: control token: 151660 '<|fim_middle|>' is not marked as EOG
+load: control token: 151659 '<|fim_prefix|>' is not marked as EOG
+load: control token: 151653 '<|vision_end|>' is not marked as EOG
+load: control token: 151648 '<|box_start|>' is not marked as EOG
+load: control token: 151646 '<|object_ref_start|>' is not marked as EOG
+load: control token: 151649 '<|box_end|>' is not marked as EOG
+load: control token: 151655 '<|image_pad|>' is not marked as EOG
+load: control token: 151651 '<|quad_end|>' is not marked as EOG
+load: control token: 151647 '<|object_ref_end|>' is not marked as EOG
+load: control token: 151652 '<|vision_start|>' is not marked as EOG
+load: control token: 151654 '<|vision_pad|>' is not marked as EOG
+load: control token: 151656 '<|video_pad|>' is not marked as EOG
+load: control token: 151644 '<|im_start|>' is not marked as EOG
+load: control token: 151661 '<|fim_suffix|>' is not marked as EOG
+load: control token: 151650 '<|quad_start|>' is not marked as EOG
+load: printing all EOG tokens:
+load:   - 151643 ('<|endoftext|>')
+load:   - 151645 ('<|im_end|>')
+load:   - 151662 ('<|fim_pad|>')
+load:   - 151663 ('<|repo_name|>')
+load:   - 151664 ('<|file_sep|>')
+load: special tokens cache size = 22
+load: token to piece cache size = 0.9310 MB
+print_info: arch             = qwen2
+print_info: vocab_only       = 0
+print_info: n_ctx_train      = 32768
+print_info: n_embd           = 2048
+print_info: n_layer          = 36
+print_info: n_head           = 16
+print_info: n_head_kv        = 2
+print_info: n_rot            = 128
+print_info: n_swa            = 0
+print_info: is_swa_any       = 0
+print_info: n_embd_head_k    = 128
+print_info: n_embd_head_v    = 128
+print_info: n_gqa            = 8
+print_info: n_embd_k_gqa     = 256
+print_info: n_embd_v_gqa     = 256
+print_info: f_norm_eps       = 0.0e+00
+print_info: f_norm_rms_eps   = 1.0e-06
+print_info: f_clamp_kqv      = 0.0e+00
+print_info: f_max_alibi_bias = 0.0e+00
+print_info: f_logit_scale    = 0.0e+00
+print_info: f_attn_scale     = 0.0e+00
+print_info: n_ff             = 11008
+print_info: n_expert         = 0
+print_info: n_expert_used    = 0
+print_info: causal attn      = 1
+print_info: pooling type     = -1
+print_info: rope type        = 2
+print_info: rope scaling     = linear
+print_info: freq_base_train  = 1000000.0
+print_info: freq_scale_train = 1
+print_info: n_ctx_orig_yarn  = 32768
+print_info: rope_finetuned   = unknown
+print_info: model type       = 3B
+print_info: model params     = 3.40 B
+print_info: general.name     = Qwen2.5 Coder 3B Instruct AWQ
+print_info: vocab type       = BPE
+print_info: n_vocab          = 151936
+print_info: n_merges         = 151387
+print_info: BOS token        = 151643 '<|endoftext|>'
+print_info: EOS token        = 151645 '<|im_end|>'
+print_info: EOT token        = 151645 '<|im_end|>'
+print_info: PAD token        = 151643 '<|endoftext|>'
+print_info: LF token         = 198 'Ċ'
+print_info: FIM PRE token    = 151659 '<|fim_prefix|>'
+print_info: FIM SUF token    = 151661 '<|fim_suffix|>'
+print_info: FIM MID token    = 151660 '<|fim_middle|>'
+print_info: FIM PAD token    = 151662 '<|fim_pad|>'
+print_info: FIM REP token    = 151663 '<|repo_name|>'
+print_info: FIM SEP token    = 151664 '<|file_sep|>'
+print_info: EOG token        = 151643 '<|endoftext|>'
+print_info: EOG token        = 151645 '<|im_end|>'
+print_info: EOG token        = 151662 '<|fim_pad|>'
+print_info: EOG token        = 151663 '<|repo_name|>'
+print_info: EOG token        = 151664 '<|file_sep|>'
+print_info: max token length = 256
+load_tensors: loading model tensors, this can take a while... (mmap = true)
+load_tensors: layer   0 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   1 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   2 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   3 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   4 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   5 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   6 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   7 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   8 assigned to device CUDA0, is_swa = 0
+load_tensors: layer   9 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  10 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  11 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  12 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  13 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  14 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  15 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  16 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  17 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  18 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  19 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  20 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  21 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  22 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  23 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  24 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  25 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  26 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  27 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  28 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  29 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  30 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  31 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  32 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  33 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  34 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  35 assigned to device CUDA0, is_swa = 0
+load_tensors: layer  36 assigned to device CUDA0, is_swa = 0
+load_tensors: tensor 'token_embd.weight' (q4_K) (and 0 others) cannot be used with preferred buffer type CUDA_Host, using CPU instead
+load_tensors: offloading 36 repeating layers to GPU
+load_tensors: offloading output layer to GPU
+load_tensors: offloaded 37/37 layers to GPU
+load_tensors:        CUDA0 model buffer size =  1834.83 MiB
+load_tensors:   CPU_Mapped model buffer size =   166.92 MiB
+.................................................................................
+llama_context: constructing llama_context
+llama_context: n_seq_max     = 1
+llama_context: n_ctx         = 4096
+llama_context: n_ctx_per_seq = 4096
+llama_context: n_batch       = 512
+llama_context: n_ubatch      = 512
+llama_context: causal_attn   = 1
+llama_context: flash_attn    = 0
+llama_context: kv_unified    = false
+llama_context: freq_base     = 1000000.0
+llama_context: freq_scale    = 1
+llama_context: n_ctx_per_seq (4096) < n_ctx_train (32768) -- the full capacity of the model will not be utilized
+set_abort_callback: call
+llama_context:  CUDA_Host  output buffer size =     0.58 MiB
+create_memory: n_ctx = 4096 (padded)
+llama_kv_cache_unified: layer   0: dev = CUDA0
+llama_kv_cache_unified: layer   1: dev = CUDA0
+llama_kv_cache_unified: layer   2: dev = CUDA0
+llama_kv_cache_unified: layer   3: dev = CUDA0
+llama_kv_cache_unified: layer   4: dev = CUDA0
+llama_kv_cache_unified: layer   5: dev = CUDA0
+llama_kv_cache_unified: layer   6: dev = CUDA0
+llama_kv_cache_unified: layer   7: dev = CUDA0
+llama_kv_cache_unified: layer   8: dev = CUDA0
+llama_kv_cache_unified: layer   9: dev = CUDA0
+llama_kv_cache_unified: layer  10: dev = CUDA0
+llama_kv_cache_unified: layer  11: dev = CUDA0
+llama_kv_cache_unified: layer  12: dev = CUDA0
+llama_kv_cache_unified: layer  13: dev = CUDA0
+llama_kv_cache_unified: layer  14: dev = CUDA0
+llama_kv_cache_unified: layer  15: dev = CUDA0
+llama_kv_cache_unified: layer  16: dev = CUDA0
+llama_kv_cache_unified: layer  17: dev = CUDA0
+llama_kv_cache_unified: layer  18: dev = CUDA0
+llama_kv_cache_unified: layer  19: dev = CUDA0
+llama_kv_cache_unified: layer  20: dev = CUDA0
+llama_kv_cache_unified: layer  21: dev = CUDA0
+llama_kv_cache_unified: layer  22: dev = CUDA0
+llama_kv_cache_unified: layer  23: dev = CUDA0
+llama_kv_cache_unified: layer  24: dev = CUDA0
+llama_kv_cache_unified: layer  25: dev = CUDA0
+llama_kv_cache_unified: layer  26: dev = CUDA0
+llama_kv_cache_unified: layer  27: dev = CUDA0
+llama_kv_cache_unified: layer  28: dev = CUDA0
+llama_kv_cache_unified: layer  29: dev = CUDA0
+llama_kv_cache_unified: layer  30: dev = CUDA0
+llama_kv_cache_unified: layer  31: dev = CUDA0
+llama_kv_cache_unified: layer  32: dev = CUDA0
+llama_kv_cache_unified: layer  33: dev = CUDA0
+llama_kv_cache_unified: layer  34: dev = CUDA0
+llama_kv_cache_unified: layer  35: dev = CUDA0
+llama_kv_cache_unified:      CUDA0 KV buffer size =   144.00 MiB
+llama_kv_cache_unified: size =  144.00 MiB (  4096 cells,  36 layers,  1/1 seqs), K (f16):   72.00 MiB, V (f16):   72.00 MiB
+llama_context: enumerating backends
+llama_context: backend_ptrs.size() = 2
+llama_context: max_nodes = 3480
+llama_context: worst-case: n_tokens = 512, n_seqs = 1, n_outputs = 0
+graph_reserve: reserving a graph for ubatch with n_tokens =  512, n_seqs =  1, n_outputs =  512
+graph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1
+graph_reserve: reserving a graph for ubatch with n_tokens =  512, n_seqs =  1, n_outputs =  512
+llama_context:      CUDA0 compute buffer size =   300.75 MiB
+llama_context:  CUDA_Host compute buffer size =    13.01 MiB
+llama_context: graph nodes  = 1374
+llama_context: graph splits = 2
+CUDA : ARCHS = 890 | USE_GRAPHS = 1 | PEER_MAX_BATCH_SIZE = 128 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX_VNNI = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 | 
+Model metadata: {'tokenizer.ggml.add_bos_token': 'false', 'tokenizer.ggml.bos_token_id': '151643', 'general.file_type': '15', 'qwen2.attention.layer_norm_rms_epsilon': '0.000001', 'general.architecture': 'qwen2', 'tokenizer.ggml.padding_token_id': '151643', 'general.basename': 'Qwen2.5-Coder', 'qwen2.embedding_length': '2048', 'tokenizer.ggml.pre': 'qwen2', 'general.name': 'Qwen2.5 Coder 3B Instruct AWQ', 'qwen2.block_count': '36', 'general.finetune': 'Instruct-AWQ', 'general.type': 'model', 'general.size_label': '3B', 'qwen2.context_length': '32768', 'tokenizer.chat_template': '{%- if tools %}\n    {{- \'<|im_start|>system\\n\' }}\n    {%- if messages[0][\'role\'] == \'system\' %}\n        {{- messages[0][\'content\'] }}\n    {%- else %}\n        {{- \'You are Qwen, created by Alibaba Cloud. You are a helpful assistant.\' }}\n    {%- endif %}\n    {{- "\\n\\n# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>" }}\n    {%- for tool in tools %}\n        {{- "\\n" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- "\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\"name\\": <function-name>, \\"arguments\\": <args-json-object>}\\n</tool_call><|im_end|>\\n" }}\n{%- else %}\n    {%- if messages[0][\'role\'] == \'system\' %}\n        {{- \'<|im_start|>system\\n\' + messages[0][\'content\'] + \'<|im_end|>\\n\' }}\n    {%- else %}\n        {{- \'<|im_start|>system\\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\\n\' }}\n    {%- endif %}\n{%- endif %}\n{%- for message in messages %}\n    {%- if (message.role == "user") or (message.role == "system" and not loop.first) or (message.role == "assistant" and not message.tool_calls) %}\n        {{- \'<|im_start|>\' + message.role + \'\\n\' + message.content + \'<|im_end|>\' + \'\\n\' }}\n    {%- elif message.role == "assistant" %}\n        {{- \'<|im_start|>\' + message.role }}\n        {%- if message.content %}\n            {{- \'\\n\' + message.content }}\n        {%- endif %}\n        {%- for tool_call in message.tool_calls %}\n            {%- if tool_call.function is defined %}\n                {%- set tool_call = tool_call.function %}\n            {%- endif %}\n            {{- \'\\n<tool_call>\\n{"name": "\' }}\n            {{- tool_call.name }}\n            {{- \'", "arguments": \' }}\n            {{- tool_call.arguments | tojson }}\n            {{- \'}\\n</tool_call>\' }}\n        {%- endfor %}\n        {{- \'<|im_end|>\\n\' }}\n    {%- elif message.role == "tool" %}\n        {%- if (loop.index0 == 0) or (messages[loop.index0 - 1].role != "tool") %}\n            {{- \'<|im_start|>user\' }}\n        {%- endif %}\n        {{- \'\\n<tool_response>\\n\' }}\n        {{- message.content }}\n        {{- \'\\n</tool_response>\' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != "tool") %}\n            {{- \'<|im_end|>\\n\' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- \'<|im_start|>assistant\\n\' }}\n{%- endif %}\n', 'qwen2.attention.head_count_kv': '2', 'general.quantization_version': '2', 'tokenizer.ggml.model': 'gpt2', 'qwen2.feed_forward_length': '11008', 'qwen2.attention.head_count': '16', 'tokenizer.ggml.eos_token_id': '151645', 'qwen2.rope.freq_base': '1000000.000000'}
+Available chat formats from metadata: chat_template.default
+Using gguf chat template: {%- if tools %}
+    {{- '<|im_start|>system\n' }}
+    {%- if messages[0]['role'] == 'system' %}
+        {{- messages[0]['content'] }}
+    {%- else %}
+        {{- 'You are Qwen, created by Alibaba Cloud. You are a helpful assistant.' }}
+    {%- endif %}
+    {{- "\n\n# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>" }}
+    {%- for tool in tools %}
+        {{- "\n" }}
+        {{- tool | tojson }}
+    {%- endfor %}
+    {{- "\n</tools>\n\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\n<tool_call>\n{\"name\": <function-name>, \"arguments\": <args-json-object>}\n</tool_call><|im_end|>\n" }}
+{%- else %}
+    {%- if messages[0]['role'] == 'system' %}
+        {{- '<|im_start|>system\n' + messages[0]['content'] + '<|im_end|>\n' }}
+    {%- else %}
+        {{- '<|im_start|>system\nYou are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n' }}
+    {%- endif %}
+{%- endif %}
+{%- for message in messages %}
+    {%- if (message.role == "user") or (message.role == "system" and not loop.first) or (message.role == "assistant" and not message.tool_calls) %}
+        {{- '<|im_start|>' + message.role + '\n' + message.content + '<|im_end|>' + '\n' }}
+    {%- elif message.role == "assistant" %}
+        {{- '<|im_start|>' + message.role }}
+        {%- if message.content %}
+            {{- '\n' + message.content }}
+        {%- endif %}
+        {%- for tool_call in message.tool_calls %}
+            {%- if tool_call.function is defined %}
+                {%- set tool_call = tool_call.function %}
+            {%- endif %}
+            {{- '\n<tool_call>\n{"name": "' }}
+            {{- tool_call.name }}
+            {{- '", "arguments": ' }}
+            {{- tool_call.arguments | tojson }}
+            {{- '}\n</tool_call>' }}
+        {%- endfor %}
+        {{- '<|im_end|>\n' }}
+    {%- elif message.role == "tool" %}
+        {%- if (loop.index0 == 0) or (messages[loop.index0 - 1].role != "tool") %}
+            {{- '<|im_start|>user' }}
+        {%- endif %}
+        {{- '\n<tool_response>\n' }}
+        {{- message.content }}
+        {{- '\n</tool_response>' }}
+        {%- if loop.last or (messages[loop.index0 + 1].role != "tool") %}
+            {{- '<|im_end|>\n' }}
+        {%- endif %}
+    {%- endif %}
+{%- endfor %}
+{%- if add_generation_prompt %}
+    {{- '<|im_start|>assistant\n' }}
+{%- endif %}
+
+Using chat eos_token: <|im_end|>
+Using chat bos_token: <|endoftext|>
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     485.45 ms /   157 tokens (    3.09 ms per token,   323.41 tokens per second)
+llama_perf_context_print:        eval time =    1766.26 ms /   162 runs   (   10.90 ms per token,    91.72 tokens per second)
+llama_perf_context_print:       total time =    2486.62 ms /   319 tokens
+llama_perf_context_print:    graphs reused =        156
+Llama.generate: 38 prefix-match hit, remaining 110 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      30.20 ms /   110 tokens (    0.27 ms per token,  3641.90 tokens per second)
+llama_perf_context_print:        eval time =    2097.93 ms /   198 runs   (   10.60 ms per token,    94.38 tokens per second)
+llama_perf_context_print:       total time =    2386.20 ms /   308 tokens
+llama_perf_context_print:    graphs reused =        191
+Llama.generate: 31 prefix-match hit, remaining 87 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      28.45 ms /    87 tokens (    0.33 ms per token,  3058.21 tokens per second)
+llama_perf_context_print:        eval time =     926.27 ms /    88 runs   (   10.53 ms per token,    95.00 tokens per second)
+llama_perf_context_print:       total time =    1063.80 ms /   175 tokens
+llama_perf_context_print:    graphs reused =         84
+Llama.generate: 31 prefix-match hit, remaining 121 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      32.43 ms /   121 tokens (    0.27 ms per token,  3731.23 tokens per second)
+llama_perf_context_print:        eval time =     529.99 ms /    50 runs   (   10.60 ms per token,    94.34 tokens per second)
+llama_perf_context_print:       total time =     623.77 ms /   171 tokens
+llama_perf_context_print:    graphs reused =         47
+Llama.generate: 38 prefix-match hit, remaining 112 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      29.64 ms /   112 tokens (    0.26 ms per token,  3779.31 tokens per second)
+llama_perf_context_print:        eval time =    1670.54 ms /   157 runs   (   10.64 ms per token,    93.98 tokens per second)
+llama_perf_context_print:       total time =    1905.25 ms /   269 tokens
+llama_perf_context_print:    graphs reused =        151
+Llama.generate: 306 prefix-match hit, remaining 99 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      33.67 ms /    99 tokens (    0.34 ms per token,  2939.87 tokens per second)
+llama_perf_context_print:        eval time =    1405.92 ms /   128 runs   (   10.98 ms per token,    91.04 tokens per second)
+llama_perf_context_print:       total time =    1596.67 ms /   227 tokens
+llama_perf_context_print:    graphs reused =        123
+Llama.generate: 533 prefix-match hit, remaining 119 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      35.94 ms /   119 tokens (    0.30 ms per token,  3310.80 tokens per second)
+llama_perf_context_print:        eval time =    5544.25 ms /   511 runs   (   10.85 ms per token,    92.17 tokens per second)
+llama_perf_context_print:       total time =    6419.42 ms /   630 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 38 prefix-match hit, remaining 407 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      86.14 ms /   407 tokens (    0.21 ms per token,  4725.09 tokens per second)
+llama_perf_context_print:        eval time =    1117.71 ms /   101 runs   (   11.07 ms per token,    90.36 tokens per second)
+llama_perf_context_print:       total time =    1327.22 ms /   508 tokens
+llama_perf_context_print:    graphs reused =         96
+Llama.generate: 31 prefix-match hit, remaining 293 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      59.40 ms /   293 tokens (    0.20 ms per token,  4932.83 tokens per second)
+llama_perf_context_print:        eval time =    1778.51 ms /   161 runs   (   11.05 ms per token,    90.53 tokens per second)
+llama_perf_context_print:       total time =    2041.46 ms /   454 tokens
+llama_perf_context_print:    graphs reused =        155
+Llama.generate: 485 prefix-match hit, remaining 107 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      34.30 ms /   107 tokens (    0.32 ms per token,  3119.99 tokens per second)
+llama_perf_context_print:        eval time =    1665.93 ms /   154 runs   (   10.82 ms per token,    92.44 tokens per second)
+llama_perf_context_print:       total time =    1885.70 ms /   261 tokens
+llama_perf_context_print:    graphs reused =        148
+Llama.generate: 31 prefix-match hit, remaining 1281 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     291.00 ms /  1281 tokens (    0.23 ms per token,  4402.00 tokens per second)
+llama_perf_context_print:        eval time =    5797.06 ms /   511 runs   (   11.34 ms per token,    88.15 tokens per second)
+llama_perf_context_print:       total time =    7102.87 ms /  1792 tokens
+llama_perf_context_print:    graphs reused =        495
+Llama.generate: 38 prefix-match hit, remaining 597 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     145.61 ms /   597 tokens (    0.24 ms per token,  4100.02 tokens per second)
+llama_perf_context_print:        eval time =    1175.57 ms /   108 runs   (   10.88 ms per token,    91.87 tokens per second)
+llama_perf_context_print:       total time =    1456.91 ms /   705 tokens
+llama_perf_context_print:    graphs reused =        103
+Llama.generate: 741 prefix-match hit, remaining 109 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      33.14 ms /   109 tokens (    0.30 ms per token,  3288.98 tokens per second)
+llama_perf_context_print:        eval time =    1607.92 ms /   144 runs   (   11.17 ms per token,    89.56 tokens per second)
+llama_perf_context_print:       total time =    1830.30 ms /   253 tokens
+llama_perf_context_print:    graphs reused =        138
+Llama.generate: 38 prefix-match hit, remaining 1204 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     276.63 ms /  1204 tokens (    0.23 ms per token,  4352.43 tokens per second)
+llama_perf_context_print:        eval time =    5767.09 ms /   511 runs   (   11.29 ms per token,    88.61 tokens per second)
+llama_perf_context_print:       total time =    6929.26 ms /  1715 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 1753 prefix-match hit, remaining 66 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      37.31 ms /    66 tokens (    0.57 ms per token,  1769.10 tokens per second)
+llama_perf_context_print:        eval time =    5859.59 ms /   511 runs   (   11.47 ms per token,    87.21 tokens per second)
+llama_perf_context_print:       total time =    6813.06 ms /   577 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 2330 prefix-match hit, remaining 75 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      31.24 ms /    75 tokens (    0.42 ms per token,  2400.46 tokens per second)
+llama_perf_context_print:        eval time =    5962.33 ms /   511 runs   (   11.67 ms per token,    85.70 tokens per second)
+llama_perf_context_print:       total time =    6928.05 ms /   586 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 38 prefix-match hit, remaining 357 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      68.03 ms /   357 tokens (    0.19 ms per token,  5247.38 tokens per second)
+llama_perf_context_print:        eval time =     905.22 ms /    80 runs   (   11.32 ms per token,    88.38 tokens per second)
+llama_perf_context_print:       total time =    1072.89 ms /   437 tokens
+llama_perf_context_print:    graphs reused =         77
+Llama.generate: 38 prefix-match hit, remaining 343 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      72.67 ms /   343 tokens (    0.21 ms per token,  4720.03 tokens per second)
+llama_perf_context_print:        eval time =     899.22 ms /    80 runs   (   11.24 ms per token,    88.97 tokens per second)
+llama_perf_context_print:       total time =    1073.64 ms /   423 tokens
+llama_perf_context_print:    graphs reused =         76
+Llama.generate: 38 prefix-match hit, remaining 532 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     141.43 ms /   532 tokens (    0.27 ms per token,  3761.52 tokens per second)
+llama_perf_context_print:        eval time =    5657.84 ms /   511 runs   (   11.07 ms per token,    90.32 tokens per second)
+llama_perf_context_print:       total time =    6721.32 ms /  1043 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 1081 prefix-match hit, remaining 112 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      35.91 ms /   112 tokens (    0.32 ms per token,  3119.26 tokens per second)
+llama_perf_context_print:        eval time =    5804.34 ms /   511 runs   (   11.36 ms per token,    88.04 tokens per second)
+llama_perf_context_print:       total time =    6789.95 ms /   623 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 886 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     199.72 ms /   886 tokens (    0.23 ms per token,  4436.30 tokens per second)
+llama_perf_context_print:        eval time =    3141.93 ms /   279 runs   (   11.26 ms per token,    88.80 tokens per second)
+llama_perf_context_print:       total time =    3791.24 ms /  1165 tokens
+llama_perf_context_print:    graphs reused =        269
+Llama.generate: 31 prefix-match hit, remaining 2737 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     718.48 ms /  2737 tokens (    0.26 ms per token,  3809.44 tokens per second)
+llama_perf_context_print:        eval time =    6087.25 ms /   511 runs   (   11.91 ms per token,    83.95 tokens per second)
+llama_perf_context_print:       total time =    7766.56 ms /  3248 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 38 prefix-match hit, remaining 1765 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     421.89 ms /  1765 tokens (    0.24 ms per token,  4183.59 tokens per second)
+llama_perf_context_print:        eval time =    5927.77 ms /   511 runs   (   11.60 ms per token,    86.20 tokens per second)
+llama_perf_context_print:       total time =    7299.37 ms /  2276 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 2314 prefix-match hit, remaining 50 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      29.34 ms /    50 tokens (    0.59 ms per token,  1703.93 tokens per second)
+llama_perf_context_print:        eval time =    6014.34 ms /   511 runs   (   11.77 ms per token,    84.96 tokens per second)
+llama_perf_context_print:       total time =    6983.37 ms /   561 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 38 prefix-match hit, remaining 481 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     111.00 ms /   481 tokens (    0.23 ms per token,  4333.53 tokens per second)
+llama_perf_context_print:        eval time =    5696.65 ms /   511 runs   (   11.15 ms per token,    89.70 tokens per second)
+llama_perf_context_print:       total time =    6833.96 ms /   992 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 1298 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     337.00 ms /  1298 tokens (    0.26 ms per token,  3851.60 tokens per second)
+llama_perf_context_print:        eval time =    5859.59 ms /   511 runs   (   11.47 ms per token,    87.21 tokens per second)
+llama_perf_context_print:       total time =    7162.90 ms /  1809 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3112 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     894.20 ms /  3112 tokens (    0.29 ms per token,  3480.21 tokens per second)
+llama_perf_context_print:        eval time =    6196.06 ms /   511 runs   (   12.13 ms per token,    82.47 tokens per second)
+llama_perf_context_print:       total time =    8050.94 ms /  3623 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 38 prefix-match hit, remaining 1048 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     267.30 ms /  1048 tokens (    0.26 ms per token,  3920.75 tokens per second)
+llama_perf_context_print:        eval time =    5802.77 ms /   511 runs   (   11.36 ms per token,    88.06 tokens per second)
+llama_perf_context_print:       total time =    7005.54 ms /  1559 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 1597 prefix-match hit, remaining 64 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      33.96 ms /    64 tokens (    0.53 ms per token,  1884.57 tokens per second)
+llama_perf_context_print:        eval time =    5910.80 ms /   511 runs   (   11.57 ms per token,    86.45 tokens per second)
+llama_perf_context_print:       total time =    6843.77 ms /   575 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 38 prefix-match hit, remaining 3108 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     945.74 ms /  3108 tokens (    0.30 ms per token,  3286.31 tokens per second)
+llama_perf_context_print:        eval time =    6196.39 ms /   511 runs   (   12.13 ms per token,    82.47 tokens per second)
+llama_perf_context_print:       total time =    8185.70 ms /  3619 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 1934 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     531.37 ms /  1934 tokens (    0.27 ms per token,  3639.63 tokens per second)
+llama_perf_context_print:        eval time =    5917.58 ms /   511 runs   (   11.58 ms per token,    86.35 tokens per second)
+llama_perf_context_print:       total time =    7296.91 ms /  2445 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3107 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     945.50 ms /  3107 tokens (    0.30 ms per token,  3286.11 tokens per second)
+llama_perf_context_print:        eval time =    6152.63 ms /   511 runs   (   12.04 ms per token,    83.05 tokens per second)
+llama_perf_context_print:       total time =    8020.46 ms /  3618 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3298 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     995.33 ms /  3298 tokens (    0.30 ms per token,  3313.47 tokens per second)
+llama_perf_context_print:        eval time =    6192.71 ms /   511 runs   (   12.12 ms per token,    82.52 tokens per second)
+llama_perf_context_print:       total time =    8075.11 ms /  3809 tokens
+llama_perf_context_print:    graphs reused =        495
+Llama.generate: 38 prefix-match hit, remaining 1111 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     277.72 ms /  1111 tokens (    0.25 ms per token,  4000.42 tokens per second)
+llama_perf_context_print:        eval time =    2741.08 ms /   241 runs   (   11.37 ms per token,    87.92 tokens per second)
+llama_perf_context_print:       total time =    3372.72 ms /  1352 tokens
+llama_perf_context_print:    graphs reused =        232
+Llama.generate: 1388 prefix-match hit, remaining 84 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      32.79 ms /    84 tokens (    0.39 ms per token,  2561.76 tokens per second)
+llama_perf_context_print:        eval time =    1132.04 ms /    99 runs   (   11.43 ms per token,    87.45 tokens per second)
+llama_perf_context_print:       total time =    1298.41 ms /   183 tokens
+llama_perf_context_print:    graphs reused =         95
+Llama.generate: 36 prefix-match hit, remaining 2355 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     608.99 ms /  2355 tokens (    0.26 ms per token,  3867.04 tokens per second)
+llama_perf_context_print:        eval time =    6009.40 ms /   511 runs   (   11.76 ms per token,    85.03 tokens per second)
+llama_perf_context_print:       total time =    7516.63 ms /  2866 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 2643 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     755.24 ms /  2643 tokens (    0.29 ms per token,  3499.57 tokens per second)
+llama_perf_context_print:        eval time =    6073.99 ms /   511 runs   (   11.89 ms per token,    84.13 tokens per second)
+llama_perf_context_print:       total time =    7743.73 ms /  3154 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3360 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     980.18 ms /  3360 tokens (    0.29 ms per token,  3427.95 tokens per second)
+llama_perf_context_print:        eval time =    6216.75 ms /   511 runs   (   12.17 ms per token,    82.20 tokens per second)
+llama_perf_context_print:       total time =    8080.58 ms /  3871 tokens
+llama_perf_context_print:    graphs reused =        495
+Llama.generate: 31 prefix-match hit, remaining 2756 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     810.36 ms /  2756 tokens (    0.29 ms per token,  3400.97 tokens per second)
+llama_perf_context_print:        eval time =    6110.61 ms /   511 runs   (   11.96 ms per token,    83.63 tokens per second)
+llama_perf_context_print:       total time =    7895.12 ms /  3267 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 36 prefix-match hit, remaining 2243 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     651.69 ms /  2243 tokens (    0.29 ms per token,  3441.81 tokens per second)
+llama_perf_context_print:        eval time =    5995.97 ms /   511 runs   (   11.73 ms per token,    85.22 tokens per second)
+llama_perf_context_print:       total time =    7580.21 ms /  2754 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 38 prefix-match hit, remaining 3446 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1069.91 ms /  3446 tokens (    0.31 ms per token,  3220.83 tokens per second)
+llama_perf_context_print:        eval time =    6258.96 ms /   511 runs   (   12.25 ms per token,    81.64 tokens per second)
+llama_perf_context_print:       total time =    8253.18 ms /  3957 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 38 prefix-match hit, remaining 2293 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     579.10 ms /  2293 tokens (    0.25 ms per token,  3959.61 tokens per second)
+llama_perf_context_print:        eval time =    6042.88 ms /   511 runs   (   11.83 ms per token,    84.56 tokens per second)
+llama_perf_context_print:       total time =    7667.13 ms /  2804 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 38 prefix-match hit, remaining 3434 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1043.50 ms /  3434 tokens (    0.30 ms per token,  3290.86 tokens per second)
+llama_perf_context_print:        eval time =    6263.98 ms /   511 runs   (   12.26 ms per token,    81.58 tokens per second)
+llama_perf_context_print:       total time =    8346.06 ms /  3945 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 40 prefix-match hit, remaining 1374 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     331.18 ms /  1374 tokens (    0.24 ms per token,  4148.79 tokens per second)
+llama_perf_context_print:        eval time =    2190.54 ms /   190 runs   (   11.53 ms per token,    86.74 tokens per second)
+llama_perf_context_print:       total time =    2810.38 ms /  1564 tokens
+llama_perf_context_print:    graphs reused =        183
+Llama.generate: 31 prefix-match hit, remaining 3101 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     948.51 ms /  3101 tokens (    0.31 ms per token,  3269.34 tokens per second)
+llama_perf_context_print:        eval time =    6158.24 ms /   511 runs   (   12.05 ms per token,    82.98 tokens per second)
+llama_perf_context_print:       total time =    8042.63 ms /  3612 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3061 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     885.32 ms /  3061 tokens (    0.29 ms per token,  3457.51 tokens per second)
+llama_perf_context_print:        eval time =    6061.56 ms /   511 runs   (   11.86 ms per token,    84.30 tokens per second)
+llama_perf_context_print:       total time =    7821.31 ms /  3572 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 36 prefix-match hit, remaining 3180 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     896.86 ms /  3180 tokens (    0.28 ms per token,  3545.72 tokens per second)
+llama_perf_context_print:        eval time =    6035.49 ms /   511 runs   (   11.81 ms per token,    84.67 tokens per second)
+llama_perf_context_print:       total time =    7774.20 ms /  3691 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 38 prefix-match hit, remaining 2716 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     728.18 ms /  2716 tokens (    0.27 ms per token,  3729.84 tokens per second)
+llama_perf_context_print:        eval time =    5936.62 ms /   511 runs   (   11.62 ms per token,    86.08 tokens per second)
+llama_perf_context_print:       total time =    7513.28 ms /  3227 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 2673 prefix-match hit, remaining 71 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      31.84 ms /    71 tokens (    0.45 ms per token,  2230.25 tokens per second)
+llama_perf_context_print:        eval time =    5947.85 ms /   511 runs   (   11.64 ms per token,    85.91 tokens per second)
+llama_perf_context_print:       total time =    6931.99 ms /   582 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3470 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     992.82 ms /  3470 tokens (    0.29 ms per token,  3495.08 tokens per second)
+llama_perf_context_print:        eval time =    6147.88 ms /   511 runs   (   12.03 ms per token,    83.12 tokens per second)
+llama_perf_context_print:       total time =    8052.31 ms /  3981 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 1468 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     335.58 ms /  1468 tokens (    0.23 ms per token,  4374.54 tokens per second)
+llama_perf_context_print:        eval time =    1443.71 ms /   126 runs   (   11.46 ms per token,    87.27 tokens per second)
+llama_perf_context_print:       total time =    2009.81 ms /  1594 tokens
+llama_perf_context_print:    graphs reused =        121
+Llama.generate: 38 prefix-match hit, remaining 3244 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     943.23 ms /  3244 tokens (    0.29 ms per token,  3439.25 tokens per second)
+llama_perf_context_print:        eval time =    6105.77 ms /   511 runs   (   11.95 ms per token,    83.69 tokens per second)
+llama_perf_context_print:       total time =    7982.18 ms /  3755 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 36 prefix-match hit, remaining 1483 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     377.51 ms /  1483 tokens (    0.25 ms per token,  3928.38 tokens per second)
+llama_perf_context_print:        eval time =    1096.70 ms /    97 runs   (   11.31 ms per token,    88.45 tokens per second)
+llama_perf_context_print:       total time =    1608.03 ms /  1580 tokens
+llama_perf_context_print:    graphs reused =         93
+Llama.generate: 31 prefix-match hit, remaining 1393 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     353.21 ms /  1393 tokens (    0.25 ms per token,  3943.81 tokens per second)
+llama_perf_context_print:        eval time =     705.04 ms /    62 runs   (   11.37 ms per token,    87.94 tokens per second)
+llama_perf_context_print:       total time =    1140.51 ms /  1455 tokens
+llama_perf_context_print:    graphs reused =         59
+Llama.generate: 33 prefix-match hit, remaining 3261 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     943.43 ms /  3261 tokens (    0.29 ms per token,  3456.54 tokens per second)
+llama_perf_context_print:        eval time =    6134.15 ms /   511 runs   (   12.00 ms per token,    83.30 tokens per second)
+llama_perf_context_print:       total time =    7978.52 ms /  3772 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 1117 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     282.36 ms /  1117 tokens (    0.25 ms per token,  3955.96 tokens per second)
+llama_perf_context_print:        eval time =    1392.62 ms /   123 runs   (   11.32 ms per token,    88.32 tokens per second)
+llama_perf_context_print:       total time =    1845.97 ms /  1240 tokens
+llama_perf_context_print:    graphs reused =        118
+Llama.generate: 31 prefix-match hit, remaining 3456 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1033.14 ms /  3456 tokens (    0.30 ms per token,  3345.14 tokens per second)
+llama_perf_context_print:        eval time =    6216.98 ms /   511 runs   (   12.17 ms per token,    82.19 tokens per second)
+llama_perf_context_print:       total time =    8172.96 ms /  3967 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 32 prefix-match hit, remaining 3170 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     897.68 ms /  3170 tokens (    0.28 ms per token,  3531.34 tokens per second)
+llama_perf_context_print:        eval time =    6138.65 ms /   511 runs   (   12.01 ms per token,    83.24 tokens per second)
+llama_perf_context_print:       total time =    7951.09 ms /  3681 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3318 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     977.99 ms /  3318 tokens (    0.29 ms per token,  3392.69 tokens per second)
+llama_perf_context_print:        eval time =    6154.69 ms /   511 runs   (   12.04 ms per token,    83.03 tokens per second)
+llama_perf_context_print:       total time =    8020.54 ms /  3829 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3146 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     930.89 ms /  3146 tokens (    0.30 ms per token,  3379.56 tokens per second)
+llama_perf_context_print:        eval time =    6125.08 ms /   511 runs   (   11.99 ms per token,    83.43 tokens per second)
+llama_perf_context_print:       total time =    7948.25 ms /  3657 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3207 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     944.97 ms /  3207 tokens (    0.29 ms per token,  3393.74 tokens per second)
+llama_perf_context_print:        eval time =    6148.35 ms /   511 runs   (   12.03 ms per token,    83.11 tokens per second)
+llama_perf_context_print:       total time =    8015.03 ms /  3718 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3212 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     924.44 ms /  3212 tokens (    0.29 ms per token,  3474.53 tokens per second)
+llama_perf_context_print:        eval time =    6165.19 ms /   511 runs   (   12.06 ms per token,    82.88 tokens per second)
+llama_perf_context_print:       total time =    8028.28 ms /  3723 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 1174 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     295.69 ms /  1174 tokens (    0.25 ms per token,  3970.36 tokens per second)
+llama_perf_context_print:        eval time =    1470.33 ms /   130 runs   (   11.31 ms per token,    88.42 tokens per second)
+llama_perf_context_print:       total time =    1937.02 ms /  1304 tokens
+llama_perf_context_print:    graphs reused =        125
+Llama.generate: 33 prefix-match hit, remaining 3265 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1039.39 ms /  3265 tokens (    0.32 ms per token,  3141.26 tokens per second)
+llama_perf_context_print:        eval time =    6153.39 ms /   511 runs   (   12.04 ms per token,    83.04 tokens per second)
+llama_perf_context_print:       total time =    8098.41 ms /  3776 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3219 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     919.19 ms /  3219 tokens (    0.29 ms per token,  3502.00 tokens per second)
+llama_perf_context_print:        eval time =    6168.88 ms /   511 runs   (   12.07 ms per token,    82.84 tokens per second)
+llama_perf_context_print:       total time =    7992.94 ms /  3730 tokens
+llama_perf_context_print:    graphs reused =        494
+Loading config from: config/exp_3b_model.yaml
+
+============================================================
+EXPERIMENT CONFIGURATION
+============================================================
+Model: models/qwen2.5-coder-3b-instruct-q4_k_m.gguf
+Agents: 5
+Tasks: 164
+Router: affinity
+Seeds: [42]
+Output: results/sweep_3b_temp_1_5
+============================================================
+
+Loading model...
+Loading model qwen2.5-coder from models/qwen2.5-coder-3b-instruct-q4_k_m.gguf...
+Model qwen2.5-coder loaded successfully.
+✓ Model loaded
+
+
+========================================
+RUN 1/1 - Seed 42
+========================================
+Loaded 164 tasks
+Task distribution: {'list': 37, 'string': 41, 'math': 76, 'logic': 10}
+
+============================================================
+Starting Swarm Experiment
+  Agents: 5
+  Router: affinity
+  Tasks: 164
+  Output: results/sweep_3b_temp_1_5/seed_42
+============================================================
+
+[1/164] Processing HumanEval/0 (list)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[2/164] Processing HumanEval/1 (string)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[3/164] Processing HumanEval/2 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[4/164] Processing HumanEval/3 (list)...
+  → Routed to Agent 2
+  ✓ Success (exec time: 0.03s)
+[5/164] Processing HumanEval/4 (math)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+[6/164] Processing HumanEval/5 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+[7/164] Processing HumanEval/6 (string)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+[8/164] Processing HumanEval/7 (list)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[9/164] Processing HumanEval/8 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[10/164] Processing HumanEval/9 (list)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+  📸 Taking snapshot at task 10...
+     S = 0.360, D = 0.646
+[11/164] Processing HumanEval/10 (string)...
+  → Routed to Agent 0
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmpldxw1pm4.py", line 52, in <mod
+[12/164] Processing HumanEval/11 (string)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[13/164] Processing HumanEval/12 (string)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[14/164] Processing HumanEval/13 (math)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+[15/164] Processing HumanEval/14 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.05s)
+[16/164] Processing HumanEval/15 (string)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+[17/164] Processing HumanEval/16 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[18/164] Processing HumanEval/17 (string)...
+  → Routed to Agent 2
+  ✓ Success (exec time: 0.04s)
+[19/164] Processing HumanEval/18 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[20/164] Processing HumanEval/19 (string)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.05s)
+  📸 Taking snapshot at task 20...
+     S = 0.208, D = 0.554
+[21/164] Processing HumanEval/20 (list)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.04s)
+[22/164] Processing HumanEval/21 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.05s)
+[23/164] Processing HumanEval/22 (list)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[24/164] Processing HumanEval/23 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[25/164] Processing HumanEval/24 (math)...
+  → Routed to Agent 2
+  ✓ Success (exec time: 0.03s)
+[26/164] Processing HumanEval/25 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.05s)
+[27/164] Processing HumanEval/26 (list)...
+  → Routed to Agent 0
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmpii8kyzl5.py", line 38, in <mod
+[28/164] Processing HumanEval/27 (string)...
+  → Routed to Agent 2
+  ✓ Success (exec time: 0.05s)
+[29/164] Processing HumanEval/28 (string)...
+  → Routed to Agent 2
+  ✓ Success (exec time: 0.03s)
+[30/164] Processing HumanEval/29 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+  📸 Taking snapshot at task 30...
+     S = 0.186, D = 0.655
+[31/164] Processing HumanEval/30 (list)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[32/164] Processing HumanEval/31 (math)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.05s)
+[33/164] Processing HumanEval/32 (math)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+[34/164] Processing HumanEval/33 (list)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[35/164] Processing HumanEval/34 (list)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[36/164] Processing HumanEval/35 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[37/164] Processing HumanEval/36 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[38/164] Processing HumanEval/37 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+[39/164] Processing HumanEval/38 (string)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.05s)
+[40/164] Processing HumanEval/39 (math)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 85: expected an indented block after 'elif' statement on line 84
+  📸 Taking snapshot at task 40...
+     S = 0.118, D = 0.636
+[41/164] Processing HumanEval/40 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+[42/164] Processing HumanEval/41 (math)...
+  → Routed to Agent 2
+  ✓ Success (exec time: 0.05s)
+[43/164] Processing HumanEval/42 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+[44/164] Processing HumanEval/43 (list)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[45/164] Processing HumanEval/44 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[46/164] Processing HumanEval/45 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[47/164] Processing HumanEval/46 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[48/164] Processing HumanEval/47 (math)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 84: expected ':'
+[49/164] Processing HumanEval/48 (logic)...
+  → Routed to Agent 2
+  ✓ Success (exec time: 0.04s)
+[50/164] Processing HumanEval/49 (math)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+  📸 Taking snapshot at task 50...
+     S = 0.159, D = 0.678
+[51/164] Processing HumanEval/50 (string)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.05s)
+[52/164] Processing HumanEval/51 (string)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[53/164] Processing HumanEval/52 (logic)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[54/164] Processing HumanEval/53 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[55/164] Processing HumanEval/54 (string)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[56/164] Processing HumanEval/55 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[57/164] Processing HumanEval/56 (logic)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.05s)
+[58/164] Processing HumanEval/57 (list)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[59/164] Processing HumanEval/58 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+[60/164] Processing HumanEval/59 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+  📸 Taking snapshot at task 60...
+     S = 0.088, D = 0.531
+[61/164] Processing HumanEval/60 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[62/164] Processing HumanEval/61 (logic)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[63/164] Processing HumanEval/62 (list)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.05s)
+[64/164] Processing HumanEval/63 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[65/164] Processing HumanEval/64 (string)...
+  → Routed to Agent 1
+  ✗ Failed: ASSERTION_FAILED: Test 2
+Traceback (most recent call last):
+  File "/tmp/tmp8l7gpdy3.py", line 44, iLlama.generate: 33 prefix-match hit, remaining 3059 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     920.39 ms /  3059 tokens (    0.30 ms per token,  3323.60 tokens per second)
+llama_perf_context_print:        eval time =    6120.34 ms /   511 runs   (   11.98 ms per token,    83.49 tokens per second)
+llama_perf_context_print:       total time =    7986.68 ms /  3570 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3313 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     987.50 ms /  3313 tokens (    0.30 ms per token,  3354.95 tokens per second)
+llama_perf_context_print:        eval time =    6195.56 ms /   511 runs   (   12.12 ms per token,    82.48 tokens per second)
+llama_perf_context_print:       total time =    8118.01 ms /  3824 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 1183 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     277.00 ms /  1183 tokens (    0.23 ms per token,  4270.76 tokens per second)
+llama_perf_context_print:        eval time =    3335.24 ms /   289 runs   (   11.54 ms per token,    86.65 tokens per second)
+llama_perf_context_print:       total time =    4180.00 ms /  1472 tokens
+llama_perf_context_print:    graphs reused =        279
+Llama.generate: 33 prefix-match hit, remaining 3469 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1047.39 ms /  3469 tokens (    0.30 ms per token,  3312.04 tokens per second)
+llama_perf_context_print:        eval time =    6238.71 ms /   511 runs   (   12.21 ms per token,    81.91 tokens per second)
+llama_perf_context_print:       total time =    8232.03 ms /  3980 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 1422 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     361.66 ms /  1422 tokens (    0.25 ms per token,  3931.86 tokens per second)
+llama_perf_context_print:        eval time =    3279.76 ms /   287 runs   (   11.43 ms per token,    87.51 tokens per second)
+llama_perf_context_print:       total time =    4070.93 ms /  1709 tokens
+llama_perf_context_print:    graphs reused =        277
+Llama.generate: 33 prefix-match hit, remaining 3267 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     940.41 ms /  3267 tokens (    0.29 ms per token,  3474.03 tokens per second)
+llama_perf_context_print:        eval time =    6161.87 ms /   511 runs   (   12.06 ms per token,    82.93 tokens per second)
+llama_perf_context_print:       total time =    7986.16 ms /  3778 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3277 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     988.33 ms /  3277 tokens (    0.30 ms per token,  3315.69 tokens per second)
+llama_perf_context_print:        eval time =    6168.12 ms /   511 runs   (   12.07 ms per token,    82.85 tokens per second)
+llama_perf_context_print:       total time =    8121.31 ms /  3788 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3394 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1033.97 ms /  3394 tokens (    0.30 ms per token,  3282.51 tokens per second)
+llama_perf_context_print:        eval time =    6204.62 ms /   511 runs   (   12.14 ms per token,    82.36 tokens per second)
+llama_perf_context_print:       total time =    8193.17 ms /  3905 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 1685 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     447.80 ms /  1685 tokens (    0.27 ms per token,  3762.86 tokens per second)
+llama_perf_context_print:        eval time =    2610.87 ms /   225 runs   (   11.60 ms per token,    86.18 tokens per second)
+llama_perf_context_print:       total time =    3440.98 ms /  1910 tokens
+llama_perf_context_print:    graphs reused =        217
+Llama.generate: 33 prefix-match hit, remaining 3373 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     970.38 ms /  3373 tokens (    0.29 ms per token,  3475.97 tokens per second)
+llama_perf_context_print:        eval time =    6193.72 ms /   511 runs   (   12.12 ms per token,    82.50 tokens per second)
+llama_perf_context_print:       total time =    8133.83 ms /  3884 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3298 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     989.40 ms /  3298 tokens (    0.30 ms per token,  3333.35 tokens per second)
+llama_perf_context_print:        eval time =    6182.75 ms /   511 runs   (   12.10 ms per token,    82.65 tokens per second)
+llama_perf_context_print:       total time =    8131.06 ms /  3809 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 3249 prefix-match hit, remaining 141 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      62.39 ms /   141 tokens (    0.44 ms per token,  2259.91 tokens per second)
+llama_perf_context_print:        eval time =    6206.41 ms /   511 runs   (   12.15 ms per token,    82.33 tokens per second)
+llama_perf_context_print:       total time =    7185.71 ms /   652 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3391 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1025.60 ms /  3391 tokens (    0.30 ms per token,  3306.35 tokens per second)
+llama_perf_context_print:        eval time =    6215.40 ms /   511 runs   (   12.16 ms per token,    82.22 tokens per second)
+llama_perf_context_print:       total time =    8177.99 ms /  3902 tokens
+llama_perf_context_print:    graphs reused =        495
+Llama.generate: 33 prefix-match hit, remaining 3408 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     990.26 ms /  3408 tokens (    0.29 ms per token,  3441.51 tokens per second)
+llama_perf_context_print:        eval time =    6238.65 ms /   511 runs   (   12.21 ms per token,    81.91 tokens per second)
+llama_perf_context_print:       total time =    8137.21 ms /  3919 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3425 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1008.02 ms /  3425 tokens (    0.29 ms per token,  3397.75 tokens per second)
+llama_perf_context_print:        eval time =    6236.57 ms /   511 runs   (   12.20 ms per token,    81.94 tokens per second)
+llama_perf_context_print:       total time =    8299.69 ms /  3936 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 1915 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     512.72 ms /  1915 tokens (    0.27 ms per token,  3734.98 tokens per second)
+llama_perf_context_print:        eval time =    2312.37 ms /   198 runs   (   11.68 ms per token,    85.63 tokens per second)
+llama_perf_context_print:       total time =    3161.17 ms /  2113 tokens
+llama_perf_context_print:    graphs reused =        190
+Llama.generate: 33 prefix-match hit, remaining 3485 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1061.47 ms /  3485 tokens (    0.30 ms per token,  3283.18 tokens per second)
+llama_perf_context_print:        eval time =    6236.60 ms /   511 runs   (   12.20 ms per token,    81.94 tokens per second)
+llama_perf_context_print:       total time =    8215.19 ms /  3996 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3398 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1020.99 ms /  3398 tokens (    0.30 ms per token,  3328.14 tokens per second)
+llama_perf_context_print:        eval time =    6213.92 ms /   511 runs   (   12.16 ms per token,    82.23 tokens per second)
+llama_perf_context_print:       total time =    8144.16 ms /  3909 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3377 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     977.35 ms /  3377 tokens (    0.29 ms per token,  3455.26 tokens per second)
+llama_perf_context_print:        eval time =    6199.71 ms /   511 runs   (   12.13 ms per token,    82.42 tokens per second)
+llama_perf_context_print:       total time =    8110.24 ms /  3888 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3476 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1032.88 ms /  3476 tokens (    0.30 ms per token,  3365.34 tokens per second)
+llama_perf_context_print:        eval time =    6241.62 ms /   511 runs   (   12.21 ms per token,    81.87 tokens per second)
+llama_perf_context_print:       total time =    8205.81 ms /  3987 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3427 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     997.34 ms /  3427 tokens (    0.29 ms per token,  3436.13 tokens per second)
+llama_perf_context_print:        eval time =    6248.53 ms /   511 runs   (   12.23 ms per token,    81.78 tokens per second)
+llama_perf_context_print:       total time =    8182.18 ms /  3938 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3345 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1020.28 ms /  3345 tokens (    0.31 ms per token,  3278.50 tokens per second)
+llama_perf_context_print:        eval time =    6203.89 ms /   511 runs   (   12.14 ms per token,    82.37 tokens per second)
+llama_perf_context_print:       total time =    8174.14 ms /  3856 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3558 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1086.22 ms /  3558 tokens (    0.31 ms per token,  3275.59 tokens per second)
+llama_perf_context_print:        eval time =    6171.56 ms /   504 runs   (   12.25 ms per token,    81.66 tokens per second)
+llama_perf_context_print:       total time =    8181.29 ms /  4062 tokens
+llama_perf_context_print:    graphs reused =        488
+Llama.generate: 33 prefix-match hit, remaining 2138 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     595.69 ms /  2138 tokens (    0.28 ms per token,  3589.12 tokens per second)
+llama_perf_context_print:        eval time =    3156.74 ms /   270 runs   (   11.69 ms per token,    85.53 tokens per second)
+llama_perf_context_print:       total time =    4155.69 ms /  2408 tokens
+llama_perf_context_print:    graphs reused =        260
+Llama.generate: 33 prefix-match hit, remaining 3083 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     933.98 ms /  3083 tokens (    0.30 ms per token,  3300.94 tokens per second)
+llama_perf_context_print:        eval time =    6177.02 ms /   511 runs   (   12.09 ms per token,    82.73 tokens per second)
+llama_perf_context_print:       total time =    8042.54 ms /  3594 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3457 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1058.70 ms /  3457 tokens (    0.31 ms per token,  3265.32 tokens per second)
+llama_perf_context_print:        eval time =    6283.09 ms /   511 runs   (   12.30 ms per token,    81.33 tokens per second)
+llama_perf_context_print:       total time =    8314.17 ms /  3968 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3536 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1075.10 ms /  3536 tokens (    0.30 ms per token,  3289.01 tokens per second)
+llama_perf_context_print:        eval time =    6275.56 ms /   511 runs   (   12.28 ms per token,    81.43 tokens per second)
+llama_perf_context_print:       total time =    8225.38 ms /  4047 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 3462 prefix-match hit, remaining 135 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      60.36 ms /   135 tokens (    0.45 ms per token,  2236.43 tokens per second)
+llama_perf_context_print:        eval time =    6083.79 ms /   498 runs   (   12.22 ms per token,    81.86 tokens per second)
+llama_perf_context_print:       total time =    6975.52 ms /   633 tokens
+llama_perf_context_print:    graphs reused =        482
+Llama.generate: 33 prefix-match hit, remaining 3082 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     968.18 ms /  3082 tokens (    0.31 ms per token,  3183.29 tokens per second)
+llama_perf_context_print:        eval time =    6165.42 ms /   511 runs   (   12.07 ms per token,    82.88 tokens per second)
+llama_perf_context_print:       total time =    8050.06 ms /  3593 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 2497 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     710.18 ms /  2497 tokens (    0.28 ms per token,  3516.03 tokens per second)
+llama_perf_context_print:        eval time =    5642.18 ms /   480 runs   (   11.75 ms per token,    85.07 tokens per second)
+llama_perf_context_print:       total time =    7128.69 ms /  2977 tokens
+llama_perf_context_print:    graphs reused =        465
+Llama.generate: 31 prefix-match hit, remaining 3148 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     946.72 ms /  3148 tokens (    0.30 ms per token,  3325.16 tokens per second)
+llama_perf_context_print:        eval time =    6149.39 ms /   511 runs   (   12.03 ms per token,    83.10 tokens per second)
+llama_perf_context_print:       total time =    7966.83 ms /  3659 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 3006 prefix-match hit, remaining 155 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      61.40 ms /   155 tokens (    0.40 ms per token,  2524.55 tokens per second)
+llama_perf_context_print:        eval time =    6139.55 ms /   511 runs   (   12.01 ms per token,    83.23 tokens per second)
+llama_perf_context_print:       total time =    7101.41 ms /   666 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3187 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     901.29 ms /  3187 tokens (    0.28 ms per token,  3536.05 tokens per second)
+llama_perf_context_print:        eval time =    6168.85 ms /   511 runs   (   12.07 ms per token,    82.84 tokens per second)
+llama_perf_context_print:       total time =    7973.98 ms /  3698 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3408 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1025.78 ms /  3408 tokens (    0.30 ms per token,  3322.35 tokens per second)
+llama_perf_context_print:        eval time =    6238.32 ms /   511 runs   (   12.21 ms per token,    81.91 tokens per second)
+llama_perf_context_print:       total time =    8169.20 ms /  3919 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3450 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1016.82 ms /  3450 tokens (    0.29 ms per token,  3392.92 tokens per second)
+llama_perf_context_print:        eval time =    6235.49 ms /   511 runs   (   12.20 ms per token,    81.95 tokens per second)
+llama_perf_context_print:       total time =    8152.47 ms /  3961 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3459 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1064.68 ms /  3459 tokens (    0.31 ms per token,  3248.85 tokens per second)
+llama_perf_context_print:        eval time =    6225.36 ms /   511 runs   (   12.18 ms per token,    82.08 tokens per second)
+llama_perf_context_print:       total time =    8187.69 ms /  3970 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3527 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1092.82 ms /  3527 tokens (    0.31 ms per token,  3227.43 tokens per second)
+llama_perf_context_print:        eval time =    6241.88 ms /   511 runs   (   12.22 ms per token,    81.87 tokens per second)
+llama_perf_context_print:       total time =    8200.13 ms /  4038 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3439 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     999.00 ms /  3439 tokens (    0.29 ms per token,  3442.44 tokens per second)
+llama_perf_context_print:        eval time =    6228.15 ms /   511 runs   (   12.19 ms per token,    82.05 tokens per second)
+llama_perf_context_print:       total time =    8108.12 ms /  3950 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3224 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     915.62 ms /  3224 tokens (    0.28 ms per token,  3521.12 tokens per second)
+llama_perf_context_print:        eval time =    6173.97 ms /   511 runs   (   12.08 ms per token,    82.77 tokens per second)
+llama_perf_context_print:       total time =    7955.19 ms /  3735 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 2575 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     776.32 ms /  2575 tokens (    0.30 ms per token,  3316.94 tokens per second)
+llama_perf_context_print:        eval time =    2320.59 ms /   197 runs   (   11.78 ms per token,    84.89 tokens per second)
+llama_perf_context_print:       total time =    3364.40 ms /  2772 tokens
+llama_perf_context_print:    graphs reused =        190
+Llama.generate: 33 prefix-match hit, remaining 3566 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1093.13 ms /  3566 tokens (    0.31 ms per token,  3262.19 tokens per second)
+llama_perf_context_print:        eval time =    6071.68 ms /   496 runs   (   12.24 ms per token,    81.69 tokens per second)
+llama_perf_context_print:       total time =    7989.22 ms /  4062 tokens
+llama_perf_context_print:    graphs reused =        480
+Llama.generate: 3320 prefix-match hit, remaining 126 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      47.96 ms /   126 tokens (    0.38 ms per token,  2627.19 tokens per second)
+llama_perf_context_print:        eval time =    6219.86 ms /   511 runs   (   12.17 ms per token,    82.16 tokens per second)
+llama_perf_context_print:       total time =    7127.24 ms /   637 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3625 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1128.53 ms /  3625 tokens (    0.31 ms per token,  3212.16 tokens per second)
+llama_perf_context_print:        eval time =    5343.59 ms /   437 runs   (   12.23 ms per token,    81.78 tokens per second)
+llama_perf_context_print:       total time =    7163.61 ms /  4062 tokens
+llama_perf_context_print:    graphs reused =        423
+Llama.generate: 33 prefix-match hit, remaining 3226 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     976.99 ms /  3226 tokens (    0.30 ms per token,  3301.99 tokens per second)
+llama_perf_context_print:        eval time =    6158.16 ms /   511 runs   (   12.05 ms per token,    82.98 tokens per second)
+llama_perf_context_print:       total time =    7995.24 ms /  3737 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3626 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1201.97 ms /  3626 tokens (    0.33 ms per token,  3016.71 tokens per second)
+llama_perf_context_print:        eval time =    5323.03 ms /   436 runs   (   12.21 ms per token,    81.91 tokens per second)
+llama_perf_context_print:       total time =    7235.62 ms /  4062 tokens
+llama_perf_context_print:    graphs reused =        422
+Llama.generate: 33 prefix-match hit, remaining 3295 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     981.94 ms /  3295 tokens (    0.30 ms per token,  3355.61 tokens per second)
+llama_perf_context_print:        eval time =    6146.41 ms /   511 runs   (   12.03 ms per token,    83.14 tokens per second)
+llama_perf_context_print:       total time =    8009.00 ms /  3806 tokens
+llama_perf_context_print:    graphs reused =        495
+Llama.generate: 33 prefix-match hit, remaining 3472 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1023.86 ms /  3472 tokens (    0.29 ms per token,  3391.09 tokens per second)
+llama_perf_context_print:        eval time =    6172.75 ms /   511 runs   (   12.08 ms per token,    82.78 tokens per second)
+llama_perf_context_print:       total time =    8106.36 ms /  3983 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 2480 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     634.22 ms /  2480 tokens (    0.26 ms per token,  3910.33 tokens per second)
+llama_perf_context_print:        eval time =    2466.30 ms /   211 runs   (   11.69 ms per token,    85.55 tokens per second)
+llama_perf_context_print:       total time =    3408.45 ms /  2691 tokens
+llama_perf_context_print:    graphs reused =        203
+Llama.generate: 33 prefix-match hit, remaining 2491 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     687.30 ms /  2491 tokens (    0.28 ms per token,  3624.33 tokens per second)
+llama_perf_context_print:        eval time =    3049.09 ms /   262 runs   (   11.64 ms per token,    85.93 tokens per second)
+llama_perf_context_print:       total time =    4129.74 ms /  2753 tokens
+llama_perf_context_print:    graphs reused =        252
+Llama.generate: 33 prefix-match hit, remaining 3515 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1030.67 ms /  3515 tokens (    0.29 ms per token,  3410.39 tokens per second)
+llama_perf_context_print:        eval time =    6208.10 ms /   511 runs   (   12.15 ms per token,    82.31 tokens per second)
+llama_perf_context_print:       total time =    8132.71 ms /  4026 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 2760 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     772.38 ms /  2760 tokens (    0.28 ms per token,  3573.36 tokens per second)
+llama_perf_context_print:        eval time =     592.40 ms /    50 runs   (   11.85 ms per token,    84.40 tokens per second)
+llama_perf_context_print:       total time =    1428.44 ms /  2810 tokens
+llama_perf_context_print:    graphs reused =         48
+Llama.generate: 2467 prefix-match hit, remaining 170 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      55.98 ms /   170 tokens (    0.33 ms per token,  3036.74 tokens per second)
+llama_perf_context_print:        eval time =    2487.40 ms /   212 runs   (   11.73 ms per token,    85.23 tokens per second)
+llama_perf_context_print:       total time =    2833.50 ms /   382 tokens
+llama_perf_context_print:    graphs reused =        204
+Llama.generate: 33 prefix-match hit, remaining 3506 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1069.12 ms /  3506 tokens (    0.30 ms per token,  3279.35 tokens per second)
+llama_perf_context_print:        eval time =    6164.63 ms /   511 runs   (   12.06 ms per token,    82.89 tokens per second)
+llama_perf_context_print:       total time =    8104.25 ms /  4017 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 2494 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     640.46 ms /  2494 tokens (    0.26 ms per token,  3894.06 tokens per second)
+llama_perf_context_print:        eval time =    3057.61 ms /   262 runs   (   11.67 ms per token,    85.69 tokens per second)
+llama_perf_context_print:       total time =    4066.19 ms /  2756 tokens
+llama_perf_context_print:    graphs reused =        252
+Llama.generate: 33 prefix-match hit, remaining 3242 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     955.80 ms /  3242 tokens (    0.29 ms per token,  3391.92 tokens per second)
+llama_perf_context_print:        eval time =    6105.68 ms /   511 runs   (   11.95 ms per token,    83.69 tokens per second)
+llama_perf_context_print:       total time =    7949.59 ms /  3753 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 2172 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     545.60 ms /  2172 tokens (    0.25 ms per token,  3980.91 tokens per second)
+llama_perf_context_print:        eval time =    2875.63 ms /   249 runs   (   11.55 ms per token,    86.59 tokens per second)
+llama_perf_context_print:       total time =    3782.29 ms /  2421 tokens
+llama_perf_context_print:    graphs reused =        240
+Llama.generate: 1980 prefix-match hit, remaining 103 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      37.21 ms /   103 tokens (    0.36 ms per token,  2768.22 tokens per second)
+llama_perf_context_print:        eval time =    1605.14 ms /   140 runs   (   11.47 ms per token,    87.22 tokens per second)
+llama_perf_context_print:       total time =    1833.73 ms /   243 tokens
+llama_perf_context_print:    graphs reused =        135
+Llama.generate: 33 prefix-match hit, remaining 3351 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     961.70 ms /  3351 tokens (    0.29 ms per token,  3484.47 tokens per second)
+llama_perf_context_print:        eval time =    6151.86 ms /   511 runs   (   12.04 ms per token,    83.06 tokens per second)
+llama_perf_context_print:       total time =    7993.63 ms /  3862 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3614 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1070.19 ms /  3614 tokens (    0.30 ms per token,  3376.96 tokens per second)
+llama_perf_context_print:        eval time =    5444.27 ms /   448 runs   (   12.15 ms per token,    82.29 tokens per second)
+llama_perf_context_print:       total time =    7293.56 ms /  4062 tokens
+llama_perf_context_print:    graphs reused =        433
+Llama.generate: 33 prefix-match hit, remaining 3493 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1021.83 ms /  3493 tokens (    0.29 ms per token,  3418.38 tokens per second)
+llama_perf_context_print:        eval time =    6176.24 ms /   511 runs   (   12.09 ms per token,    82.74 tokens per second)
+llama_perf_context_print:       total time =    8142.23 ms /  4004 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3217 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     952.26 ms /  3217 tokens (    0.30 ms per token,  3378.28 tokens per second)
+llama_perf_context_print:        eval time =    6131.49 ms /   511 runs   (   12.00 ms per token,    83.34 tokens per second)
+llama_perf_context_print:       total time =    8028.57 ms /  3728 tokens
+llama_perf_context_print:    graphs reused =        494
+
+[66/164] Processing HumanEval/65 (math)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 86: expected an indented block after 'if' statement on line 85
+[67/164] Processing HumanEval/66 (string)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+[68/164] Processing HumanEval/67 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[69/164] Processing HumanEval/68 (list)...
+  → Routed to Agent 0
+  ✗ Failed: ASSERTION_FAILED: Error
+Traceback (most recent call last):
+  File "/tmp/tmpdpsxjn4m.py", line 75, in
+[70/164] Processing HumanEval/69 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+  📸 Taking snapshot at task 70...
+     S = 0.064, D = 0.535
+[71/164] Processing HumanEval/70 (list)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[72/164] Processing HumanEval/71 (math)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.05s)
+[73/164] Processing HumanEval/72 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+[74/164] Processing HumanEval/73 (list)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.05s)
+[75/164] Processing HumanEval/74 (string)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.05s)
+[76/164] Processing HumanEval/75 (math)...
+  → Routed to Agent 3
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmp80w0ectp.py", line 53, in <mod
+[77/164] Processing HumanEval/76 (math)...
+  → Routed to Agent 3
+  ✗ Failed: ASSERTION_FAILED: This prints if this assert fails 2 (also good for debugging!)
+Traceback (most rece
+[78/164] Processing HumanEval/77 (math)...
+  → Routed to Agent 0
+  ✗ Failed: RUNTIME_ERROR: type complex doesn't define __round__ method
+Traceback (most recent call last):
+  Fil
+[79/164] Processing HumanEval/78 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[80/164] Processing HumanEval/79 (string)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+  📸 Taking snapshot at task 80...
+     S = 0.061, D = 0.677
+[81/164] Processing HumanEval/80 (logic)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[82/164] Processing HumanEval/81 (string)...
+  → Routed to Agent 3
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmpn0es6ppk.py", line 77, in <mod
+[83/164] Processing HumanEval/82 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[84/164] Processing HumanEval/83 (math)...
+  → Routed to Agent 0
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmp6sk1wx28.py", line 36, in <mod
+[85/164] Processing HumanEval/84 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[86/164] Processing HumanEval/85 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[87/164] Processing HumanEval/86 (string)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[88/164] Processing HumanEval/87 (list)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.04s)
+[89/164] Processing HumanEval/88 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[90/164] Processing HumanEval/89 (string)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 82: unterminated string literal (detected at line 82)
+  📸 Taking snapshot at task 90...
+     S = 0.072, D = 0.725
+[91/164] Processing HumanEval/90 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+[92/164] Processing HumanEval/91 (string)...
+  → Routed to Agent 3
+  ✗ Failed: ASSERTION_FAILED: Test 3
+Traceback (most recent call last):
+  File "/tmp/tmp_3fbyuv9.py", line 45, i
+[93/164] Processing HumanEval/92 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.04s)
+[94/164] Processing HumanEval/93 (string)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 82: unterminated string literal (detected at line 82)
+[95/164] Processing HumanEval/94 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[96/164] Processing HumanEval/95 (logic)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 88: expected an indented block after function definition on line 8
+[97/164] Processing HumanEval/96 (math)...
+  → Routed to Agent 2
+  ✓ Success (exec time: 0.03s)
+[98/164] Processing HumanEval/97 (math)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 85: expected an indented block after 'elif' statement on line 84
+[99/164] Processing HumanEval/98 (string)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+[100/164] Processing HumanEval/99 (math)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+  📸 Taking snapshot at task 100...
+     S = 0.074, D = 0.633
+[101/164] Processing HumanEval/100 (math)...
+  → Routed to Agent 0
+  ✗ Failed: ASSERTION_FAILED: Test 3
+Traceback (most recent call last):
+  File "/tmp/tmpc_2wqyq7.py", line 46, i
+[102/164] Processing HumanEval/101 (string)...
+  → Routed to Agent 3
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmpyqc2v0mv.py", line 34, in <mod
+[103/164] Processing HumanEval/102 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[104/164] Processing HumanEval/103 (math)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 85: invalid syntax
+[105/164] Processing HumanEval/104 (list)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[106/164] Processing HumanEval/105 (math)...
+  → Routed to Agent 1
+  ✗ Failed: ASSERTION_FAILED: Error
+Traceback (most recent call last):
+  File "/tmp/tmphwy7h10x.py", line 51, in
+[107/164] Processing HumanEval/106 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[108/164] Processing HumanEval/107 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[109/164] Processing HumanEval/108 (math)...
+  → Routed to Agent 1
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmppcgniwjv.py", line 44, in <mod
+[110/164] Processing HumanEval/109 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+  📸 Taking snapshot at task 110...
+     S = 0.090, D = 0.647
+[111/164] Processing HumanEval/110 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[112/164] Processing HumanEval/111 (string)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+[113/164] Processing HumanEval/112 (string)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[114/164] Processing HumanEval/113 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[115/164] Processing HumanEval/114 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[116/164] Processing HumanEval/115 (math)...
+  → Routed to Agent 4
+  ✗ Failed: ASSERTION_FAILED: Error
+Traceback (most recent call last):
+  File "/tmp/tmpvh9t3_d8.py", line 32, in
+[117/164] Processing HumanEval/116 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[118/164] Processing HumanEval/117 (string)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+[119/164] Processing HumanEval/118 (string)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[120/164] Processing HumanEval/119 (string)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 83: '(' was never closed
+  📸 Taking snapshot at task 120...
+     S = 0.081, D = 0.654
+[121/164] Processing HumanEval/120 (list)...
+  → Routed to Agent 4
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmprzocqws0.py", line 60, in <mod
+[122/164] Processing HumanEval/121 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[123/164] Processing HumanEval/122 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[124/164] Processing HumanEval/123 (math)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+[125/164] Processing HumanEval/124 (logic)...
+  → Routed to Agent 1
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmpzucvq2cm.py", line 92, in <mod
+[126/164] Processing HumanEval/125 (string)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 84: invalid syntaxLlama.generate: 31 prefix-match hit, remaining 2129 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     545.18 ms /  2129 tokens (    0.26 ms per token,  3905.12 tokens per second)
+llama_perf_context_print:        eval time =    3844.24 ms /   333 runs   (   11.54 ms per token,    86.62 tokens per second)
+llama_perf_context_print:       total time =    4903.95 ms /  2462 tokens
+llama_perf_context_print:    graphs reused =        322
+Llama.generate: 33 prefix-match hit, remaining 2341 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     598.44 ms /  2341 tokens (    0.26 ms per token,  3911.83 tokens per second)
+llama_perf_context_print:        eval time =    5157.70 ms /   445 runs   (   11.59 ms per token,    86.28 tokens per second)
+llama_perf_context_print:       total time =    6502.28 ms /  2786 tokens
+llama_perf_context_print:    graphs reused =        430
+Llama.generate: 33 prefix-match hit, remaining 3601 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1052.72 ms /  3601 tokens (    0.29 ms per token,  3420.66 tokens per second)
+llama_perf_context_print:        eval time =    5619.56 ms /   461 runs   (   12.19 ms per token,    82.03 tokens per second)
+llama_perf_context_print:       total time =    7468.47 ms /  4062 tokens
+llama_perf_context_print:    graphs reused =        446
+Llama.generate: 31 prefix-match hit, remaining 3472 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1002.71 ms /  3472 tokens (    0.29 ms per token,  3462.63 tokens per second)
+llama_perf_context_print:        eval time =    6199.20 ms /   511 runs   (   12.13 ms per token,    82.43 tokens per second)
+llama_perf_context_print:       total time =    8140.37 ms /  3983 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3441 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1237.29 ms /  3441 tokens (    0.36 ms per token,  2781.09 tokens per second)
+llama_perf_context_print:        eval time =    6092.68 ms /   511 runs   (   11.92 ms per token,    83.87 tokens per second)
+llama_perf_context_print:       total time =    8226.81 ms /  3952 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 3237 prefix-match hit, remaining 74 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =      32.31 ms /    74 tokens (    0.44 ms per token,  2290.45 tokens per second)
+llama_perf_context_print:        eval time =    6045.10 ms /   511 runs   (   11.83 ms per token,    84.53 tokens per second)
+llama_perf_context_print:       total time =    7014.07 ms /   585 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3520 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1038.05 ms /  3520 tokens (    0.29 ms per token,  3390.99 tokens per second)
+llama_perf_context_print:        eval time =    6157.31 ms /   511 runs   (   12.05 ms per token,    82.99 tokens per second)
+llama_perf_context_print:       total time =    8182.13 ms /  4031 tokens
+llama_perf_context_print:    graphs reused =        495
+Llama.generate: 33 prefix-match hit, remaining 3384 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     956.06 ms /  3384 tokens (    0.28 ms per token,  3539.51 tokens per second)
+llama_perf_context_print:        eval time =    6099.88 ms /   511 runs   (   11.94 ms per token,    83.77 tokens per second)
+llama_perf_context_print:       total time =    8002.37 ms /  3895 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 2224 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     596.92 ms /  2224 tokens (    0.27 ms per token,  3725.77 tokens per second)
+llama_perf_context_print:        eval time =    2237.70 ms /   194 runs   (   11.53 ms per token,    86.70 tokens per second)
+llama_perf_context_print:       total time =    3136.89 ms /  2418 tokens
+llama_perf_context_print:    graphs reused =        187
+Llama.generate: 33 prefix-match hit, remaining 3326 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     975.59 ms /  3326 tokens (    0.29 ms per token,  3409.21 tokens per second)
+llama_perf_context_print:        eval time =    6102.20 ms /   511 runs   (   11.94 ms per token,    83.74 tokens per second)
+llama_perf_context_print:       total time =    8044.36 ms /  3837 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3562 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1041.31 ms /  3562 tokens (    0.29 ms per token,  3420.69 tokens per second)
+llama_perf_context_print:        eval time =    6067.76 ms /   502 runs   (   12.09 ms per token,    82.73 tokens per second)
+llama_perf_context_print:       total time =    8122.17 ms /  4064 tokens
+llama_perf_context_print:    graphs reused =        486
+Llama.generate: 31 prefix-match hit, remaining 3465 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1024.38 ms /  3465 tokens (    0.30 ms per token,  3382.53 tokens per second)
+llama_perf_context_print:        eval time =    6142.91 ms /   511 runs   (   12.02 ms per token,    83.19 tokens per second)
+llama_perf_context_print:       total time =    8153.60 ms /  3976 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3304 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     954.34 ms /  3304 tokens (    0.29 ms per token,  3462.07 tokens per second)
+llama_perf_context_print:        eval time =    6093.07 ms /   511 runs   (   11.92 ms per token,    83.87 tokens per second)
+llama_perf_context_print:       total time =    8007.19 ms /  3815 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 2072 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     568.03 ms /  2072 tokens (    0.27 ms per token,  3647.69 tokens per second)
+llama_perf_context_print:        eval time =    1940.48 ms /   169 runs   (   11.48 ms per token,    87.09 tokens per second)
+llama_perf_context_print:       total time =    2767.73 ms /  2241 tokens
+llama_perf_context_print:    graphs reused =        162
+Llama.generate: 33 prefix-match hit, remaining 1965 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     499.59 ms /  1965 tokens (    0.25 ms per token,  3933.19 tokens per second)
+llama_perf_context_print:        eval time =    2627.08 ms /   231 runs   (   11.37 ms per token,    87.93 tokens per second)
+llama_perf_context_print:       total time =    3490.68 ms /  2196 tokens
+llama_perf_context_print:    graphs reused =        223
+Llama.generate: 33 prefix-match hit, remaining 3392 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     974.63 ms /  3392 tokens (    0.29 ms per token,  3480.29 tokens per second)
+llama_perf_context_print:        eval time =    6114.86 ms /   511 runs   (   11.97 ms per token,    83.57 tokens per second)
+llama_perf_context_print:       total time =    8073.43 ms /  3903 tokens
+llama_perf_context_print:    graphs reused =        495
+Llama.generate: 31 prefix-match hit, remaining 3595 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1079.74 ms /  3595 tokens (    0.30 ms per token,  3329.50 tokens per second)
+llama_perf_context_print:        eval time =    5665.56 ms /   469 runs   (   12.08 ms per token,    82.78 tokens per second)
+llama_perf_context_print:       total time =    7516.68 ms /  4064 tokens
+llama_perf_context_print:    graphs reused =        454
+Llama.generate: 31 prefix-match hit, remaining 3346 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     973.86 ms /  3346 tokens (    0.29 ms per token,  3435.82 tokens per second)
+llama_perf_context_print:        eval time =    6120.17 ms /   511 runs   (   11.98 ms per token,    83.49 tokens per second)
+llama_perf_context_print:       total time =    7981.35 ms /  3857 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3364 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1026.95 ms /  3364 tokens (    0.31 ms per token,  3275.71 tokens per second)
+llama_perf_context_print:        eval time =    6261.23 ms /   511 runs   (   12.25 ms per token,    81.61 tokens per second)
+llama_perf_context_print:       total time =    8246.15 ms /  3875 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3508 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1045.92 ms /  3508 tokens (    0.30 ms per token,  3354.00 tokens per second)
+llama_perf_context_print:        eval time =    6234.00 ms /   511 runs   (   12.20 ms per token,    81.97 tokens per second)
+llama_perf_context_print:       total time =    8167.87 ms /  4019 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3462 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1030.68 ms /  3462 tokens (    0.30 ms per token,  3358.96 tokens per second)
+llama_perf_context_print:        eval time =    6148.19 ms /   511 runs   (   12.03 ms per token,    83.11 tokens per second)
+llama_perf_context_print:       total time =    7979.34 ms /  3973 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3592 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1081.45 ms /  3592 tokens (    0.30 ms per token,  3321.47 tokens per second)
+llama_perf_context_print:        eval time =    5676.78 ms /   472 runs   (   12.03 ms per token,    83.15 tokens per second)
+llama_perf_context_print:       total time =    7617.48 ms /  4064 tokens
+llama_perf_context_print:    graphs reused =        457
+Llama.generate: 31 prefix-match hit, remaining 3600 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1074.48 ms /  3600 tokens (    0.30 ms per token,  3350.45 tokens per second)
+llama_perf_context_print:        eval time =    5612.16 ms /   464 runs   (   12.10 ms per token,    82.68 tokens per second)
+llama_perf_context_print:       total time =    7514.01 ms /  4064 tokens
+llama_perf_context_print:    graphs reused =        449
+Llama.generate: 33 prefix-match hit, remaining 3477 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1017.27 ms /  3477 tokens (    0.29 ms per token,  3417.97 tokens per second)
+llama_perf_context_print:        eval time =    6174.65 ms /   511 runs   (   12.08 ms per token,    82.76 tokens per second)
+llama_perf_context_print:       total time =    8124.68 ms /  3988 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 1875 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     457.27 ms /  1875 tokens (    0.24 ms per token,  4100.46 tokens per second)
+llama_perf_context_print:        eval time =    2730.21 ms /   237 runs   (   11.52 ms per token,    86.81 tokens per second)
+llama_perf_context_print:       total time =    3521.50 ms /  2112 tokens
+llama_perf_context_print:    graphs reused =        228
+Llama.generate: 33 prefix-match hit, remaining 3513 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1030.51 ms /  3513 tokens (    0.29 ms per token,  3409.00 tokens per second)
+llama_perf_context_print:        eval time =    6189.74 ms /   511 runs   (   12.11 ms per token,    82.56 tokens per second)
+llama_perf_context_print:       total time =    8117.71 ms /  4024 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3557 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1034.96 ms /  3557 tokens (    0.29 ms per token,  3436.84 tokens per second)
+llama_perf_context_print:        eval time =    6128.58 ms /   505 runs   (   12.14 ms per token,    82.40 tokens per second)
+llama_perf_context_print:       total time =    8051.19 ms /  4062 tokens
+llama_perf_context_print:    graphs reused =        489
+Llama.generate: 31 prefix-match hit, remaining 3701 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1081.34 ms /  3701 tokens (    0.29 ms per token,  3422.62 tokens per second)
+llama_perf_context_print:        eval time =    4359.62 ms /   363 runs   (   12.01 ms per token,    83.26 tokens per second)
+llama_perf_context_print:       total time =    6027.17 ms /  4064 tokens
+llama_perf_context_print:    graphs reused =        351
+Llama.generate: 31 prefix-match hit, remaining 2000 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     524.75 ms /  2000 tokens (    0.26 ms per token,  3811.37 tokens per second)
+llama_perf_context_print:        eval time =    2177.26 ms /   191 runs   (   11.40 ms per token,    87.73 tokens per second)
+llama_perf_context_print:       total time =    2963.99 ms /  2191 tokens
+llama_perf_context_print:    graphs reused =        184
+Llama.generate: 33 prefix-match hit, remaining 3504 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1037.81 ms /  3504 tokens (    0.30 ms per token,  3376.35 tokens per second)
+llama_perf_context_print:        eval time =    6139.85 ms /   511 runs   (   12.02 ms per token,    83.23 tokens per second)
+llama_perf_context_print:       total time =    8077.29 ms /  4015 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3318 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     955.12 ms /  3318 tokens (    0.29 ms per token,  3473.90 tokens per second)
+llama_perf_context_print:        eval time =    6099.56 ms /   511 runs   (   11.94 ms per token,    83.78 tokens per second)
+llama_perf_context_print:       total time =    7943.94 ms /  3829 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 1716 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     412.50 ms /  1716 tokens (    0.24 ms per token,  4160.03 tokens per second)
+llama_perf_context_print:        eval time =    1780.28 ms /   155 runs   (   11.49 ms per token,    87.07 tokens per second)
+llama_perf_context_print:       total time =    2403.39 ms /  1871 tokens
+llama_perf_context_print:    graphs reused =        149
+Llama.generate: 33 prefix-match hit, remaining 3410 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =     996.79 ms /  3410 tokens (    0.29 ms per token,  3420.97 tokens per second)
+llama_perf_context_print:        eval time =    6202.76 ms /   511 runs   (   12.14 ms per token,    82.38 tokens per second)
+llama_perf_context_print:       total time =    8104.65 ms /  3921 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3486 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1031.31 ms /  3486 tokens (    0.30 ms per token,  3380.17 tokens per second)
+llama_perf_context_print:        eval time =    6137.48 ms /   511 runs   (   12.01 ms per token,    83.26 tokens per second)
+llama_perf_context_print:       total time =    8067.20 ms /  3997 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3468 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1036.88 ms /  3468 tokens (    0.30 ms per token,  3344.66 tokens per second)
+llama_perf_context_print:        eval time =    6144.24 ms /   511 runs   (   12.02 ms per token,    83.17 tokens per second)
+llama_perf_context_print:       total time =    8049.19 ms /  3979 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 33 prefix-match hit, remaining 3456 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1023.95 ms /  3456 tokens (    0.30 ms per token,  3375.17 tokens per second)
+llama_perf_context_print:        eval time =    6143.58 ms /   511 runs   (   12.02 ms per token,    83.18 tokens per second)
+llama_perf_context_print:       total time =    8060.29 ms /  3967 tokens
+llama_perf_context_print:    graphs reused =        495
+Llama.generate: 33 prefix-match hit, remaining 3454 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1004.98 ms /  3454 tokens (    0.29 ms per token,  3436.88 tokens per second)
+llama_perf_context_print:        eval time =    6212.77 ms /   511 runs   (   12.16 ms per token,    82.25 tokens per second)
+llama_perf_context_print:       total time =    8118.90 ms /  3965 tokens
+llama_perf_context_print:    graphs reused =        494
+Llama.generate: 31 prefix-match hit, remaining 3530 prompt tokens to eval
+llama_perf_context_print:        load time =     485.87 ms
+llama_perf_context_print: prompt eval time =    1054.17 ms /  3530 tokens (    0.30 ms per token,  3348.61 tokens per second)
+llama_perf_context_print:        eval time =    6222.07 ms /   511 runs   (   12.18 ms per token,    82.13 tokens per second)
+llama_perf_context_print:       total time =    8193.20 ms /  4041 tokens
+llama_perf_context_print:    graphs reused =        494
+
+[127/164] Processing HumanEval/126 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[128/164] Processing HumanEval/127 (math)...
+  → Routed to Agent 4
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmpw9ea3x2n.py", line 74, in <mod
+[129/164] Processing HumanEval/128 (math)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+[130/164] Processing HumanEval/129 (list)...
+  → Routed to Agent 2
+  ✓ Success (exec time: 3.33s)
+  📸 Taking snapshot at task 130...
+     S = 0.069, D = 0.662
+[131/164] Processing HumanEval/130 (math)...
+  → Routed to Agent 1
+  ✗ Failed: RUNTIME_ERROR: list index out of range
+Traceback (most recent call last):
+  File "/tmp/tmpwibn63fp.p
+[132/164] Processing HumanEval/131 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[133/164] Processing HumanEval/132 (logic)...
+  → Routed to Agent 0
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmpz6x4zl22.py", line 59, in <mod
+[134/164] Processing HumanEval/133 (math)...
+  → Routed to Agent 1
+  ✗ Failed: RUNTIME_ERROR: name 'math' is not defined
+Traceback (most recent call last):
+  File "/tmp/tmpzabh9ld
+[135/164] Processing HumanEval/134 (string)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[136/164] Processing HumanEval/135 (list)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[137/164] Processing HumanEval/136 (list)...
+  → Routed to Agent 2
+  ✗ Failed: Traceback (most recent call last):
+  File "/tmp/tmp84u5ehhx.py", line 3, in <module>
+    def largest
+[138/164] Processing HumanEval/137 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.04s)
+[139/164] Processing HumanEval/138 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[140/164] Processing HumanEval/139 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+  📸 Taking snapshot at task 140...
+     S = 0.064, D = 0.699
+[141/164] Processing HumanEval/140 (string)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[142/164] Processing HumanEval/141 (string)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[143/164] Processing HumanEval/142 (math)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 77: '(' was never closed
+[144/164] Processing HumanEval/143 (string)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[145/164] Processing HumanEval/144 (logic)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[146/164] Processing HumanEval/145 (math)...
+  → Routed to Agent 0
+  ✗ Failed: ASSERTION_FAILED: 
+Traceback (most recent call last):
+  File "/tmp/tmpazi_ql_p.py", line 44, in <mod
+[147/164] Processing HumanEval/146 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.02s)
+[148/164] Processing HumanEval/147 (list)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 74: invalid syntax
+[149/164] Processing HumanEval/148 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.03s)
+[150/164] Processing HumanEval/149 (list)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+  📸 Taking snapshot at task 150...
+     S = 0.045, D = 0.617
+[151/164] Processing HumanEval/150 (math)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[152/164] Processing HumanEval/151 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.04s)
+[153/164] Processing HumanEval/152 (list)...
+  → Routed to Agent 0
+  ✓ Success (exec time: 0.04s)
+[154/164] Processing HumanEval/153 (string)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 57: invalid syntax
+[155/164] Processing HumanEval/154 (string)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.03s)
+[156/164] Processing HumanEval/155 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.05s)
+[157/164] Processing HumanEval/156 (string)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+[158/164] Processing HumanEval/157 (logic)...
+  → Routed to Agent 4
+  ✓ Success (exec time: 0.04s)
+[159/164] Processing HumanEval/158 (string)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.05s)
+[160/164] Processing HumanEval/159 (math)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.03s)
+  📸 Taking snapshot at task 160...
+     S = 0.049, D = 0.727
+[161/164] Processing HumanEval/160 (math)...
+  → Routed to Agent 1
+  ✓ Success (exec time: 0.03s)
+[162/164] Processing HumanEval/161 (string)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.02s)
+[163/164] Processing HumanEval/162 (string)...
+  → Routed to Agent 3
+  ✓ Success (exec time: 0.04s)
+[164/164] Processing HumanEval/163 (math)...
+  → Routed to Agent 2
+  ✗ Failed: Syntax error: SyntaxError at line 82: unterminated string literal (detected at line 82)
+
+============================================================
+Computing final metrics...
+
+============================================================
+Experiment Complete!
+============================================================
+Results saved to: results/sweep_3b_temp_1_5/seed_42
+
+Performance:
+  Pass@1: 77.44%
+  Successful: 127/164
+
+Emergence Metrics:
+  Specialization Index (S): 0.053
+  Context Divergence (D): 0.669
+  S p-value: 0.0710 (not significant)
+
+Functional Differentiation:
+  Chi-square: 17.53
+  p-value: 0.1307 (not significant)
+  Effect size (Cramér's V): 0.215
+
+Pattern: no_emergence
+
+Agent Specialization:
+  Agent 0:
+    string: 0.875
+    math: 0.692
+    list: 0.867
+    logic: 0.500
+  Agent 1:
+    string: 0.800
+    math: 0.846
+    list: 1.000
+    logic: 0.667
+  Agent 2:
+    string: 0.375
+    math: 0.300
+    list: 0.500
+    logic: 0.500
+  Agent 3:
+    string: 0.727
+    math: 0.846
+    list: 1.000
+    logic: 0.500
+  Agent 4:
+    string: 1.000
+    math: 0.857
+    list: 0.875
+    logic: 1.000
+
+Run complete: S=0.053, D=0.669, Pass@1=77.44%
+
+============================================================
+EXPERIMENT COMPLETE
+============================================================
+

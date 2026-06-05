@@ -1,0 +1,8 @@
+{
+  "seed": 42,
+  "timestamp": "2026-05-02T20:42:44.070008",
+  "n_tasks": 164,
+  "n_agents": 9,
+  "router_type": "affinity",
+  "model_path": "models/qwen2.5-coder-7b-instruct-q4_k_m.gguf"
+}
