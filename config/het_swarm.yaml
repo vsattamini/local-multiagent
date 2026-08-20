@@ -1,0 +1,41 @@
+experiment:
+  name: het_swarm
+  description: Heterogeneous swarm 2x1.5B+1x3B — competence-driven differentiation
+  output_dir: results/het_swarm
+model:
+  path: models/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf
+  context_length: 4096  # was 2048 → caused "Requested tokens (2071) exceed context window" crash at run 10; matches all other configs
+  max_tokens: 512
+  generation_temperature: 0.2
+  generation_top_p: 0.95
+agents:
+  n_agents: 3
+  max_context_examples: 5
+  models:
+  - 1.5b
+  - 1.5b
+  - 3b
+router:
+  type: affinity
+  temperature: 0.3
+tasks:
+  n_tasks: 164
+  task_types:
+  - string
+  - math
+  - list
+  - logic
+  benchmark: humaneval
+execution:
+  timeout: 5
+  decouple_decode_seed: true
+  clean_mode: strict
+metrics:
+  snapshot_interval: 10
+  compute_significance: true
+  n_permutations: 1000
+prompts:
+  system: You are a Python coding assistant. Write clean, correct code that solves
+    the problem. Only output the function implementation, no explanations or extra
+    text.
+random_seed: 42

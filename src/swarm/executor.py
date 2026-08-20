@@ -21,14 +21,20 @@ class CodeExecutor:
     Uses subprocess isolation with timeout for safety.
     """
 
-    def __init__(self, timeout: int = 5):
+    def __init__(self, timeout: int = 5, clean_mode: str = "legacy"):
         """
         Initialize code executor.
 
         Args:
             timeout: Maximum execution time in seconds
+            clean_mode: "legacy" (original markdown-strip) or "strict" (keep ONLY
+                lines strictly inside the first ```fenced``` block; if no fence, use
+                as-is). "strict" fixes the bug where out-of-fence prose was kept and
+                broke otherwise-correct solutions. Default "legacy" preserves prior
+                behaviour for already-running experiments.
         """
         self.timeout = timeout
+        self.clean_mode = clean_mode
 
     def execute(
         self,
@@ -230,9 +236,24 @@ check({entry_point})
             return code
 
         lines = code.splitlines()
+
+        if self.clean_mode == "strict":
+            # The opening fence is in the PROMPT, so generated text is usually
+            # "code [``` [trailing prose]]". Drop a leading fence if the model
+            # re-opened one, then keep everything UP TO the first fence line
+            # (the closing ```), discarding it and anything after.
+            if lines and lines[0].strip().startswith("```"):
+                lines = lines[1:]
+            content = []
+            for line in lines:
+                if line.strip().startswith("```"):
+                    break
+                content.append(line)
+            return "\n".join(content) if content else code
+
+        # legacy behaviour (kept for already-running experiments)
         content = []
         in_block = False
-
         for line in lines:
             stripped = line.strip()
             if stripped.startswith("```"):
@@ -240,5 +261,10 @@ check({entry_point})
                 continue
             if in_block or not any(stripped.startswith(x) for x in ["```"]):
                 content.append(line)
-
         return "\n".join(content) if content else code
+
+    def execute_mbpp(self, solution_code: str, asserts: str, entry_point: str) -> "ExecutionResult":
+        """Execute an MBPP/MBPP+ task: bare `assert func(...)==...` lines (no check()).
+        Reuses the assertion-wrapping executor; the function is defined by solution_code."""
+        clean_code = self._clean_solution(solution_code)
+        return self.execute_with_assertion_check(clean_code, asserts, entry_point)

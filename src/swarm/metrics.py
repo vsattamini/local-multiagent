@@ -209,6 +209,14 @@ class MetricsEngine:
             aggfunc="sum"
         ).fillna(0)
 
+        # Drop all-zero rows/columns: a zero marginal makes the expected-
+        # frequency table contain zeros and chi2_contingency raises. This only
+        # affects degenerate tables (e.g. an agent or category with no
+        # successes); non-degenerate tables (all stored 164-task runs) are
+        # unaffected and reproduce identically.
+        contingency = contingency.loc[(contingency.sum(axis=1) > 0),
+                                      (contingency.sum(axis=0) > 0)]
+
         # Ensure we have at least 2x2 table
         if contingency.shape[0] < 2 or contingency.shape[1] < 2:
             return {
@@ -221,7 +229,19 @@ class MetricsEngine:
             }
 
         # Chi-square test
-        chi2, p_value, dof, expected = chi2_contingency(contingency)
+        try:
+            chi2, p_value, dof, expected = chi2_contingency(contingency)
+        except ValueError:
+            # Residual degeneracy (zero expected frequency) — not computable.
+            return {
+                "chi2": 0.0,
+                "p_value": 1.0,
+                "dof": 0,
+                "significant": False,
+                "effect_size": 0.0,
+                "contingency_table": contingency.to_dict(),
+                "note": "chi2 not computable (zero expected frequency)"
+            }
 
         # Cramér's V effect size
         n = contingency.sum().sum()

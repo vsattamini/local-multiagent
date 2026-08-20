@@ -16,6 +16,9 @@ class SwarmAgent:
     max_context_examples: int = 5
     context_buffer: List[FewShotExample] = field(default_factory=list)
     task_history: Dict[TaskType, List[bool]] = field(default_factory=dict)
+    # Optional per-agent system prompt (persona positive-control condition).
+    # None => use the shared system prompt passed to build_prompt.
+    system_prompt_override: Optional[str] = None
 
     def add_success(self, problem: str, solution: str, task_type: TaskType) -> None:
         """Add successful example to context buffer."""
@@ -42,21 +45,46 @@ class SwarmAgent:
             self.task_history[task_type] = []
         self.task_history[task_type].append(False)
 
-    def build_prompt(self, system_prompt: str, new_problem: str) -> str:
+    def build_prompt(
+        self,
+        system_prompt: str,
+        new_problem: str,
+        task_type: Optional[TaskType] = None,
+        type_filtered: bool = False,
+        max_show: Optional[int] = None,
+    ) -> str:
         """
         Construct full prompt with few-shot examples from context.
 
         Args:
-            system_prompt: Base instruction for the model
+            system_prompt: Base instruction (overridden by self.system_prompt_override
+                if set — the persona positive-control condition).
             new_problem: New problem to solve
+            task_type: Type of the current task (used for type-filtered retrieval)
+            type_filtered: If True, prefer accumulated examples of the SAME task_type
+                (the mechanism for coupling accumulated experience to per-type skill).
+            max_show: Cap on number of examples shown (None => all selected).
 
         Returns:
             Complete prompt with few-shot examples
-        """
-        prompt = system_prompt + "\n\n"
 
-        # Add few-shot examples from context
-        for example in self.context_buffer:
+        NOTE: with defaults (type_filtered=False, max_show=None, no override) this
+        reproduces the original behaviour exactly.
+        """
+        base = self.system_prompt_override or system_prompt
+        prompt = base + "\n\n"
+
+        # Select few-shot examples
+        if type_filtered and task_type is not None:
+            same = [ex for ex in self.context_buffer if ex.task_type == task_type]
+            examples = same if same else list(self.context_buffer)
+        else:
+            examples = list(self.context_buffer)
+
+        if max_show is not None:
+            examples = examples[-max_show:]
+
+        for example in examples:
             prompt += f"### Problem:\n{example.problem}\n\n"
             prompt += f"### Solution:\n```python\n{example.solution}\n```\n\n"
 

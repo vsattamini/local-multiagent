@@ -65,8 +65,22 @@ def config_from_yaml(yaml_config: dict) -> ExperimentConfig:
         model_path=model_config.get('path', 'models/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf'),
         context_length=model_config.get('context_length', 4096),
         max_tokens=model_config.get('max_tokens', 512),
+        # Use the explicit generation_temperature key if present; default 0.2 to
+        # match the (historically hardcoded) value actually used in all prior runs.
+        # We deliberately do NOT read model.temperature here, because that key was
+        # silently ignored before the 2026-06 audit (see ExperimentConfig note).
+        generation_temperature=model_config.get('generation_temperature', 0.2),
+        generation_top_p=model_config.get('generation_top_p', 0.95),
         n_agents=agent_config.get('n_agents', 3),
         max_context_examples=agent_config.get('max_context_examples', 5),
+        context_retrieval=agent_config.get('context_retrieval', 'fifo'),
+        context_show=agent_config.get('context_show', None),
+        personas=agent_config.get('personas', None),
+        ensemble_assignment=agent_config.get('ensemble_assignment', None),
+        models=agent_config.get('models', None),
+        decouple_decode_seed=exec_config.get('decouple_decode_seed', False),
+        clean_mode=exec_config.get('clean_mode', 'legacy'),
+        benchmark=task_config.get('benchmark', 'humaneval'),
         router_type=router_config.get('type', 'affinity'),
         router_temperature=router_config.get('temperature', 0.5),
         n_tasks=task_config.get('n_tasks', 50),
@@ -98,7 +112,8 @@ def run_single_experiment(
     config: ExperimentConfig,
     seed: int,
     resume: bool = False,
-    use_full_categories: bool = True
+    use_full_categories: bool = True,
+    models: Optional[list] = None,
 ) -> dict:
     """
     Run a single experiment with given seed.
@@ -116,11 +131,15 @@ def run_single_experiment(
     # Set seed
     np.random.seed(seed)
     config.random_seed = seed
-    
-    # Add seed to output directory
-    original_output = Path(config.output_dir)
-    config.output_dir = str(original_output / f"seed_{seed}")
-    
+
+    # Add seed to output directory. Capture the base each call and restore it
+    # afterwards (in main's loop) so seeds do NOT nest cumulatively
+    # (seed_42/seed_123/...). The base is passed via config._base_output_dir
+    # if present, else the current output_dir is treated as the base.
+    base_output = Path(getattr(config, "_base_output_dir", None) or config.output_dir)
+    config._base_output_dir = str(base_output)
+    config.output_dir = str(base_output / f"seed_{seed}")
+
     output_path = Path(config.output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
     
@@ -131,8 +150,8 @@ def run_single_experiment(
         if start_task > 0:
             print(f"  Resuming from task {start_task}")
     
-    # Create experiment
-    experiment = SwarmExperiment(model, config)
+    # Create experiment (models = per-agent list for heterogeneous swarm)
+    experiment = SwarmExperiment(model, config, models=models)
     
     # Load tasks with full categorization if requested
     if use_full_categories:
@@ -280,16 +299,33 @@ def main():
         print("✓ Dry run complete - configuration is valid")
         return
 
-    # Load model once (shared across all runs)
-    print("Loading model...")
-    model = LlamaCppModel(
-        model_name="qwen2.5-coder",
-        model_path=str(model_path),
-        n_ctx=config.context_length,
-        n_gpu_layers=-1
-    )
-    model.load()
-    print("✓ Model loaded\n")
+    # Heterogeneous swarm: load one model per agent if config.models is set.
+    MODEL_PATHS = {
+        "1.5b": "models/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf",
+        "3b":   "models/qwen2.5-coder-3b-instruct-q4_k_m.gguf",
+        "7b":   "models/qwen2.5-coder-7b-instruct-q4_k_m.gguf",
+    }
+    models = None
+    if config.models:
+        print(f"Loading {len(config.models)} per-agent models: {config.models}")
+        models = []
+        for sz in config.models:
+            m = LlamaCppModel(model_name=f"qwen-{sz}", model_path=MODEL_PATHS[sz],
+                              n_ctx=config.context_length, n_gpu_layers=-1)
+            m.load()
+            models.append(m)
+        model = models[0]
+        print("✓ Per-agent models loaded\n")
+    else:
+        print("Loading model...")
+        model = LlamaCppModel(
+            model_name="qwen2.5-coder",
+            model_path=str(model_path),
+            n_ctx=config.context_length,
+            n_gpu_layers=-1
+        )
+        model.load()
+        print("✓ Model loaded\n")
 
     # Run experiments for each seed
     all_metrics = []
@@ -303,7 +339,8 @@ def main():
             metrics = run_single_experiment(
                 model, config, seed,
                 resume=args.resume,
-                use_full_categories=args.use_full_categories
+                use_full_categories=args.use_full_categories,
+                models=models,
             )
             all_metrics.append(metrics)
             

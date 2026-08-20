@@ -80,8 +80,23 @@ class HumanEvalLoader:
         self.task_categorization = TASK_CATEGORIZATION
 
     def load_dataset(self) -> None:
-        """Load HumanEval dataset from HuggingFace."""
-        self.dataset = load_dataset("openai_humaneval", split="test")
+        """Load the HumanEval dataset.
+
+        Prefers a vendored local copy (data/HumanEval.jsonl) for full
+        reproducibility and to avoid breakage from datasets/huggingface_hub
+        version changes. Falls back to HuggingFace if the local file is absent.
+        """
+        import json
+        from pathlib import Path
+
+        local = Path(__file__).parent.parent.parent / "data" / "HumanEval.jsonl"
+        if local.exists():
+            with open(local) as f:
+                self.dataset = [json.loads(line) for line in f if line.strip()]
+            return
+
+        # Fallback: HuggingFace (requires compatible datasets/huggingface_hub)
+        self.dataset = list(load_dataset("openai_humaneval", split="test"))
 
     def get_task(self, task_id: str) -> Optional[SwarmTask]:
         """

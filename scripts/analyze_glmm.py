@@ -11,8 +11,15 @@ The right model for our design is logistic regression with the
 task_type:agent interaction, tested via likelihood-ratio. We report the
 contingency-table chi-square (already in final_metrics.json) for parity
 with prior literature, plus the LR test on the logit interaction. Where
-the data are too sparse for ML (perfect separation), Firth-style penalized
-likelihood is used.
+the data are too sparse for ML (perfect/quasi-complete separation), the
+maximum-likelihood fit does not converge; rather than report an unreliable
+LR p-value from an inflated log-likelihood, we DETECT non-convergence
+(statsmodels `mle_retvals['converged']`) and return an explicit
+{"error": "non-converged (separation)"} so the caller can fall back to the
+permutation / cluster-robust tests (the load-bearing analyses for the
+separated, high-concentration conditions). (No Firth penalization is
+implemented; separated cells are handled by exclusion + the permutation
+tests, not by penalized likelihood.)
 
 Usage:
     python scripts/analyze_glmm.py --all
@@ -76,6 +83,12 @@ def lr_test_logit(df: pd.DataFrame) -> dict:
     try:
         m_null = smf.logit("success_int ~ C(task_type) + C(agent_id)", df).fit(disp=False)
         m_full = smf.logit("success_int ~ C(task_type) * C(agent_id)", df).fit(disp=False)
+        # Guard against perfect/quasi-complete separation: a non-converged fit
+        # yields an inflated log-likelihood and a spuriously tiny LR p-value with
+        # no warning. Flag it instead of reporting a bogus interaction.
+        if not (m_null.mle_retvals.get("converged", True)
+                and m_full.mle_retvals.get("converged", True)):
+            return {"error": "non-converged (separation)", "method": "logit_lr_test"}
         ll_diff = m_full.llf - m_null.llf
         df_diff = int(m_full.df_model - m_null.df_model)
         p_value = float(1 - stats.chi2.cdf(2 * ll_diff, df=df_diff))
@@ -92,6 +105,30 @@ def lr_test_logit(df: pd.DataFrame) -> dict:
         return {"error": f"Logit: {e}"}
 
 
+def lr_main_effect_logit(df: pd.DataFrame) -> dict:
+    """LR test for the agent MAIN effect (competence differs across agents), separate
+    from the interaction. For heterogeneous swarms this is EXPECTED to be significant
+    (the bigger model is better) and is NOT specialization — see
+    audit/het_interaction_prereg.md. Reporting it prevents conflating 'the strong agent
+    wins' (main effect) with 'agents are best at different types' (interaction)."""
+    n_obs = len(df); n_agents = df["agent_id"].nunique()
+    if n_obs < 20 or n_agents < 2:
+        return {"error": "Insufficient data"}
+    try:
+        m_null = smf.logit("success_int ~ C(task_type)", df).fit(disp=False)
+        m_full = smf.logit("success_int ~ C(task_type) + C(agent_id)", df).fit(disp=False)
+        if not (m_null.mle_retvals.get("converged", True)
+                and m_full.mle_retvals.get("converged", True)):
+            return {"error": "non-converged (separation)", "method": "logit_lr_main_effect"}
+        ll_diff = m_full.llf - m_null.llf
+        df_diff = int(m_full.df_model - m_null.df_model)
+        p_value = float(1 - stats.chi2.cdf(2 * ll_diff, df=df_diff))
+        return {"method": "logit_lr_main_effect", "chi2": 2 * float(ll_diff),
+                "df": df_diff, "p_value": p_value, "significant": bool(p_value < 0.05)}
+    except Exception as e:
+        return {"error": f"Logit main: {e}"}
+
+
 def analyze_experiment(exp_dir: Path) -> dict:
     df = load_task_log(exp_dir)
     if df.empty:
@@ -103,7 +140,8 @@ def analyze_experiment(exp_dir: Path) -> dict:
         "n_problems": df["task_id"].nunique(),
         "n_agents": df["agent_id"].nunique(),
         "chi2_test": chi2_from_contingency(df),
-        "lr_test": lr_test_logit(df),
+        "agent_main_effect": lr_main_effect_logit(df),  # competence (expected sig in het)
+        "lr_test": lr_test_logit(df),                    # interaction = differentiation
     }
 
 

@@ -22,10 +22,41 @@ class ExperimentConfig:
     model_path: str = "models/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf"
     context_length: int = 4096
     max_tokens: int = 512
+    # Generation sampling. NOTE: prior to the 2026-06 audit, generation
+    # temperature was hardcoded to 0.2 in the model wrapper and the
+    # `model.temperature: 0.7` in YAML configs was silently ignored. We keep
+    # 0.2 as the default so new multi-seed runs remain comparable to the
+    # historical single-seed results, and now pass it explicitly.
+    generation_temperature: float = 0.2
+    generation_top_p: float = 0.95
 
     # Agent settings
     n_agents: int = 3
     max_context_examples: int = 5
+    # Context retrieval policy: "fifo" (default, original behaviour) or
+    # "type_filtered" (prefer accumulated examples of the current task type).
+    context_retrieval: str = "fifo"
+    # Cap on few-shot examples actually shown in the prompt (None => all in buffer).
+    context_show: Optional[int] = None
+    # Optional per-agent persona system prompts (positive-control condition).
+    # If provided, length should equal n_agents.
+    personas: Optional[List[str]] = None
+
+    # --- New (2026-06-07), all default to legacy behaviour ---
+    # Ensemble assignment: None => single agent per task (default). "all" => every
+    # agent attempts every task (enables GLMM with (1|task_id) + any@N/majority@N).
+    ensemble_assignment: Optional[str] = None
+    # Decouple decode seed from routing seed; each (task, agent) gets a unique seed
+    # (random_seed + task_index*131 + agent_id). Needed for ensemble (else identical
+    # agents produce identical outputs) and separates routing vs decoding noise.
+    decouple_decode_seed: bool = False
+    # Executor markdown-clean mode: "legacy" or "strict" (M2 fix).
+    clean_mode: str = "legacy"
+    # Benchmark: "humaneval" (default) or "mbpp" (MBPP+; bare-assert tests).
+    benchmark: str = "humaneval"
+    # Heterogeneous swarm: optional list of per-agent model size keys (e.g.
+    # ["1.5b","1.5b","3b"]); when set, run_experiment loads one model per agent.
+    models: Optional[List[str]] = None
 
     # Router settings
     router_type: str = "affinity"  # affinity, random, round_robin, greedy
@@ -62,7 +93,8 @@ class SwarmExperiment:
     def __init__(
         self,
         model: ModelInterface,
-        config: ExperimentConfig
+        config: ExperimentConfig,
+        models: Optional[List[ModelInterface]] = None,
     ):
         """
         Initialize experiment.
@@ -72,24 +104,36 @@ class SwarmExperiment:
             config: Experiment configuration
         """
         self.model = model
+        # Optional per-agent models (heterogeneous swarm). If None, all agents
+        # share self.model (homogeneous, default).
+        self.models = models
         self.config = config
 
         # Initialize components
         self.agents = [
             SwarmAgent(
                 agent_id=i,
-                max_context_examples=config.max_context_examples
+                max_context_examples=config.max_context_examples,
+                system_prompt_override=(
+                    config.personas[i]
+                    if config.personas and i < len(config.personas)
+                    else None
+                ),
             )
             for i in range(config.n_agents)
         ]
 
         self.router = self._create_router()
-        self.executor = HumanEvalExecutor(timeout=config.timeout)
+        self.executor = HumanEvalExecutor(timeout=config.timeout, clean_mode=config.clean_mode)
         self.metrics = MetricsEngine()
         self.logger = ExperimentLogger(config.output_dir)
 
-        # Load tasks
-        self.task_loader = HumanEvalLoader()
+        # Load tasks (benchmark-specific loader)
+        if config.benchmark == "mbpp":
+            from .mbpp import MbppPlusLoader
+            self.task_loader = MbppPlusLoader()
+        else:
+            self.task_loader = HumanEvalLoader()
         self.tasks: List[SwarmTask] = []
 
         # Export config
@@ -156,36 +200,54 @@ class SwarmExperiment:
         print(f"{'='*60}\n")
 
         for i, task in enumerate(self.tasks[start_task:], start=start_task):
-            print(f"[{i+1}/{len(self.tasks)}] Processing {task.id} ({task.task_type.value})...")
-
-            # 1. Route task to agent
-            agent = self.router.select_agent(self.agents, task.task_type)
-            print(f"  → Routed to Agent {agent.agent_id}")
-
-            # 2. Generate solution
-            prompt = agent.build_prompt(self.config.system_prompt, task.problem)
-            solution = self.model.generate(prompt, max_tokens=self.config.max_tokens)
-
-            # 3. Execute tests
-            result = self.executor.execute_humaneval(
-                solution,
-                task.test_code,
-                task.entry_point
-            )
-
-            # 4. Update agent state
-            if result.success:
-                agent.add_success(task.problem, solution, task.task_type)
-                print(f"  ✓ Success (exec time: {result.execution_time:.2f}s)")
+            # 1. Determine assigned agent(s): single (default) or ensemble ("all")
+            if self.config.ensemble_assignment:
+                assigned = list(self.agents)          # every agent attempts every task
             else:
-                agent.add_failure(task.task_type)
-                print(f"  ✗ Failed: {result.error_message[:100] if result.error_message else 'Unknown'}")
+                assigned = [self.router.select_agent(self.agents, task.task_type)]
 
-            # 5. Update router
-            self.router.update(agent, task.task_type, result.success)
+            n_succ = 0
+            for agent in assigned:
+                gen_model = self.models[agent.agent_id] if self.models else self.model
 
-            # 6. Log task
-            self.logger.log_task(task, agent, result, solution)
+                # 2. Generate solution
+                prompt = agent.build_prompt(
+                    self.config.system_prompt,
+                    task.problem,
+                    task_type=task.task_type,
+                    type_filtered=(self.config.context_retrieval == "type_filtered"),
+                    max_show=self.config.context_show,
+                )
+                if self.config.decouple_decode_seed and self.config.random_seed is not None:
+                    seed = self.config.random_seed + i * 131 + agent.agent_id
+                else:
+                    seed = self.config.random_seed if self.config.random_seed is not None else -1
+                solution = gen_model.generate(
+                    prompt,
+                    max_tokens=self.config.max_tokens,
+                    temperature=self.config.generation_temperature,
+                    top_p=self.config.generation_top_p,
+                    seed=seed,
+                )
+
+                # 3. Execute tests. Both HumanEval and our MBPP+ data ship a
+                # check(candidate) harness, so execute_humaneval (which appends
+                # check(entry_point)) works for both; `benchmark` selects the loader.
+                result = self.executor.execute_humaneval(solution, task.test_code, task.entry_point)
+
+                # 4. Update agent state
+                if result.success:
+                    agent.add_success(task.problem, solution, task.task_type)
+                    n_succ += 1
+                else:
+                    agent.add_failure(task.task_type)
+
+                # 5. Update router + 6. Log (one row per (agent, task))
+                self.router.update(agent, task.task_type, result.success)
+                self.logger.log_task(task, agent, result, solution)
+
+            print(f"[{i+1}/{len(self.tasks)}] {task.id} ({task.task_type.value}) "
+                  f"— {len(assigned)} agent(s), {n_succ} ok")
 
             # 7. Periodic snapshot
             if (i + 1) % self.config.snapshot_interval == 0:
@@ -292,8 +354,18 @@ class SwarmExperiment:
             "model_path": self.config.model_path,
             "context_length": self.config.context_length,
             "max_tokens": self.config.max_tokens,
+            "generation_temperature": self.config.generation_temperature,
+            "generation_top_p": self.config.generation_top_p,
             "n_agents": self.config.n_agents,
             "max_context_examples": self.config.max_context_examples,
+            "context_retrieval": self.config.context_retrieval,
+            "context_show": self.config.context_show,
+            "personas": self.config.personas,
+            "ensemble_assignment": self.config.ensemble_assignment,
+            "decouple_decode_seed": self.config.decouple_decode_seed,
+            "clean_mode": self.config.clean_mode,
+            "benchmark": self.config.benchmark,
+            "models": self.config.models,
             "router_type": self.config.router_type,
             "router_temperature": self.config.router_temperature,
             "n_tasks": self.config.n_tasks,

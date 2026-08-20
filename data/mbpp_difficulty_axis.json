@@ -1,0 +1,3662 @@
+{
+"Mbpp/3": {
+"task_id": "Mbpp/3",
+"prompt_chars": 95,
+"prompt_tokens": 14,
+"ast_nodes": 48,
+"cyclomatic": 4,
+"canon_lines": 10,
+"difficulty_z": 0.8086688780806427,
+"difficulty_tercile": "hard"
+},
+"Mbpp/4": {
+"task_id": "Mbpp/4",
+"prompt_chars": 197,
+"prompt_tokens": 34,
+"ast_nodes": 28,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.3135328970231666,
+"difficulty_tercile": "med"
+},
+"Mbpp/6": {
+"task_id": "Mbpp/6",
+"prompt_chars": 148,
+"prompt_tokens": 24,
+"ast_nodes": 44,
+"cyclomatic": 2,
+"canon_lines": 6,
+"difficulty_z": 0.028470382909046663,
+"difficulty_tercile": "hard"
+},
+"Mbpp/7": {
+"task_id": "Mbpp/7",
+"prompt_chars": 195,
+"prompt_tokens": 30,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5155004973802516,
+"difficulty_tercile": "easy"
+},
+"Mbpp/8": {
+"task_id": "Mbpp/8",
+"prompt_chars": 167,
+"prompt_tokens": 34,
+"ast_nodes": 16,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.39325677945815246,
+"difficulty_tercile": "med"
+},
+"Mbpp/9": {
+"task_id": "Mbpp/9",
+"prompt_chars": 157,
+"prompt_tokens": 26,
+"ast_nodes": 60,
+"cyclomatic": 3,
+"canon_lines": 9,
+"difficulty_z": 0.6294332116784441,
+"difficulty_tercile": "hard"
+},
+"Mbpp/11": {
+"task_id": "Mbpp/11",
+"prompt_chars": 146,
+"prompt_tokens": 23,
+"ast_nodes": 44,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.17119720379893255,
+"difficulty_tercile": "med"
+},
+"Mbpp/12": {
+"task_id": "Mbpp/12",
+"prompt_chars": 190,
+"prompt_tokens": 38,
+"ast_nodes": 18,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.48881255490070763,
+"difficulty_tercile": "easy"
+},
+"Mbpp/14": {
+"task_id": "Mbpp/14",
+"prompt_chars": 108,
+"prompt_tokens": 18,
+"ast_nodes": 20,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5573404428600731,
+"difficulty_tercile": "easy"
+},
+"Mbpp/16": {
+"task_id": "Mbpp/16",
+"prompt_chars": 207,
+"prompt_tokens": 27,
+"ast_nodes": 18,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.48881255490070763,
+"difficulty_tercile": "easy"
+},
+"Mbpp/17": {
+"task_id": "Mbpp/17",
+"prompt_chars": 128,
+"prompt_tokens": 20,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/18": {
+"task_id": "Mbpp/18",
+"prompt_chars": 170,
+"prompt_tokens": 24,
+"ast_nodes": 24,
+"cyclomatic": 2,
+"canon_lines": 6,
+"difficulty_z": -0.14944923362124587,
+"difficulty_tercile": "hard"
+},
+"Mbpp/19": {
+"task_id": "Mbpp/19",
+"prompt_chars": 143,
+"prompt_tokens": 19,
+"ast_nodes": 20,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5573404428600731,
+"difficulty_tercile": "easy"
+},
+"Mbpp/20": {
+"task_id": "Mbpp/20",
+"prompt_chars": 105,
+"prompt_tokens": 19,
+"ast_nodes": 81,
+"cyclomatic": 7,
+"canon_lines": 17,
+"difficulty_z": 2.3054779527663265,
+"difficulty_tercile": "hard"
+},
+"Mbpp/57": {
+"task_id": "Mbpp/57",
+"prompt_chars": 145,
+"prompt_tokens": 25,
+"ast_nodes": 27,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.408748727462076,
+"difficulty_tercile": "med"
+},
+"Mbpp/58": {
+"task_id": "Mbpp/58",
+"prompt_chars": 135,
+"prompt_tokens": 22,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6018203469926463,
+"difficulty_tercile": "easy"
+},
+"Mbpp/59": {
+"task_id": "Mbpp/59",
+"prompt_chars": 88,
+"prompt_tokens": 15,
+"ast_nodes": 21,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5484444620335585,
+"difficulty_tercile": "easy"
+},
+"Mbpp/61": {
+"task_id": "Mbpp/61",
+"prompt_chars": 151,
+"prompt_tokens": 25,
+"ast_nodes": 104,
+"cyclomatic": 2,
+"canon_lines": 12,
+"difficulty_z": 1.0801483301742927,
+"difficulty_tercile": "hard"
+},
+"Mbpp/62": {
+"task_id": "Mbpp/62",
+"prompt_chars": 113,
+"prompt_tokens": 21,
+"ast_nodes": 20,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.47102059324767837,
+"difficulty_tercile": "easy"
+},
+"Mbpp/63": {
+"task_id": "Mbpp/63",
+"prompt_chars": 167,
+"prompt_tokens": 29,
+"ast_nodes": 27,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.29540099036649153,
+"difficulty_tercile": "med"
+},
+"Mbpp/64": {
+"task_id": "Mbpp/64",
+"prompt_chars": 261,
+"prompt_tokens": 36,
+"ast_nodes": 22,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.36690878198225435,
+"difficulty_tercile": "med"
+},
+"Mbpp/65": {
+"task_id": "Mbpp/65",
+"prompt_chars": 125,
+"prompt_tokens": 19,
+"ast_nodes": 50,
+"cyclomatic": 3,
+"canon_lines": 10,
+"difficulty_z": 0.6267932530256927,
+"difficulty_tercile": "hard"
+},
+"Mbpp/66": {
+"task_id": "Mbpp/66",
+"prompt_chars": 118,
+"prompt_tokens": 20,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/67": {
+"task_id": "Mbpp/67",
+"prompt_chars": 113,
+"prompt_tokens": 20,
+"ast_nodes": 144,
+"cyclomatic": 5,
+"canon_lines": 10,
+"difficulty_z": 1.8623506241340262,
+"difficulty_tercile": "hard"
+},
+"Mbpp/68": {
+"task_id": "Mbpp/68",
+"prompt_chars": 128,
+"prompt_tokens": 23,
+"ast_nodes": 63,
+"cyclomatic": 4,
+"canon_lines": 4,
+"difficulty_z": 0.4241894928039935,
+"difficulty_tercile": "hard"
+},
+"Mbpp/69": {
+"task_id": "Mbpp/69",
+"prompt_chars": 128,
+"prompt_tokens": 18,
+"ast_nodes": 66,
+"cyclomatic": 3,
+"canon_lines": 6,
+"difficulty_z": 0.42384954780034767,
+"difficulty_tercile": "hard"
+},
+"Mbpp/70": {
+"task_id": "Mbpp/70",
+"prompt_chars": 143,
+"prompt_tokens": 26,
+"ast_nodes": 25,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.31319295201952074,
+"difficulty_tercile": "med"
+},
+"Mbpp/71": {
+"task_id": "Mbpp/71",
+"prompt_chars": 114,
+"prompt_tokens": 23,
+"ast_nodes": 136,
+"cyclomatic": 6,
+"canon_lines": 17,
+"difficulty_z": 2.595089311516652,
+"difficulty_tercile": "hard"
+},
+"Mbpp/72": {
+"task_id": "Mbpp/72",
+"prompt_chars": 155,
+"prompt_tokens": 27,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5332924590332808,
+"difficulty_tercile": "easy"
+},
+"Mbpp/74": {
+"task_id": "Mbpp/74",
+"prompt_chars": 166,
+"prompt_tokens": 22,
+"ast_nodes": 82,
+"cyclomatic": 5,
+"canon_lines": 9,
+"difficulty_z": 1.2244799632777246,
+"difficulty_tercile": "hard"
+},
+"Mbpp/75": {
+"task_id": "Mbpp/75",
+"prompt_chars": 189,
+"prompt_tokens": 36,
+"ast_nodes": 37,
+"cyclomatic": 3,
+"canon_lines": 5,
+"difficulty_z": 0.07954625421902874,
+"difficulty_tercile": "hard"
+},
+"Mbpp/77": {
+"task_id": "Mbpp/77",
+"prompt_chars": 109,
+"prompt_tokens": 20,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/79": {
+"task_id": "Mbpp/79",
+"prompt_chars": 122,
+"prompt_tokens": 22,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5929243661661316,
+"difficulty_tercile": "easy"
+},
+"Mbpp/80": {
+"task_id": "Mbpp/80",
+"prompt_chars": 96,
+"prompt_tokens": 15,
+"ast_nodes": 24,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5217565195540147,
+"difficulty_tercile": "easy"
+},
+"Mbpp/82": {
+"task_id": "Mbpp/82",
+"prompt_chars": 130,
+"prompt_tokens": 16,
+"ast_nodes": 24,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.4354366699416199,
+"difficulty_tercile": "med"
+},
+"Mbpp/84": {
+"task_id": "Mbpp/84",
+"prompt_chars": 104,
+"prompt_tokens": 19,
+"ast_nodes": 102,
+"cyclomatic": 4,
+"canon_lines": 10,
+"difficulty_z": 1.2890518427124327,
+"difficulty_tercile": "hard"
+},
+"Mbpp/85": {
+"task_id": "Mbpp/85",
+"prompt_chars": 142,
+"prompt_tokens": 17,
+"ast_nodes": 21,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.46212461242116376,
+"difficulty_tercile": "med"
+},
+"Mbpp/86": {
+"task_id": "Mbpp/86",
+"prompt_chars": 108,
+"prompt_tokens": 15,
+"ast_nodes": 20,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5573404428600731,
+"difficulty_tercile": "easy"
+},
+"Mbpp/87": {
+"task_id": "Mbpp/87",
+"prompt_chars": 316,
+"prompt_tokens": 46,
+"ast_nodes": 29,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.30463691619665195,
+"difficulty_tercile": "med"
+},
+"Mbpp/88": {
+"task_id": "Mbpp/88",
+"prompt_chars": 202,
+"prompt_tokens": 31,
+"ast_nodes": 19,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.3935967244617982,
+"difficulty_tercile": "med"
+},
+"Mbpp/89": {
+"task_id": "Mbpp/89",
+"prompt_chars": 97,
+"prompt_tokens": 17,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/90": {
+"task_id": "Mbpp/90",
+"prompt_chars": 120,
+"prompt_tokens": 18,
+"ast_nodes": 19,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3665688369786085,
+"difficulty_tercile": "med"
+},
+"Mbpp/91": {
+"task_id": "Mbpp/91",
+"prompt_chars": 186,
+"prompt_tokens": 28,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/92": {
+"task_id": "Mbpp/92",
+"prompt_chars": 119,
+"prompt_tokens": 19,
+"ast_nodes": 64,
+"cyclomatic": 4,
+"canon_lines": 7,
+"difficulty_z": 0.6920450224676925,
+"difficulty_tercile": "hard"
+},
+"Mbpp/93": {
+"task_id": "Mbpp/93",
+"prompt_chars": 97,
+"prompt_tokens": 19,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/94": {
+"task_id": "Mbpp/94",
+"prompt_chars": 208,
+"prompt_tokens": 32,
+"ast_nodes": 25,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.3402208395027105,
+"difficulty_tercile": "med"
+},
+"Mbpp/95": {
+"task_id": "Mbpp/95",
+"prompt_chars": 133,
+"prompt_tokens": 23,
+"ast_nodes": 24,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.23576908323364065,
+"difficulty_tercile": "med"
+},
+"Mbpp/96": {
+"task_id": "Mbpp/96",
+"prompt_chars": 107,
+"prompt_tokens": 20,
+"ast_nodes": 31,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.259817067060433,
+"difficulty_tercile": "med"
+},
+"Mbpp/97": {
+"task_id": "Mbpp/97",
+"prompt_chars": 238,
+"prompt_tokens": 51,
+"ast_nodes": 36,
+"cyclomatic": 4,
+"canon_lines": 5,
+"difficulty_z": 0.27031786010049336,
+"difficulty_tercile": "hard"
+},
+"Mbpp/98": {
+"task_id": "Mbpp/98",
+"prompt_chars": 177,
+"prompt_tokens": 29,
+"ast_nodes": 29,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.3909567658090467,
+"difficulty_tercile": "med"
+},
+"Mbpp/99": {
+"task_id": "Mbpp/99",
+"prompt_chars": 172,
+"prompt_tokens": 27,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6018203469926463,
+"difficulty_tercile": "easy"
+},
+"Mbpp/100": {
+"task_id": "Mbpp/100",
+"prompt_chars": 151,
+"prompt_tokens": 21,
+"ast_nodes": 316,
+"cyclomatic": 12,
+"canon_lines": 43,
+"difficulty_z": 7.638687470459423,
+"difficulty_tercile": "hard"
+},
+"Mbpp/101": {
+"task_id": "Mbpp/101",
+"prompt_chars": 134,
+"prompt_tokens": 22,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6018203469926463,
+"difficulty_tercile": "easy"
+},
+"Mbpp/102": {
+"task_id": "Mbpp/102",
+"prompt_chars": 135,
+"prompt_tokens": 17,
+"ast_nodes": 27,
+"cyclomatic": 3,
+"canon_lines": 4,
+"difficulty_z": -0.0957334036585123,
+"difficulty_tercile": "hard"
+},
+"Mbpp/103": {
+"task_id": "Mbpp/103",
+"prompt_chars": 93,
+"prompt_tokens": 17,
+"ast_nodes": 70,
+"cyclomatic": 4,
+"canon_lines": 8,
+"difficulty_z": 0.8317407570391749,
+"difficulty_tercile": "hard"
+},
+"Mbpp/104": {
+"task_id": "Mbpp/104",
+"prompt_chars": 250,
+"prompt_tokens": 31,
+"ast_nodes": 16,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.39325677945815246,
+"difficulty_tercile": "med"
+},
+"Mbpp/105": {
+"task_id": "Mbpp/105",
+"prompt_chars": 111,
+"prompt_tokens": 18,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/106": {
+"task_id": "Mbpp/106",
+"prompt_chars": 128,
+"prompt_tokens": 26,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6018203469926463,
+"difficulty_tercile": "easy"
+},
+"Mbpp/108": {
+"task_id": "Mbpp/108",
+"prompt_chars": 250,
+"prompt_tokens": 48,
+"ast_nodes": 22,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.45322863159464916,
+"difficulty_tercile": "med"
+},
+"Mbpp/109": {
+"task_id": "Mbpp/109",
+"prompt_chars": 176,
+"prompt_tokens": 30,
+"ast_nodes": 39,
+"cyclomatic": 3,
+"canon_lines": 8,
+"difficulty_z": 0.35629776470924224,
+"difficulty_tercile": "hard"
+},
+"Mbpp/111": {
+"task_id": "Mbpp/111",
+"prompt_chars": 198,
+"prompt_tokens": 33,
+"ast_nodes": 22,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5395484812070439,
+"difficulty_tercile": "easy"
+},
+"Mbpp/113": {
+"task_id": "Mbpp/113",
+"prompt_chars": 114,
+"prompt_tokens": 17,
+"ast_nodes": 47,
+"cyclomatic": 3,
+"canon_lines": 10,
+"difficulty_z": 0.6001053105461488,
+"difficulty_tercile": "hard"
+},
+"Mbpp/116": {
+"task_id": "Mbpp/116",
+"prompt_chars": 128,
+"prompt_tokens": 19,
+"ast_nodes": 19,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5662364236865877,
+"difficulty_tercile": "easy"
+},
+"Mbpp/118": {
+"task_id": "Mbpp/118",
+"prompt_chars": 166,
+"prompt_tokens": 22,
+"ast_nodes": 11,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6374042702987048,
+"difficulty_tercile": "easy"
+},
+"Mbpp/119": {
+"task_id": "Mbpp/119",
+"prompt_chars": 126,
+"prompt_tokens": 22,
+"ast_nodes": 40,
+"cyclomatic": 2,
+"canon_lines": 8,
+"difficulty_z": 0.1655261588277777,
+"difficulty_tercile": "hard"
+},
+"Mbpp/120": {
+"task_id": "Mbpp/120",
+"prompt_chars": 182,
+"prompt_tokens": 31,
+"ast_nodes": 27,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.29540099036649153,
+"difficulty_tercile": "med"
+},
+"Mbpp/123": {
+"task_id": "Mbpp/123",
+"prompt_chars": 121,
+"prompt_tokens": 18,
+"ast_nodes": 150,
+"cyclomatic": 8,
+"canon_lines": 23,
+"difficulty_z": 3.6368873141781832,
+"difficulty_tercile": "hard"
+},
+"Mbpp/124": {
+"task_id": "Mbpp/124",
+"prompt_chars": 139,
+"prompt_tokens": 17,
+"ast_nodes": 24,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.34911682032922514,
+"difficulty_tercile": "med"
+},
+"Mbpp/125": {
+"task_id": "Mbpp/125",
+"prompt_chars": 183,
+"prompt_tokens": 31,
+"ast_nodes": 54,
+"cyclomatic": 3,
+"canon_lines": 11,
+"difficulty_z": 0.748697025944146,
+"difficulty_tercile": "hard"
+},
+"Mbpp/126": {
+"task_id": "Mbpp/126",
+"prompt_chars": 112,
+"prompt_tokens": 21,
+"ast_nodes": 88,
+"cyclomatic": 4,
+"canon_lines": 13,
+"difficulty_z": 1.423467659978412,
+"difficulty_tercile": "hard"
+},
+"Mbpp/127": {
+"task_id": "Mbpp/127",
+"prompt_chars": 83,
+"prompt_tokens": 11,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/128": {
+"task_id": "Mbpp/128",
+"prompt_chars": 194,
+"prompt_tokens": 26,
+"ast_nodes": 30,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.46838063459492685,
+"difficulty_tercile": "easy"
+},
+"Mbpp/129": {
+"task_id": "Mbpp/129",
+"prompt_chars": 172,
+"prompt_tokens": 31,
+"ast_nodes": 152,
+"cyclomatic": 10,
+"canon_lines": 17,
+"difficulty_z": 3.5360953515728024,
+"difficulty_tercile": "hard"
+},
+"Mbpp/130": {
+"task_id": "Mbpp/130",
+"prompt_chars": 153,
+"prompt_tokens": 18,
+"ast_nodes": 39,
+"cyclomatic": 2,
+"canon_lines": 8,
+"difficulty_z": 0.15663017800126305,
+"difficulty_tercile": "hard"
+},
+"Mbpp/131": {
+"task_id": "Mbpp/131",
+"prompt_chars": 147,
+"prompt_tokens": 25,
+"ast_nodes": 68,
+"cyclomatic": 3,
+"canon_lines": 7,
+"difficulty_z": 0.5279613590657717,
+"difficulty_tercile": "hard"
+},
+"Mbpp/132": {
+"task_id": "Mbpp/132",
+"prompt_chars": 137,
+"prompt_tokens": 22,
+"ast_nodes": 11,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6374042702987048,
+"difficulty_tercile": "easy"
+},
+"Mbpp/133": {
+"task_id": "Mbpp/133",
+"prompt_chars": 163,
+"prompt_tokens": 29,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/135": {
+"task_id": "Mbpp/135",
+"prompt_chars": 91,
+"prompt_tokens": 15,
+"ast_nodes": 17,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5840283853396171,
+"difficulty_tercile": "easy"
+},
+"Mbpp/137": {
+"task_id": "Mbpp/137",
+"prompt_chars": 194,
+"prompt_tokens": 34,
+"ast_nodes": 55,
+"cyclomatic": 5,
+"canon_lines": 6,
+"difficulty_z": 0.7253289321246452,
+"difficulty_tercile": "hard"
+},
+"Mbpp/138": {
+"task_id": "Mbpp/138",
+"prompt_chars": 167,
+"prompt_tokens": 28,
+"ast_nodes": 20,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3576728561520939,
+"difficulty_tercile": "med"
+},
+"Mbpp/139": {
+"task_id": "Mbpp/139",
+"prompt_chars": 145,
+"prompt_tokens": 16,
+"ast_nodes": 18,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.48881255490070763,
+"difficulty_tercile": "easy"
+},
+"Mbpp/140": {
+"task_id": "Mbpp/140",
+"prompt_chars": 167,
+"prompt_tokens": 32,
+"ast_nodes": 21,
+"cyclomatic": 3,
+"canon_lines": 4,
+"difficulty_z": -0.14910928861760006,
+"difficulty_tercile": "hard"
+},
+"Mbpp/141": {
+"task_id": "Mbpp/141",
+"prompt_chars": 119,
+"prompt_tokens": 23,
+"ast_nodes": 105,
+"cyclomatic": 2,
+"canon_lines": 10,
+"difficulty_z": 0.916404611776018,
+"difficulty_tercile": "hard"
+},
+"Mbpp/142": {
+"task_id": "Mbpp/142",
+"prompt_chars": 189,
+"prompt_tokens": 22,
+"ast_nodes": 38,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.19754520127483063,
+"difficulty_tercile": "med"
+},
+"Mbpp/145": {
+"task_id": "Mbpp/145",
+"prompt_chars": 142,
+"prompt_tokens": 23,
+"ast_nodes": 17,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5840283853396171,
+"difficulty_tercile": "easy"
+},
+"Mbpp/160": {
+"task_id": "Mbpp/160",
+"prompt_chars": 170,
+"prompt_tokens": 35,
+"ast_nodes": 68,
+"cyclomatic": 3,
+"canon_lines": 9,
+"difficulty_z": 0.7006010582905612,
+"difficulty_tercile": "hard"
+},
+"Mbpp/161": {
+"task_id": "Mbpp/161",
+"prompt_chars": 184,
+"prompt_tokens": 39,
+"ast_nodes": 20,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3576728561520939,
+"difficulty_tercile": "med"
+},
+"Mbpp/162": {
+"task_id": "Mbpp/162",
+"prompt_chars": 155,
+"prompt_tokens": 33,
+"ast_nodes": 40,
+"cyclomatic": 3,
+"canon_lines": 6,
+"difficulty_z": 0.19255404631096737,
+"difficulty_tercile": "hard"
+},
+"Mbpp/165": {
+"task_id": "Mbpp/165",
+"prompt_chars": 206,
+"prompt_tokens": 34,
+"ast_nodes": 39,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.18864922044831597,
+"difficulty_tercile": "med"
+},
+"Mbpp/166": {
+"task_id": "Mbpp/166",
+"prompt_chars": 151,
+"prompt_tokens": 30,
+"ast_nodes": 57,
+"cyclomatic": 4,
+"canon_lines": 6,
+"difficulty_z": 0.5434533070696953,
+"difficulty_tercile": "hard"
+},
+"Mbpp/167": {
+"task_id": "Mbpp/167",
+"prompt_chars": 123,
+"prompt_tokens": 23,
+"ast_nodes": 46,
+"cyclomatic": 4,
+"canon_lines": 10,
+"difficulty_z": 0.7908769164276134,
+"difficulty_tercile": "hard"
+},
+"Mbpp/168": {
+"task_id": "Mbpp/168",
+"prompt_chars": 123,
+"prompt_tokens": 23,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/170": {
+"task_id": "Mbpp/170",
+"prompt_chars": 168,
+"prompt_tokens": 27,
+"ast_nodes": 22,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5395484812070439,
+"difficulty_tercile": "easy"
+},
+"Mbpp/171": {
+"task_id": "Mbpp/171",
+"prompt_chars": 134,
+"prompt_tokens": 23,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/172": {
+"task_id": "Mbpp/172",
+"prompt_chars": 147,
+"prompt_tokens": 23,
+"ast_nodes": 11,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6374042702987048,
+"difficulty_tercile": "easy"
+},
+"Mbpp/222": {
+"task_id": "Mbpp/222",
+"prompt_chars": 138,
+"prompt_tokens": 29,
+"ast_nodes": 27,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.29540099036649153,
+"difficulty_tercile": "med"
+},
+"Mbpp/223": {
+"task_id": "Mbpp/223",
+"prompt_chars": 297,
+"prompt_tokens": 55,
+"ast_nodes": 52,
+"cyclomatic": 2,
+"canon_lines": 9,
+"difficulty_z": 0.358597778358348,
+"difficulty_tercile": "hard"
+},
+"Mbpp/224": {
+"task_id": "Mbpp/224",
+"prompt_chars": 142,
+"prompt_tokens": 26,
+"ast_nodes": 18,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5751324045131024,
+"difficulty_tercile": "easy"
+},
+"Mbpp/226": {
+"task_id": "Mbpp/226",
+"prompt_chars": 148,
+"prompt_tokens": 23,
+"ast_nodes": 29,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.27760902871346227,
+"difficulty_tercile": "med"
+},
+"Mbpp/227": {
+"task_id": "Mbpp/227",
+"prompt_chars": 91,
+"prompt_tokens": 13,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5929243661661316,
+"difficulty_tercile": "easy"
+},
+"Mbpp/230": {
+"task_id": "Mbpp/230",
+"prompt_chars": 202,
+"prompt_tokens": 28,
+"ast_nodes": 14,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6107163278191609,
+"difficulty_tercile": "easy"
+},
+"Mbpp/232": {
+"task_id": "Mbpp/232",
+"prompt_chars": 214,
+"prompt_tokens": 38,
+"ast_nodes": 17,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.49770853572722235,
+"difficulty_tercile": "easy"
+},
+"Mbpp/233": {
+"task_id": "Mbpp/233",
+"prompt_chars": 158,
+"prompt_tokens": 18,
+"ast_nodes": 23,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.4443326507681345,
+"difficulty_tercile": "med"
+},
+"Mbpp/234": {
+"task_id": "Mbpp/234",
+"prompt_chars": 103,
+"prompt_tokens": 18,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/235": {
+"task_id": "Mbpp/235",
+"prompt_chars": 109,
+"prompt_tokens": 19,
+"ast_nodes": 29,
+"cyclomatic": 2,
+"canon_lines": 8,
+"difficulty_z": 0.06767036973611679,
+"difficulty_tercile": "hard"
+},
+"Mbpp/237": {
+"task_id": "Mbpp/237",
+"prompt_chars": 257,
+"prompt_tokens": 52,
+"ast_nodes": 27,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.20908114075409676,
+"difficulty_tercile": "med"
+},
+"Mbpp/238": {
+"task_id": "Mbpp/238",
+"prompt_chars": 135,
+"prompt_tokens": 21,
+"ast_nodes": 25,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.4265406891151053,
+"difficulty_tercile": "med"
+},
+"Mbpp/239": {
+"task_id": "Mbpp/239",
+"prompt_chars": 303,
+"prompt_tokens": 54,
+"ast_nodes": 171,
+"cyclomatic": 9,
+"canon_lines": 15,
+"difficulty_z": 3.3328117013438114,
+"difficulty_tercile": "hard"
+},
+"Mbpp/240": {
+"task_id": "Mbpp/240",
+"prompt_chars": 218,
+"prompt_tokens": 44,
+"ast_nodes": 18,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5751324045131024,
+"difficulty_tercile": "easy"
+},
+"Mbpp/242": {
+"task_id": "Mbpp/242",
+"prompt_chars": 124,
+"prompt_tokens": 18,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/244": {
+"task_id": "Mbpp/244",
+"prompt_chars": 130,
+"prompt_tokens": 21,
+"ast_nodes": 39,
+"cyclomatic": 2,
+"canon_lines": 8,
+"difficulty_z": 0.15663017800126305,
+"difficulty_tercile": "hard"
+},
+"Mbpp/245": {
+"task_id": "Mbpp/245",
+"prompt_chars": 251,
+"prompt_tokens": 47,
+"ast_nodes": 246,
+"cyclomatic": 10,
+"canon_lines": 17,
+"difficulty_z": 4.372317549265177,
+"difficulty_tercile": "hard"
+},
+"Mbpp/247": {
+"task_id": "Mbpp/247",
+"prompt_chars": 137,
+"prompt_tokens": 24,
+"ast_nodes": 171,
+"cyclomatic": 5,
+"canon_lines": 13,
+"difficulty_z": 2.361501655287105,
+"difficulty_tercile": "hard"
+},
+"Mbpp/250": {
+"task_id": "Mbpp/250",
+"prompt_chars": 189,
+"prompt_tokens": 39,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/251": {
+"task_id": "Mbpp/251",
+"prompt_chars": 246,
+"prompt_tokens": 38,
+"ast_nodes": 28,
+"cyclomatic": 3,
+"canon_lines": 5,
+"difficulty_z": -0.0005175732196029218,
+"difficulty_tercile": "hard"
+},
+"Mbpp/252": {
+"task_id": "Mbpp/252",
+"prompt_chars": 113,
+"prompt_tokens": 18,
+"ast_nodes": 14,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5243964782067662,
+"difficulty_tercile": "easy"
+},
+"Mbpp/253": {
+"task_id": "Mbpp/253",
+"prompt_chars": 136,
+"prompt_tokens": 21,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/256": {
+"task_id": "Mbpp/256",
+"prompt_chars": 182,
+"prompt_tokens": 29,
+"ast_nodes": 40,
+"cyclomatic": 3,
+"canon_lines": 4,
+"difficulty_z": 0.01991434708617786,
+"difficulty_tercile": "hard"
+},
+"Mbpp/257": {
+"task_id": "Mbpp/257",
+"prompt_chars": 157,
+"prompt_tokens": 25,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/259": {
+"task_id": "Mbpp/259",
+"prompt_chars": 190,
+"prompt_tokens": 37,
+"ast_nodes": 48,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.10858539300968434,
+"difficulty_tercile": "hard"
+},
+"Mbpp/260": {
+"task_id": "Mbpp/260",
+"prompt_chars": 106,
+"prompt_tokens": 16,
+"ast_nodes": 68,
+"cyclomatic": 4,
+"canon_lines": 13,
+"difficulty_z": 1.2455480434481194,
+"difficulty_tercile": "hard"
+},
+"Mbpp/261": {
+"task_id": "Mbpp/261",
+"prompt_chars": 202,
+"prompt_tokens": 33,
+"ast_nodes": 30,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.26871304788694766,
+"difficulty_tercile": "med"
+},
+"Mbpp/262": {
+"task_id": "Mbpp/262",
+"prompt_chars": 275,
+"prompt_tokens": 51,
+"ast_nodes": 22,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5395484812070439,
+"difficulty_tercile": "easy"
+},
+"Mbpp/264": {
+"task_id": "Mbpp/264",
+"prompt_chars": 89,
+"prompt_tokens": 15,
+"ast_nodes": 35,
+"cyclomatic": 2,
+"canon_lines": 8,
+"difficulty_z": 0.12104625469520454,
+"difficulty_tercile": "hard"
+},
+"Mbpp/265": {
+"task_id": "Mbpp/265",
+"prompt_chars": 315,
+"prompt_tokens": 57,
+"ast_nodes": 24,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3220889328460354,
+"difficulty_tercile": "med"
+},
+"Mbpp/266": {
+"task_id": "Mbpp/266",
+"prompt_chars": 126,
+"prompt_tokens": 20,
+"ast_nodes": 14,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6107163278191609,
+"difficulty_tercile": "easy"
+},
+"Mbpp/267": {
+"task_id": "Mbpp/267",
+"prompt_chars": 157,
+"prompt_tokens": 30,
+"ast_nodes": 24,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5217565195540147,
+"difficulty_tercile": "easy"
+},
+"Mbpp/268": {
+"task_id": "Mbpp/268",
+"prompt_chars": 85,
+"prompt_tokens": 15,
+"ast_nodes": 20,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5573404428600731,
+"difficulty_tercile": "easy"
+},
+"Mbpp/269": {
+"task_id": "Mbpp/269",
+"prompt_chars": 93,
+"prompt_tokens": 15,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/270": {
+"task_id": "Mbpp/270",
+"prompt_chars": 152,
+"prompt_tokens": 28,
+"ast_nodes": 28,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.2865050095399769,
+"difficulty_tercile": "med"
+},
+"Mbpp/271": {
+"task_id": "Mbpp/271",
+"prompt_chars": 182,
+"prompt_tokens": 34,
+"ast_nodes": 30,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.26871304788694766,
+"difficulty_tercile": "med"
+},
+"Mbpp/272": {
+"task_id": "Mbpp/272",
+"prompt_chars": 208,
+"prompt_tokens": 37,
+"ast_nodes": 18,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.37546481780512314,
+"difficulty_tercile": "med"
+},
+"Mbpp/273": {
+"task_id": "Mbpp/273",
+"prompt_chars": 219,
+"prompt_tokens": 40,
+"ast_nodes": 30,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.26871304788694766,
+"difficulty_tercile": "med"
+},
+"Mbpp/274": {
+"task_id": "Mbpp/274",
+"prompt_chars": 161,
+"prompt_tokens": 26,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5155004973802516,
+"difficulty_tercile": "easy"
+},
+"Mbpp/276": {
+"task_id": "Mbpp/276",
+"prompt_chars": 181,
+"prompt_tokens": 24,
+"ast_nodes": 24,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.4354366699416199,
+"difficulty_tercile": "med"
+},
+"Mbpp/277": {
+"task_id": "Mbpp/277",
+"prompt_chars": 330,
+"prompt_tokens": 50,
+"ast_nodes": 29,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.27760902871346227,
+"difficulty_tercile": "med"
+},
+"Mbpp/278": {
+"task_id": "Mbpp/278",
+"prompt_chars": 170,
+"prompt_tokens": 31,
+"ast_nodes": 28,
+"cyclomatic": 3,
+"canon_lines": 7,
+"difficulty_z": 0.17212212600518662,
+"difficulty_tercile": "hard"
+},
+"Mbpp/279": {
+"task_id": "Mbpp/279",
+"prompt_chars": 92,
+"prompt_tokens": 15,
+"ast_nodes": 21,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5484444620335585,
+"difficulty_tercile": "easy"
+},
+"Mbpp/280": {
+"task_id": "Mbpp/280",
+"prompt_chars": 296,
+"prompt_tokens": 48,
+"ast_nodes": 31,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.45948465376841224,
+"difficulty_tercile": "med"
+},
+"Mbpp/281": {
+"task_id": "Mbpp/281",
+"prompt_chars": 127,
+"prompt_tokens": 23,
+"ast_nodes": 20,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5573404428600731,
+"difficulty_tercile": "easy"
+},
+"Mbpp/282": {
+"task_id": "Mbpp/282",
+"prompt_chars": 108,
+"prompt_tokens": 14,
+"ast_nodes": 27,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.29540099036649153,
+"difficulty_tercile": "med"
+},
+"Mbpp/283": {
+"task_id": "Mbpp/283",
+"prompt_chars": 186,
+"prompt_tokens": 34,
+"ast_nodes": 42,
+"cyclomatic": 3,
+"canon_lines": 5,
+"difficulty_z": 0.12402615835160186,
+"difficulty_tercile": "hard"
+},
+"Mbpp/284": {
+"task_id": "Mbpp/284",
+"prompt_chars": 205,
+"prompt_tokens": 31,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/285": {
+"task_id": "Mbpp/285",
+"prompt_chars": 165,
+"prompt_tokens": 23,
+"ast_nodes": 23,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.35801280115573975,
+"difficulty_tercile": "med"
+},
+"Mbpp/286": {
+"task_id": "Mbpp/286",
+"prompt_chars": 212,
+"prompt_tokens": 37,
+"ast_nodes": 59,
+"cyclomatic": 2,
+"canon_lines": 10,
+"difficulty_z": 0.5071894937563451,
+"difficulty_tercile": "hard"
+},
+"Mbpp/287": {
+"task_id": "Mbpp/287",
+"prompt_chars": 145,
+"prompt_tokens": 27,
+"ast_nodes": 30,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.46838063459492685,
+"difficulty_tercile": "easy"
+},
+"Mbpp/290": {
+"task_id": "Mbpp/290",
+"prompt_chars": 163,
+"prompt_tokens": 31,
+"ast_nodes": 32,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.25092108623391834,
+"difficulty_tercile": "med"
+},
+"Mbpp/292": {
+"task_id": "Mbpp/292",
+"prompt_chars": 126,
+"prompt_tokens": 22,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/293": {
+"task_id": "Mbpp/293",
+"prompt_chars": 128,
+"prompt_tokens": 17,
+"ast_nodes": 27,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.408748727462076,
+"difficulty_tercile": "med"
+},
+"Mbpp/294": {
+"task_id": "Mbpp/294",
+"prompt_chars": 135,
+"prompt_tokens": 22,
+"ast_nodes": 28,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.20018515992758212,
+"difficulty_tercile": "med"
+},
+"Mbpp/296": {
+"task_id": "Mbpp/296",
+"prompt_chars": 105,
+"prompt_tokens": 16,
+"ast_nodes": 58,
+"cyclomatic": 4,
+"canon_lines": 10,
+"difficulty_z": 0.8976286863457889,
+"difficulty_tercile": "hard"
+},
+"Mbpp/297": {
+"task_id": "Mbpp/297",
+"prompt_chars": 205,
+"prompt_tokens": 38,
+"ast_nodes": 44,
+"cyclomatic": 3,
+"canon_lines": 10,
+"difficulty_z": 0.5734173680666049,
+"difficulty_tercile": "hard"
+},
+"Mbpp/299": {
+"task_id": "Mbpp/299",
+"prompt_chars": 230,
+"prompt_tokens": 24,
+"ast_nodes": 51,
+"cyclomatic": 2,
+"canon_lines": 8,
+"difficulty_z": 0.2633819479194386,
+"difficulty_tercile": "hard"
+},
+"Mbpp/300": {
+"task_id": "Mbpp/300",
+"prompt_chars": 202,
+"prompt_tokens": 35,
+"ast_nodes": 57,
+"cyclomatic": 2,
+"canon_lines": 9,
+"difficulty_z": 0.4030776824909211,
+"difficulty_tercile": "hard"
+},
+"Mbpp/301": {
+"task_id": "Mbpp/301",
+"prompt_chars": 113,
+"prompt_tokens": 18,
+"ast_nodes": 44,
+"cyclomatic": 2,
+"canon_lines": 8,
+"difficulty_z": 0.2011100821338362,
+"difficulty_tercile": "hard"
+},
+"Mbpp/305": {
+"task_id": "Mbpp/305",
+"prompt_chars": 174,
+"prompt_tokens": 26,
+"ast_nodes": 31,
+"cyclomatic": 3,
+"canon_lines": 8,
+"difficulty_z": 0.28512991809712523,
+"difficulty_tercile": "hard"
+},
+"Mbpp/306": {
+"task_id": "Mbpp/306",
+"prompt_chars": 250,
+"prompt_tokens": 48,
+"ast_nodes": 258,
+"cyclomatic": 10,
+"canon_lines": 19,
+"difficulty_z": 4.651709018408142,
+"difficulty_tercile": "hard"
+},
+"Mbpp/308": {
+"task_id": "Mbpp/308",
+"prompt_chars": 210,
+"prompt_tokens": 37,
+"ast_nodes": 39,
+"cyclomatic": 3,
+"canon_lines": 5,
+"difficulty_z": 0.09733821587205799,
+"difficulty_tercile": "hard"
+},
+"Mbpp/309": {
+"task_id": "Mbpp/309",
+"prompt_chars": 95,
+"prompt_tokens": 17,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/310": {
+"task_id": "Mbpp/310",
+"prompt_chars": 161,
+"prompt_tokens": 26,
+"ast_nodes": 28,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.20018515992758212,
+"difficulty_tercile": "med"
+},
+"Mbpp/311": {
+"task_id": "Mbpp/311",
+"prompt_chars": 105,
+"prompt_tokens": 17,
+"ast_nodes": 70,
+"cyclomatic": 4,
+"canon_lines": 12,
+"difficulty_z": 1.177020155488754,
+"difficulty_tercile": "hard"
+},
+"Mbpp/312": {
+"task_id": "Mbpp/312",
+"prompt_chars": 129,
+"prompt_tokens": 16,
+"ast_nodes": 30,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.3820607849825321,
+"difficulty_tercile": "med"
+},
+"Mbpp/388": {
+"task_id": "Mbpp/388",
+"prompt_chars": 131,
+"prompt_tokens": 25,
+"ast_nodes": 32,
+"cyclomatic": 2,
+"canon_lines": 7,
+"difficulty_z": 0.008038462603265906,
+"difficulty_tercile": "hard"
+},
+"Mbpp/389": {
+"task_id": "Mbpp/389",
+"prompt_chars": 83,
+"prompt_tokens": 15,
+"ast_nodes": 39,
+"cyclomatic": 3,
+"canon_lines": 8,
+"difficulty_z": 0.35629776470924224,
+"difficulty_tercile": "hard"
+},
+"Mbpp/390": {
+"task_id": "Mbpp/390",
+"prompt_chars": 167,
+"prompt_tokens": 24,
+"ast_nodes": 19,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3665688369786085,
+"difficulty_tercile": "med"
+},
+"Mbpp/391": {
+"task_id": "Mbpp/391",
+"prompt_chars": 353,
+"prompt_tokens": 45,
+"ast_nodes": 39,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.10232937083592124,
+"difficulty_tercile": "hard"
+},
+"Mbpp/392": {
+"task_id": "Mbpp/392",
+"prompt_chars": 169,
+"prompt_tokens": 31,
+"ast_nodes": 82,
+"cyclomatic": 2,
+"canon_lines": 8,
+"difficulty_z": 0.5391573535413919,
+"difficulty_tercile": "hard"
+},
+"Mbpp/394": {
+"task_id": "Mbpp/394",
+"prompt_chars": 124,
+"prompt_tokens": 22,
+"ast_nodes": 20,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5573404428600731,
+"difficulty_tercile": "easy"
+},
+"Mbpp/395": {
+"task_id": "Mbpp/395",
+"prompt_chars": 147,
+"prompt_tokens": 20,
+"ast_nodes": 25,
+"cyclomatic": 3,
+"canon_lines": 7,
+"difficulty_z": 0.14543418352564275,
+"difficulty_tercile": "hard"
+},
+"Mbpp/397": {
+"task_id": "Mbpp/397",
+"prompt_chars": 100,
+"prompt_tokens": 14,
+"ast_nodes": 21,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5484444620335585,
+"difficulty_tercile": "easy"
+},
+"Mbpp/398": {
+"task_id": "Mbpp/398",
+"prompt_chars": 122,
+"prompt_tokens": 20,
+"ast_nodes": 32,
+"cyclomatic": 3,
+"canon_lines": 4,
+"difficulty_z": -0.05125349952593916,
+"difficulty_tercile": "hard"
+},
+"Mbpp/404": {
+"task_id": "Mbpp/404",
+"prompt_chars": 93,
+"prompt_tokens": 17,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/405": {
+"task_id": "Mbpp/405",
+"prompt_chars": 156,
+"prompt_tokens": 25,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/406": {
+"task_id": "Mbpp/406",
+"prompt_chars": 117,
+"prompt_tokens": 21,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/409": {
+"task_id": "Mbpp/409",
+"prompt_chars": 162,
+"prompt_tokens": 29,
+"ast_nodes": 24,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3220889328460354,
+"difficulty_tercile": "med"
+},
+"Mbpp/410": {
+"task_id": "Mbpp/410",
+"prompt_chars": 135,
+"prompt_tokens": 22,
+"ast_nodes": 28,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.20018515992758212,
+"difficulty_tercile": "med"
+},
+"Mbpp/412": {
+"task_id": "Mbpp/412",
+"prompt_chars": 107,
+"prompt_tokens": 18,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/413": {
+"task_id": "Mbpp/413",
+"prompt_chars": 283,
+"prompt_tokens": 41,
+"ast_nodes": 18,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.37546481780512314,
+"difficulty_tercile": "med"
+},
+"Mbpp/414": {
+"task_id": "Mbpp/414",
+"prompt_chars": 153,
+"prompt_tokens": 24,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/415": {
+"task_id": "Mbpp/415",
+"prompt_chars": 147,
+"prompt_tokens": 23,
+"ast_nodes": 52,
+"cyclomatic": 3,
+"canon_lines": 5,
+"difficulty_z": 0.2129859666167481,
+"difficulty_tercile": "hard"
+},
+"Mbpp/418": {
+"task_id": "Mbpp/418",
+"prompt_chars": 151,
+"prompt_tokens": 20,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/419": {
+"task_id": "Mbpp/419",
+"prompt_chars": 226,
+"prompt_tokens": 37,
+"ast_nodes": 31,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.17349721744803825,
+"difficulty_tercile": "med"
+},
+"Mbpp/420": {
+"task_id": "Mbpp/420",
+"prompt_chars": 111,
+"prompt_tokens": 21,
+"ast_nodes": 23,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5306525003805292,
+"difficulty_tercile": "easy"
+},
+"Mbpp/421": {
+"task_id": "Mbpp/421",
+"prompt_chars": 147,
+"prompt_tokens": 22,
+"ast_nodes": 56,
+"cyclomatic": 2,
+"canon_lines": 7,
+"difficulty_z": 0.22154200243961697,
+"difficulty_tercile": "hard"
+},
+"Mbpp/422": {
+"task_id": "Mbpp/422",
+"prompt_chars": 127,
+"prompt_tokens": 21,
+"ast_nodes": 30,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.26871304788694766,
+"difficulty_tercile": "med"
+},
+"Mbpp/424": {
+"task_id": "Mbpp/424",
+"prompt_chars": 164,
+"prompt_tokens": 28,
+"ast_nodes": 18,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.37546481780512314,
+"difficulty_tercile": "med"
+},
+"Mbpp/425": {
+"task_id": "Mbpp/425",
+"prompt_chars": 163,
+"prompt_tokens": 25,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/426": {
+"task_id": "Mbpp/426",
+"prompt_chars": 119,
+"prompt_tokens": 20,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/427": {
+"task_id": "Mbpp/427",
+"prompt_chars": 142,
+"prompt_tokens": 19,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5066045165537368,
+"difficulty_tercile": "easy"
+},
+"Mbpp/428": {
+"task_id": "Mbpp/428",
+"prompt_chars": 166,
+"prompt_tokens": 36,
+"ast_nodes": 111,
+"cyclomatic": 5,
+"canon_lines": 14,
+"difficulty_z": 1.9140626553086222,
+"difficulty_tercile": "hard"
+},
+"Mbpp/429": {
+"task_id": "Mbpp/429",
+"prompt_chars": 153,
+"prompt_tokens": 30,
+"ast_nodes": 30,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.26871304788694766,
+"difficulty_tercile": "med"
+},
+"Mbpp/430": {
+"task_id": "Mbpp/430",
+"prompt_chars": 101,
+"prompt_tokens": 14,
+"ast_nodes": 30,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.46838063459492685,
+"difficulty_tercile": "easy"
+},
+"Mbpp/432": {
+"task_id": "Mbpp/432",
+"prompt_chars": 105,
+"prompt_tokens": 15,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5929243661661316,
+"difficulty_tercile": "easy"
+},
+"Mbpp/433": {
+"task_id": "Mbpp/433",
+"prompt_chars": 160,
+"prompt_tokens": 29,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/435": {
+"task_id": "Mbpp/435",
+"prompt_chars": 102,
+"prompt_tokens": 19,
+"ast_nodes": 23,
+"cyclomatic": 2,
+"canon_lines": 6,
+"difficulty_z": -0.1583452144477605,
+"difficulty_tercile": "med"
+},
+"Mbpp/436": {
+"task_id": "Mbpp/436",
+"prompt_chars": 113,
+"prompt_tokens": 18,
+"ast_nodes": 18,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.37546481780512314,
+"difficulty_tercile": "med"
+},
+"Mbpp/437": {
+"task_id": "Mbpp/437",
+"prompt_chars": 100,
+"prompt_tokens": 14,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/439": {
+"task_id": "Mbpp/439",
+"prompt_chars": 132,
+"prompt_tokens": 20,
+"ast_nodes": 19,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5662364236865877,
+"difficulty_tercile": "easy"
+},
+"Mbpp/440": {
+"task_id": "Mbpp/440",
+"prompt_chars": 170,
+"prompt_tokens": 26,
+"ast_nodes": 36,
+"cyclomatic": 2,
+"canon_lines": 6,
+"difficulty_z": -0.04269746370307035,
+"difficulty_tercile": "hard"
+},
+"Mbpp/441": {
+"task_id": "Mbpp/441",
+"prompt_chars": 109,
+"prompt_tokens": 19,
+"ast_nodes": 14,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6107163278191609,
+"difficulty_tercile": "easy"
+},
+"Mbpp/445": {
+"task_id": "Mbpp/445",
+"prompt_chars": 242,
+"prompt_tokens": 44,
+"ast_nodes": 48,
+"cyclomatic": 3,
+"canon_lines": 5,
+"difficulty_z": 0.17740204331068962,
+"difficulty_tercile": "hard"
+},
+"Mbpp/446": {
+"task_id": "Mbpp/446",
+"prompt_chars": 159,
+"prompt_tokens": 28,
+"ast_nodes": 24,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.23576908323364065,
+"difficulty_tercile": "med"
+},
+"Mbpp/447": {
+"task_id": "Mbpp/447",
+"prompt_chars": 170,
+"prompt_tokens": 34,
+"ast_nodes": 16,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.39325677945815246,
+"difficulty_tercile": "med"
+},
+"Mbpp/448": {
+"task_id": "Mbpp/448",
+"prompt_chars": 89,
+"prompt_tokens": 16,
+"ast_nodes": 94,
+"cyclomatic": 5,
+"canon_lines": 21,
+"difficulty_z": 2.367069928544637,
+"difficulty_tercile": "hard"
+},
+"Mbpp/450": {
+"task_id": "Mbpp/450",
+"prompt_chars": 206,
+"prompt_tokens": 26,
+"ast_nodes": 23,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.33098491367255,
+"difficulty_tercile": "med"
+},
+"Mbpp/451": {
+"task_id": "Mbpp/451",
+"prompt_chars": 142,
+"prompt_tokens": 20,
+"ast_nodes": 14,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5243964782067662,
+"difficulty_tercile": "easy"
+},
+"Mbpp/453": {
+"task_id": "Mbpp/453",
+"prompt_chars": 107,
+"prompt_tokens": 20,
+"ast_nodes": 55,
+"cyclomatic": 4,
+"canon_lines": 7,
+"difficulty_z": 0.6119811950290608,
+"difficulty_tercile": "hard"
+},
+"Mbpp/454": {
+"task_id": "Mbpp/454",
+"prompt_chars": 103,
+"prompt_tokens": 13,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5421884398597954,
+"difficulty_tercile": "easy"
+},
+"Mbpp/455": {
+"task_id": "Mbpp/455",
+"prompt_chars": 129,
+"prompt_tokens": 19,
+"ast_nodes": 18,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5751324045131024,
+"difficulty_tercile": "easy"
+},
+"Mbpp/456": {
+"task_id": "Mbpp/456",
+"prompt_chars": 197,
+"prompt_tokens": 26,
+"ast_nodes": 19,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3665688369786085,
+"difficulty_tercile": "med"
+},
+"Mbpp/457": {
+"task_id": "Mbpp/457",
+"prompt_chars": 119,
+"prompt_tokens": 17,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/458": {
+"task_id": "Mbpp/458",
+"prompt_chars": 92,
+"prompt_tokens": 14,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/459": {
+"task_id": "Mbpp/459",
+"prompt_chars": 149,
+"prompt_tokens": 17,
+"ast_nodes": 22,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3398808944990646,
+"difficulty_tercile": "med"
+},
+"Mbpp/460": {
+"task_id": "Mbpp/460",
+"prompt_chars": 137,
+"prompt_tokens": 28,
+"ast_nodes": 16,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.39325677945815246,
+"difficulty_tercile": "med"
+},
+"Mbpp/462": {
+"task_id": "Mbpp/462",
+"prompt_chars": 461,
+"prompt_tokens": 54,
+"ast_nodes": 57,
+"cyclomatic": 3,
+"canon_lines": 9,
+"difficulty_z": 0.6027452691989004,
+"difficulty_tercile": "hard"
+},
+"Mbpp/463": {
+"task_id": "Mbpp/463",
+"prompt_chars": 144,
+"prompt_tokens": 25,
+"ast_nodes": 81,
+"cyclomatic": 2,
+"canon_lines": 8,
+"difficulty_z": 0.5302613727148774,
+"difficulty_tercile": "hard"
+},
+"Mbpp/465": {
+"task_id": "Mbpp/465",
+"prompt_chars": 159,
+"prompt_tokens": 22,
+"ast_nodes": 32,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.16460123662152362,
+"difficulty_tercile": "med"
+},
+"Mbpp/468": {
+"task_id": "Mbpp/468",
+"prompt_chars": 178,
+"prompt_tokens": 30,
+"ast_nodes": 157,
+"cyclomatic": 4,
+"canon_lines": 16,
+"difficulty_z": 2.2962498858451057,
+"difficulty_tercile": "hard"
+},
+"Mbpp/470": {
+"task_id": "Mbpp/470",
+"prompt_chars": 160,
+"prompt_tokens": 29,
+"ast_nodes": 33,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.24202510540740374,
+"difficulty_tercile": "med"
+},
+"Mbpp/471": {
+"task_id": "Mbpp/471",
+"prompt_chars": 147,
+"prompt_tokens": 26,
+"ast_nodes": 27,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.408748727462076,
+"difficulty_tercile": "med"
+},
+"Mbpp/472": {
+"task_id": "Mbpp/472",
+"prompt_chars": 147,
+"prompt_tokens": 21,
+"ast_nodes": 31,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.45948465376841224,
+"difficulty_tercile": "med"
+},
+"Mbpp/473": {
+"task_id": "Mbpp/473",
+"prompt_chars": 246,
+"prompt_tokens": 46,
+"ast_nodes": 42,
+"cyclomatic": 3,
+"canon_lines": 4,
+"difficulty_z": 0.037706308739207106,
+"difficulty_tercile": "hard"
+},
+"Mbpp/474": {
+"task_id": "Mbpp/474",
+"prompt_chars": 112,
+"prompt_tokens": 13,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5929243661661316,
+"difficulty_tercile": "easy"
+},
+"Mbpp/475": {
+"task_id": "Mbpp/475",
+"prompt_chars": 171,
+"prompt_tokens": 20,
+"ast_nodes": 24,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5217565195540147,
+"difficulty_tercile": "easy"
+},
+"Mbpp/476": {
+"task_id": "Mbpp/476",
+"prompt_chars": 129,
+"prompt_tokens": 24,
+"ast_nodes": 17,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5840283853396171,
+"difficulty_tercile": "easy"
+},
+"Mbpp/477": {
+"task_id": "Mbpp/477",
+"prompt_chars": 115,
+"prompt_tokens": 18,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/478": {
+"task_id": "Mbpp/478",
+"prompt_chars": 121,
+"prompt_tokens": 15,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5066045165537368,
+"difficulty_tercile": "easy"
+},
+"Mbpp/479": {
+"task_id": "Mbpp/479",
+"prompt_chars": 104,
+"prompt_tokens": 19,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5929243661661316,
+"difficulty_tercile": "easy"
+},
+"Mbpp/554": {
+"task_id": "Mbpp/554",
+"prompt_chars": 133,
+"prompt_tokens": 22,
+"ast_nodes": 24,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5217565195540147,
+"difficulty_tercile": "easy"
+},
+"Mbpp/555": {
+"task_id": "Mbpp/555",
+"prompt_chars": 182,
+"prompt_tokens": 34,
+"ast_nodes": 34,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.2601570120640789,
+"difficulty_tercile": "med"
+},
+"Mbpp/556": {
+"task_id": "Mbpp/556",
+"prompt_chars": 126,
+"prompt_tokens": 21,
+"ast_nodes": 60,
+"cyclomatic": 4,
+"canon_lines": 9,
+"difficulty_z": 0.8291007983864235,
+"difficulty_tercile": "hard"
+},
+"Mbpp/557": {
+"task_id": "Mbpp/557",
+"prompt_chars": 118,
+"prompt_tokens": 17,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/558": {
+"task_id": "Mbpp/558",
+"prompt_chars": 135,
+"prompt_tokens": 21,
+"ast_nodes": 45,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.13527333548922824,
+"difficulty_tercile": "hard"
+},
+"Mbpp/559": {
+"task_id": "Mbpp/559",
+"prompt_chars": 158,
+"prompt_tokens": 30,
+"ast_nodes": 60,
+"cyclomatic": 4,
+"canon_lines": 12,
+"difficulty_z": 1.0880603472236077,
+"difficulty_tercile": "hard"
+},
+"Mbpp/560": {
+"task_id": "Mbpp/560",
+"prompt_chars": 186,
+"prompt_tokens": 38,
+"ast_nodes": 21,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5484444620335585,
+"difficulty_tercile": "easy"
+},
+"Mbpp/562": {
+"task_id": "Mbpp/562",
+"prompt_chars": 127,
+"prompt_tokens": 18,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5929243661661316,
+"difficulty_tercile": "easy"
+},
+"Mbpp/563": {
+"task_id": "Mbpp/563",
+"prompt_chars": 158,
+"prompt_tokens": 20,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5155004973802516,
+"difficulty_tercile": "easy"
+},
+"Mbpp/564": {
+"task_id": "Mbpp/564",
+"prompt_chars": 181,
+"prompt_tokens": 29,
+"ast_nodes": 53,
+"cyclomatic": 4,
+"canon_lines": 9,
+"difficulty_z": 0.7668289326008212,
+"difficulty_tercile": "hard"
+},
+"Mbpp/565": {
+"task_id": "Mbpp/565",
+"prompt_chars": 119,
+"prompt_tokens": 16,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/566": {
+"task_id": "Mbpp/566",
+"prompt_chars": 108,
+"prompt_tokens": 18,
+"ast_nodes": 18,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5751324045131024,
+"difficulty_tercile": "easy"
+},
+"Mbpp/567": {
+"task_id": "Mbpp/567",
+"prompt_chars": 130,
+"prompt_tokens": 17,
+"ast_nodes": 33,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.24202510540740374,
+"difficulty_tercile": "med"
+},
+"Mbpp/568": {
+"task_id": "Mbpp/568",
+"prompt_chars": 106,
+"prompt_tokens": 15,
+"ast_nodes": 15,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.402152760284667,
+"difficulty_tercile": "med"
+},
+"Mbpp/569": {
+"task_id": "Mbpp/569",
+"prompt_chars": 250,
+"prompt_tokens": 31,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6018203469926463,
+"difficulty_tercile": "easy"
+},
+"Mbpp/572": {
+"task_id": "Mbpp/572",
+"prompt_chars": 143,
+"prompt_tokens": 22,
+"ast_nodes": 23,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.33098491367255,
+"difficulty_tercile": "med"
+},
+"Mbpp/573": {
+"task_id": "Mbpp/573",
+"prompt_chars": 166,
+"prompt_tokens": 29,
+"ast_nodes": 25,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.4265406891151053,
+"difficulty_tercile": "med"
+},
+"Mbpp/576": {
+"task_id": "Mbpp/576",
+"prompt_chars": 132,
+"prompt_tokens": 21,
+"ast_nodes": 74,
+"cyclomatic": 4,
+"canon_lines": 12,
+"difficulty_z": 1.2126040787948125,
+"difficulty_tercile": "hard"
+},
+"Mbpp/577": {
+"task_id": "Mbpp/577",
+"prompt_chars": 123,
+"prompt_tokens": 21,
+"ast_nodes": 39,
+"cyclomatic": 5,
+"canon_lines": 13,
+"difficulty_z": 1.1872321861871746,
+"difficulty_tercile": "hard"
+},
+"Mbpp/578": {
+"task_id": "Mbpp/578",
+"prompt_chars": 271,
+"prompt_tokens": 40,
+"ast_nodes": 27,
+"cyclomatic": 3,
+"canon_lines": 4,
+"difficulty_z": -0.0957334036585123,
+"difficulty_tercile": "hard"
+},
+"Mbpp/580": {
+"task_id": "Mbpp/580",
+"prompt_chars": 154,
+"prompt_tokens": 30,
+"ast_nodes": 63,
+"cyclomatic": 4,
+"canon_lines": 12,
+"difficulty_z": 1.1147482897031515,
+"difficulty_tercile": "hard"
+},
+"Mbpp/581": {
+"task_id": "Mbpp/581",
+"prompt_chars": 143,
+"prompt_tokens": 26,
+"ast_nodes": 23,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5306525003805292,
+"difficulty_tercile": "easy"
+},
+"Mbpp/583": {
+"task_id": "Mbpp/583",
+"prompt_chars": 92,
+"prompt_tokens": 12,
+"ast_nodes": 50,
+"cyclomatic": 3,
+"canon_lines": 9,
+"difficulty_z": 0.540473403413298,
+"difficulty_tercile": "hard"
+},
+"Mbpp/585": {
+"task_id": "Mbpp/585",
+"prompt_chars": 218,
+"prompt_tokens": 27,
+"ast_nodes": 31,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.28684495454362274,
+"difficulty_tercile": "med"
+},
+"Mbpp/586": {
+"task_id": "Mbpp/586",
+"prompt_chars": 161,
+"prompt_tokens": 26,
+"ast_nodes": 22,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5395484812070439,
+"difficulty_tercile": "easy"
+},
+"Mbpp/587": {
+"task_id": "Mbpp/587",
+"prompt_chars": 117,
+"prompt_tokens": 24,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/588": {
+"task_id": "Mbpp/588",
+"prompt_chars": 139,
+"prompt_tokens": 23,
+"ast_nodes": 17,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5840283853396171,
+"difficulty_tercile": "easy"
+},
+"Mbpp/589": {
+"task_id": "Mbpp/589",
+"prompt_chars": 124,
+"prompt_tokens": 19,
+"ast_nodes": 76,
+"cyclomatic": 4,
+"canon_lines": 11,
+"difficulty_z": 1.144076190835447,
+"difficulty_tercile": "hard"
+},
+"Mbpp/590": {
+"task_id": "Mbpp/590",
+"prompt_chars": 164,
+"prompt_tokens": 16,
+"ast_nodes": 42,
+"cyclomatic": 1,
+"canon_lines": 7,
+"difficulty_z": -0.10266931583956707,
+"difficulty_tercile": "hard"
+},
+"Mbpp/591": {
+"task_id": "Mbpp/591",
+"prompt_chars": 147,
+"prompt_tokens": 28,
+"ast_nodes": 32,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.4505886729418976,
+"difficulty_tercile": "med"
+},
+"Mbpp/592": {
+"task_id": "Mbpp/592",
+"prompt_chars": 133,
+"prompt_tokens": 21,
+"ast_nodes": 102,
+"cyclomatic": 3,
+"canon_lines": 11,
+"difficulty_z": 1.175704105616848,
+"difficulty_tercile": "hard"
+},
+"Mbpp/593": {
+"task_id": "Mbpp/593",
+"prompt_chars": 127,
+"prompt_tokens": 15,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5066045165537368,
+"difficulty_tercile": "easy"
+},
+"Mbpp/594": {
+"task_id": "Mbpp/594",
+"prompt_chars": 147,
+"prompt_tokens": 23,
+"ast_nodes": 61,
+"cyclomatic": 3,
+"canon_lines": 6,
+"difficulty_z": 0.37936964366777454,
+"difficulty_tercile": "hard"
+},
+"Mbpp/596": {
+"task_id": "Mbpp/596",
+"prompt_chars": 159,
+"prompt_tokens": 30,
+"ast_nodes": 14,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5243964782067662,
+"difficulty_tercile": "easy"
+},
+"Mbpp/597": {
+"task_id": "Mbpp/597",
+"prompt_chars": 135,
+"prompt_tokens": 28,
+"ast_nodes": 23,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5306525003805292,
+"difficulty_tercile": "easy"
+},
+"Mbpp/598": {
+"task_id": "Mbpp/598",
+"prompt_chars": 115,
+"prompt_tokens": 17,
+"ast_nodes": 41,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.08453740918289197,
+"difficulty_tercile": "hard"
+},
+"Mbpp/600": {
+"task_id": "Mbpp/600",
+"prompt_chars": 109,
+"prompt_tokens": 20,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/602": {
+"task_id": "Mbpp/602",
+"prompt_chars": 132,
+"prompt_tokens": 20,
+"ast_nodes": 40,
+"cyclomatic": 3,
+"canon_lines": 7,
+"difficulty_z": 0.27887389592336215,
+"difficulty_tercile": "hard"
+},
+"Mbpp/603": {
+"task_id": "Mbpp/603",
+"prompt_chars": 132,
+"prompt_tokens": 26,
+"ast_nodes": 103,
+"cyclomatic": 4,
+"canon_lines": 15,
+"difficulty_z": 1.729547071600921,
+"difficulty_tercile": "hard"
+},
+"Mbpp/604": {
+"task_id": "Mbpp/604",
+"prompt_chars": 140,
+"prompt_tokens": 19,
+"ast_nodes": 17,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5840283853396171,
+"difficulty_tercile": "easy"
+},
+"Mbpp/605": {
+"task_id": "Mbpp/605",
+"prompt_chars": 101,
+"prompt_tokens": 17,
+"ast_nodes": 48,
+"cyclomatic": 4,
+"canon_lines": 10,
+"difficulty_z": 0.8086688780806427,
+"difficulty_tercile": "hard"
+},
+"Mbpp/606": {
+"task_id": "Mbpp/606",
+"prompt_chars": 101,
+"prompt_tokens": 12,
+"ast_nodes": 18,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.48881255490070763,
+"difficulty_tercile": "easy"
+},
+"Mbpp/607": {
+"task_id": "Mbpp/607",
+"prompt_chars": 242,
+"prompt_tokens": 42,
+"ast_nodes": 56,
+"cyclomatic": 2,
+"canon_lines": 10,
+"difficulty_z": 0.4805015512768012,
+"difficulty_tercile": "hard"
+},
+"Mbpp/608": {
+"task_id": "Mbpp/608",
+"prompt_chars": 84,
+"prompt_tokens": 15,
+"ast_nodes": 144,
+"cyclomatic": 5,
+"canon_lines": 10,
+"difficulty_z": 1.8623506241340262,
+"difficulty_tercile": "hard"
+},
+"Mbpp/610": {
+"task_id": "Mbpp/610",
+"prompt_chars": 194,
+"prompt_tokens": 31,
+"ast_nodes": 25,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5128605387274999,
+"difficulty_tercile": "easy"
+},
+"Mbpp/611": {
+"task_id": "Mbpp/611",
+"prompt_chars": 176,
+"prompt_tokens": 35,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/612": {
+"task_id": "Mbpp/612",
+"prompt_chars": 313,
+"prompt_tokens": 57,
+"ast_nodes": 24,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3220889328460354,
+"difficulty_tercile": "med"
+},
+"Mbpp/614": {
+"task_id": "Mbpp/614",
+"prompt_chars": 170,
+"prompt_tokens": 32,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6018203469926463,
+"difficulty_tercile": "easy"
+},
+"Mbpp/615": {
+"task_id": "Mbpp/615",
+"prompt_chars": 230,
+"prompt_tokens": 42,
+"ast_nodes": 33,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.15570525579500902,
+"difficulty_tercile": "med"
+},
+"Mbpp/616": {
+"task_id": "Mbpp/616",
+"prompt_chars": 170,
+"prompt_tokens": 33,
+"ast_nodes": 35,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.13791329414197975,
+"difficulty_tercile": "hard"
+},
+"Mbpp/618": {
+"task_id": "Mbpp/618",
+"prompt_chars": 109,
+"prompt_tokens": 15,
+"ast_nodes": 31,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.37316480415601744,
+"difficulty_tercile": "med"
+},
+"Mbpp/619": {
+"task_id": "Mbpp/619",
+"prompt_chars": 169,
+"prompt_tokens": 21,
+"ast_nodes": 53,
+"cyclomatic": 3,
+"canon_lines": 6,
+"difficulty_z": 0.3082017970556575,
+"difficulty_tercile": "hard"
+},
+"Mbpp/620": {
+"task_id": "Mbpp/620",
+"prompt_chars": 170,
+"prompt_tokens": 35,
+"ast_nodes": 139,
+"cyclomatic": 6,
+"canon_lines": 13,
+"difficulty_z": 2.276497855546616,
+"difficulty_tercile": "hard"
+},
+"Mbpp/622": {
+"task_id": "Mbpp/622",
+"prompt_chars": 149,
+"prompt_tokens": 30,
+"ast_nodes": 150,
+"cyclomatic": 5,
+"canon_lines": 27,
+"difficulty_z": 3.383163952503825,
+"difficulty_tercile": "hard"
+},
+"Mbpp/623": {
+"task_id": "Mbpp/623",
+"prompt_chars": 168,
+"prompt_tokens": 36,
+"ast_nodes": 28,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.3998527466355614,
+"difficulty_tercile": "med"
+},
+"Mbpp/624": {
+"task_id": "Mbpp/624",
+"prompt_chars": 109,
+"prompt_tokens": 16,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/626": {
+"task_id": "Mbpp/626",
+"prompt_chars": 165,
+"prompt_tokens": 29,
+"ast_nodes": 19,
+"cyclomatic": 2,
+"canon_lines": 6,
+"difficulty_z": -0.193929137753819,
+"difficulty_tercile": "med"
+},
+"Mbpp/628": {
+"task_id": "Mbpp/628",
+"prompt_chars": 151,
+"prompt_tokens": 22,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/629": {
+"task_id": "Mbpp/629",
+"prompt_chars": 112,
+"prompt_tokens": 19,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/631": {
+"task_id": "Mbpp/631",
+"prompt_chars": 169,
+"prompt_tokens": 24,
+"ast_nodes": 31,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.259817067060433,
+"difficulty_tercile": "med"
+},
+"Mbpp/632": {
+"task_id": "Mbpp/632",
+"prompt_chars": 130,
+"prompt_tokens": 21,
+"ast_nodes": 41,
+"cyclomatic": 2,
+"canon_lines": 6,
+"difficulty_z": 0.0017824404295027883,
+"difficulty_tercile": "hard"
+},
+"Mbpp/633": {
+"task_id": "Mbpp/633",
+"prompt_chars": 137,
+"prompt_tokens": 25,
+"ast_nodes": 55,
+"cyclomatic": 3,
+"canon_lines": 8,
+"difficulty_z": 0.49863345793347635,
+"difficulty_tercile": "hard"
+},
+"Mbpp/637": {
+"task_id": "Mbpp/637",
+"prompt_chars": 126,
+"prompt_tokens": 19,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/638": {
+"task_id": "Mbpp/638",
+"prompt_chars": 179,
+"prompt_tokens": 29,
+"ast_nodes": 58,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.046653472227727776,
+"difficulty_tercile": "hard"
+},
+"Mbpp/639": {
+"task_id": "Mbpp/639",
+"prompt_chars": 223,
+"prompt_tokens": 35,
+"ast_nodes": 47,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.03116152422380421,
+"difficulty_tercile": "hard"
+},
+"Mbpp/641": {
+"task_id": "Mbpp/641",
+"prompt_chars": 90,
+"prompt_tokens": 15,
+"ast_nodes": 23,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5306525003805292,
+"difficulty_tercile": "easy"
+},
+"Mbpp/643": {
+"task_id": "Mbpp/643",
+"prompt_chars": 157,
+"prompt_tokens": 23,
+"ast_nodes": 18,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.48881255490070763,
+"difficulty_tercile": "easy"
+},
+"Mbpp/644": {
+"task_id": "Mbpp/644",
+"prompt_chars": 147,
+"prompt_tokens": 28,
+"ast_nodes": 28,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.48617259624795617,
+"difficulty_tercile": "easy"
+},
+"Mbpp/720": {
+"task_id": "Mbpp/720",
+"prompt_chars": 208,
+"prompt_tokens": 42,
+"ast_nodes": 14,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6107163278191609,
+"difficulty_tercile": "easy"
+},
+"Mbpp/721": {
+"task_id": "Mbpp/721",
+"prompt_chars": 485,
+"prompt_tokens": 93,
+"ast_nodes": 238,
+"cyclomatic": 7,
+"canon_lines": 15,
+"difficulty_z": 3.5295072433043337,
+"difficulty_tercile": "hard"
+},
+"Mbpp/722": {
+"task_id": "Mbpp/722",
+"prompt_chars": 423,
+"prompt_tokens": 67,
+"ast_nodes": 44,
+"cyclomatic": 3,
+"canon_lines": 4,
+"difficulty_z": 0.05549827039223639,
+"difficulty_tercile": "hard"
+},
+"Mbpp/723": {
+"task_id": "Mbpp/723",
+"prompt_chars": 211,
+"prompt_tokens": 42,
+"ast_nodes": 25,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.3402208395027105,
+"difficulty_tercile": "med"
+},
+"Mbpp/724": {
+"task_id": "Mbpp/724",
+"prompt_chars": 170,
+"prompt_tokens": 28,
+"ast_nodes": 28,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.2865050095399769,
+"difficulty_tercile": "med"
+},
+"Mbpp/725": {
+"task_id": "Mbpp/725",
+"prompt_chars": 200,
+"prompt_tokens": 28,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5155004973802516,
+"difficulty_tercile": "easy"
+},
+"Mbpp/726": {
+"task_id": "Mbpp/726",
+"prompt_chars": 239,
+"prompt_tokens": 45,
+"ast_nodes": 33,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.24202510540740374,
+"difficulty_tercile": "med"
+},
+"Mbpp/728": {
+"task_id": "Mbpp/728",
+"prompt_chars": 165,
+"prompt_tokens": 17,
+"ast_nodes": 27,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.29540099036649153,
+"difficulty_tercile": "med"
+},
+"Mbpp/730": {
+"task_id": "Mbpp/730",
+"prompt_chars": 191,
+"prompt_tokens": 41,
+"ast_nodes": 22,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.2535610448866699,
+"difficulty_tercile": "med"
+},
+"Mbpp/731": {
+"task_id": "Mbpp/731",
+"prompt_chars": 154,
+"prompt_tokens": 23,
+"ast_nodes": 42,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.18898916545196184,
+"difficulty_tercile": "med"
+},
+"Mbpp/732": {
+"task_id": "Mbpp/732",
+"prompt_chars": 206,
+"prompt_tokens": 22,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5066045165537368,
+"difficulty_tercile": "easy"
+},
+"Mbpp/733": {
+"task_id": "Mbpp/733",
+"prompt_chars": 173,
+"prompt_tokens": 35,
+"ast_nodes": 102,
+"cyclomatic": 4,
+"canon_lines": 15,
+"difficulty_z": 1.7206510907744061,
+"difficulty_tercile": "hard"
+},
+"Mbpp/735": {
+"task_id": "Mbpp/735",
+"prompt_chars": 132,
+"prompt_tokens": 23,
+"ast_nodes": 67,
+"cyclomatic": 2,
+"canon_lines": 6,
+"difficulty_z": 0.2330779419188831,
+"difficulty_tercile": "hard"
+},
+"Mbpp/736": {
+"task_id": "Mbpp/736",
+"prompt_chars": 138,
+"prompt_tokens": 20,
+"ast_nodes": 17,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.49770853572722235,
+"difficulty_tercile": "easy"
+},
+"Mbpp/739": {
+"task_id": "Mbpp/739",
+"prompt_chars": 122,
+"prompt_tokens": 21,
+"ast_nodes": 34,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.2601570120640789,
+"difficulty_tercile": "med"
+},
+"Mbpp/740": {
+"task_id": "Mbpp/740",
+"prompt_chars": 171,
+"prompt_tokens": 31,
+"ast_nodes": 34,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.2331291245808891,
+"difficulty_tercile": "med"
+},
+"Mbpp/741": {
+"task_id": "Mbpp/741",
+"prompt_chars": 131,
+"prompt_tokens": 20,
+"ast_nodes": 27,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.29540099036649153,
+"difficulty_tercile": "med"
+},
+"Mbpp/742": {
+"task_id": "Mbpp/742",
+"prompt_chars": 112,
+"prompt_tokens": 14,
+"ast_nodes": 21,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.46212461242116376,
+"difficulty_tercile": "med"
+},
+"Mbpp/743": {
+"task_id": "Mbpp/743",
+"prompt_chars": 190,
+"prompt_tokens": 39,
+"ast_nodes": 26,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5039645579009854,
+"difficulty_tercile": "easy"
+},
+"Mbpp/744": {
+"task_id": "Mbpp/744",
+"prompt_chars": 127,
+"prompt_tokens": 25,
+"ast_nodes": 19,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3665688369786085,
+"difficulty_tercile": "med"
+},
+"Mbpp/745": {
+"task_id": "Mbpp/745",
+"prompt_chars": 225,
+"prompt_tokens": 40,
+"ast_nodes": 60,
+"cyclomatic": 3,
+"canon_lines": 5,
+"difficulty_z": 0.28415381322886507,
+"difficulty_tercile": "hard"
+},
+"Mbpp/748": {
+"task_id": "Mbpp/748",
+"prompt_chars": 152,
+"prompt_tokens": 22,
+"ast_nodes": 16,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.5066045165537368,
+"difficulty_tercile": "easy"
+},
+"Mbpp/749": {
+"task_id": "Mbpp/749",
+"prompt_chars": 201,
+"prompt_tokens": 26,
+"ast_nodes": 19,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3665688369786085,
+"difficulty_tercile": "med"
+},
+"Mbpp/750": {
+"task_id": "Mbpp/750",
+"prompt_chars": 124,
+"prompt_tokens": 26,
+"ast_nodes": 15,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6018203469926463,
+"difficulty_tercile": "easy"
+},
+"Mbpp/751": {
+"task_id": "Mbpp/751",
+"prompt_chars": 132,
+"prompt_tokens": 25,
+"ast_nodes": 133,
+"cyclomatic": 6,
+"canon_lines": 12,
+"difficulty_z": 2.136802120975134,
+"difficulty_tercile": "hard"
+},
+"Mbpp/752": {
+"task_id": "Mbpp/752",
+"prompt_chars": 154,
+"prompt_tokens": 30,
+"ast_nodes": 80,
+"cyclomatic": 2,
+"canon_lines": 9,
+"difficulty_z": 0.6076852415007575,
+"difficulty_tercile": "hard"
+},
+"Mbpp/753": {
+"task_id": "Mbpp/753",
+"prompt_chars": 226,
+"prompt_tokens": 38,
+"ast_nodes": 30,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.3820607849825321,
+"difficulty_tercile": "med"
+},
+"Mbpp/754": {
+"task_id": "Mbpp/754",
+"prompt_chars": 312,
+"prompt_tokens": 62,
+"ast_nodes": 37,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.20644118210134524,
+"difficulty_tercile": "med"
+},
+"Mbpp/755": {
+"task_id": "Mbpp/755",
+"prompt_chars": 121,
+"prompt_tokens": 21,
+"ast_nodes": 32,
+"cyclomatic": 2,
+"canon_lines": 7,
+"difficulty_z": 0.008038462603265906,
+"difficulty_tercile": "hard"
+},
+"Mbpp/757": {
+"task_id": "Mbpp/757",
+"prompt_chars": 164,
+"prompt_tokens": 24,
+"ast_nodes": 42,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.1619612779687721,
+"difficulty_tercile": "med"
+},
+"Mbpp/758": {
+"task_id": "Mbpp/758",
+"prompt_chars": 353,
+"prompt_tokens": 68,
+"ast_nodes": 23,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.33098491367255,
+"difficulty_tercile": "med"
+},
+"Mbpp/759": {
+"task_id": "Mbpp/759",
+"prompt_chars": 134,
+"prompt_tokens": 22,
+"ast_nodes": 26,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.3313248586761959,
+"difficulty_tercile": "med"
+},
+"Mbpp/760": {
+"task_id": "Mbpp/760",
+"prompt_chars": 149,
+"prompt_tokens": 24,
+"ast_nodes": 22,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5395484812070439,
+"difficulty_tercile": "easy"
+},
+"Mbpp/762": {
+"task_id": "Mbpp/762",
+"prompt_chars": 172,
+"prompt_tokens": 28,
+"ast_nodes": 27,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.29540099036649153,
+"difficulty_tercile": "med"
+},
+"Mbpp/763": {
+"task_id": "Mbpp/763",
+"prompt_chars": 153,
+"prompt_tokens": 23,
+"ast_nodes": 76,
+"cyclomatic": 3,
+"canon_lines": 9,
+"difficulty_z": 0.7717689049026782,
+"difficulty_tercile": "hard"
+},
+"Mbpp/764": {
+"task_id": "Mbpp/764",
+"prompt_chars": 118,
+"prompt_tokens": 19,
+"ast_nodes": 19,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3665688369786085,
+"difficulty_tercile": "med"
+},
+"Mbpp/765": {
+"task_id": "Mbpp/765",
+"prompt_chars": 116,
+"prompt_tokens": 15,
+"ast_nodes": 40,
+"cyclomatic": 1,
+"canon_lines": 6,
+"difficulty_z": -0.20678112710499108,
+"difficulty_tercile": "med"
+},
+"Mbpp/766": {
+"task_id": "Mbpp/766",
+"prompt_chars": 187,
+"prompt_tokens": 34,
+"ast_nodes": 19,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5662364236865877,
+"difficulty_tercile": "easy"
+},
+"Mbpp/767": {
+"task_id": "Mbpp/767",
+"prompt_chars": 188,
+"prompt_tokens": 34,
+"ast_nodes": 51,
+"cyclomatic": 3,
+"canon_lines": 9,
+"difficulty_z": 0.5493693842398125,
+"difficulty_tercile": "hard"
+},
+"Mbpp/770": {
+"task_id": "Mbpp/770",
+"prompt_chars": 124,
+"prompt_tokens": 23,
+"ast_nodes": 59,
+"cyclomatic": 2,
+"canon_lines": 9,
+"difficulty_z": 0.42086964414395034,
+"difficulty_tercile": "hard"
+},
+"Mbpp/771": {
+"task_id": "Mbpp/771",
+"prompt_chars": 123,
+"prompt_tokens": 19,
+"ast_nodes": 148,
+"cyclomatic": 15,
+"canon_lines": 17,
+"difficulty_z": 4.4988493618066405,
+"difficulty_tercile": "hard"
+},
+"Mbpp/772": {
+"task_id": "Mbpp/772",
+"prompt_chars": 166,
+"prompt_tokens": 30,
+"ast_nodes": 30,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.26871304788694766,
+"difficulty_tercile": "med"
+},
+"Mbpp/773": {
+"task_id": "Mbpp/773",
+"prompt_chars": 223,
+"prompt_tokens": 31,
+"ast_nodes": 53,
+"cyclomatic": 2,
+"canon_lines": 9,
+"difficulty_z": 0.3674937591848626,
+"difficulty_tercile": "hard"
+},
+"Mbpp/775": {
+"task_id": "Mbpp/775",
+"prompt_chars": 150,
+"prompt_tokens": 23,
+"ast_nodes": 27,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.29540099036649153,
+"difficulty_tercile": "med"
+},
+"Mbpp/777": {
+"task_id": "Mbpp/777",
+"prompt_chars": 131,
+"prompt_tokens": 21,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/778": {
+"task_id": "Mbpp/778",
+"prompt_chars": 253,
+"prompt_tokens": 48,
+"ast_nodes": 25,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.226873102407126,
+"difficulty_tercile": "med"
+},
+"Mbpp/780": {
+"task_id": "Mbpp/780",
+"prompt_chars": 215,
+"prompt_tokens": 40,
+"ast_nodes": 32,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.16460123662152362,
+"difficulty_tercile": "med"
+},
+"Mbpp/781": {
+"task_id": "Mbpp/781",
+"prompt_chars": 107,
+"prompt_tokens": 17,
+"ast_nodes": 76,
+"cyclomatic": 4,
+"canon_lines": 12,
+"difficulty_z": 1.2303960404478416,
+"difficulty_tercile": "hard"
+},
+"Mbpp/782": {
+"task_id": "Mbpp/782",
+"prompt_chars": 115,
+"prompt_tokens": 19,
+"ast_nodes": 63,
+"cyclomatic": 2,
+"canon_lines": 10,
+"difficulty_z": 0.5427734170624037,
+"difficulty_tercile": "hard"
+},
+"Mbpp/784": {
+"task_id": "Mbpp/784",
+"prompt_chars": 133,
+"prompt_tokens": 21,
+"ast_nodes": 61,
+"cyclomatic": 3,
+"canon_lines": 6,
+"difficulty_z": 0.37936964366777454,
+"difficulty_tercile": "hard"
+},
+"Mbpp/785": {
+"task_id": "Mbpp/785",
+"prompt_chars": 114,
+"prompt_tokens": 20,
+"ast_nodes": 38,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.19754520127483063,
+"difficulty_tercile": "med"
+},
+"Mbpp/786": {
+"task_id": "Mbpp/786",
+"prompt_chars": 139,
+"prompt_tokens": 20,
+"ast_nodes": 17,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.49770853572722235,
+"difficulty_tercile": "easy"
+},
+"Mbpp/788": {
+"task_id": "Mbpp/788",
+"prompt_chars": 144,
+"prompt_tokens": 24,
+"ast_nodes": 17,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.5840283853396171,
+"difficulty_tercile": "easy"
+},
+"Mbpp/790": {
+"task_id": "Mbpp/790",
+"prompt_chars": 144,
+"prompt_tokens": 23,
+"ast_nodes": 36,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.21533716292785987,
+"difficulty_tercile": "med"
+},
+"Mbpp/791": {
+"task_id": "Mbpp/791",
+"prompt_chars": 125,
+"prompt_tokens": 24,
+"ast_nodes": 25,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.31319295201952074,
+"difficulty_tercile": "med"
+},
+"Mbpp/792": {
+"task_id": "Mbpp/792",
+"prompt_chars": 153,
+"prompt_tokens": 30,
+"ast_nodes": 21,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.34877687532557927,
+"difficulty_tercile": "med"
+},
+"Mbpp/793": {
+"task_id": "Mbpp/793",
+"prompt_chars": 119,
+"prompt_tokens": 22,
+"ast_nodes": 29,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.47727661542144145,
+"difficulty_tercile": "easy"
+},
+"Mbpp/796": {
+"task_id": "Mbpp/796",
+"prompt_chars": 132,
+"prompt_tokens": 22,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/797": {
+"task_id": "Mbpp/797",
+"prompt_chars": 131,
+"prompt_tokens": 25,
+"ast_nodes": 47,
+"cyclomatic": 1,
+"canon_lines": 8,
+"difficulty_z": 0.028130437905400856,
+"difficulty_tercile": "hard"
+},
+"Mbpp/798": {
+"task_id": "Mbpp/798",
+"prompt_chars": 89,
+"prompt_tokens": 19,
+"ast_nodes": 10,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6463002511252194,
+"difficulty_tercile": "easy"
+},
+"Mbpp/799": {
+"task_id": "Mbpp/799",
+"prompt_chars": 144,
+"prompt_tokens": 28,
+"ast_nodes": 28,
+"cyclomatic": 1,
+"canon_lines": 5,
+"difficulty_z": -0.3998527466355614,
+"difficulty_tercile": "med"
+},
+"Mbpp/800": {
+"task_id": "Mbpp/800",
+"prompt_chars": 129,
+"prompt_tokens": 15,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/801": {
+"task_id": "Mbpp/801",
+"prompt_chars": 132,
+"prompt_tokens": 21,
+"ast_nodes": 44,
+"cyclomatic": 3,
+"canon_lines": 10,
+"difficulty_z": 0.5734173680666049,
+"difficulty_tercile": "hard"
+},
+"Mbpp/803": {
+"task_id": "Mbpp/803",
+"prompt_chars": 121,
+"prompt_tokens": 20,
+"ast_nodes": 34,
+"cyclomatic": 2,
+"canon_lines": 6,
+"difficulty_z": -0.0604894253560996,
+"difficulty_tercile": "hard"
+},
+"Mbpp/804": {
+"task_id": "Mbpp/804",
+"prompt_chars": 123,
+"prompt_tokens": 21,
+"ast_nodes": 22,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.3398808944990646,
+"difficulty_tercile": "med"
+},
+"Mbpp/805": {
+"task_id": "Mbpp/805",
+"prompt_chars": 179,
+"prompt_tokens": 28,
+"ast_nodes": 13,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6196123086456756,
+"difficulty_tercile": "easy"
+},
+"Mbpp/806": {
+"task_id": "Mbpp/806",
+"prompt_chars": 143,
+"prompt_tokens": 20,
+"ast_nodes": 72,
+"cyclomatic": 4,
+"canon_lines": 14,
+"difficulty_z": 1.3674518163665728,
+"difficulty_tercile": "hard"
+},
+"Mbpp/807": {
+"task_id": "Mbpp/807",
+"prompt_chars": 120,
+"prompt_tokens": 22,
+"ast_nodes": 30,
+"cyclomatic": 2,
+"canon_lines": 5,
+"difficulty_z": -0.1823931982745529,
+"difficulty_tercile": "med"
+},
+"Mbpp/808": {
+"task_id": "Mbpp/808",
+"prompt_chars": 120,
+"prompt_tokens": 25,
+"ast_nodes": 12,
+"cyclomatic": 1,
+"canon_lines": 4,
+"difficulty_z": -0.6285082894721902,
+"difficulty_tercile": "easy"
+},
+"Mbpp/809": {
+"task_id": "Mbpp/809",
+"prompt_chars": 180,
+"prompt_tokens": 32,
+"ast_nodes": 30,
+"cyclomatic": 2,
+"canon_lines": 4,
+"difficulty_z": -0.26871304788694766,
+"difficulty_tercile": "med"
+}
+}
