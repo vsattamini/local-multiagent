@@ -1,11 +1,43 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
 .env
+
+# Virtual environments (any .venv* / venv* variant)
 venv/
+venv*/
+.venv/
+.venv*/
+
+# Python version pin
+.python-version
+
 .idea/
 .vscode/
 *.swp
+.claude
+
+# macOS cruft
+.DS_Store
+
+# Thesis chapters — current versions are outdated, kept local only.
+# To re-track when ready: delete this line, then `git add thesis/`.
+thesis/
 
 /models
 *execution_log*.txt
+*.log
+
+# Raw experiment result dumps — the extracted dirs are gitignored; the
+# compressed archives/ (committed) are the source of truth. See RAW_DATA.md
+results_multiseed/
+results_phase3/
+results_humaneval_agentic/
+results_terminalbench/
+results_context_shuffle/
+
+# Windows "downloaded from internet" metadata cruft
+*Zone.Identifier

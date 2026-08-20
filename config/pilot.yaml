@@ -1,0 +1,45 @@
+# Pilot Experiment Configuration
+# Based on docs/plans/pivot/pilot-experiment.md
+
+experiment:
+  name: "pilot_001"
+  description: "Initial pilot to validate swarm emergence"
+  output_dir: "results/pilot_001"
+
+model:
+  path: "models/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf"
+  context_length: 4096
+  max_tokens: 512
+  temperature: 0.7
+  top_p: 0.95
+
+agents:
+  n_agents: 3
+  max_context_examples: 5
+
+router:
+  type: "affinity"  # Options: affinity, random, round_robin, greedy
+  temperature: 0.5  # For affinity router: higher = more exploration
+
+tasks:
+  n_tasks: 50  # Number of tasks for pilot
+  task_types:
+    - string
+    - math
+    - list
+    - logic
+
+execution:
+  timeout: 5  # Seconds
+
+metrics:
+  snapshot_interval: 10  # Take snapshot every N tasks
+  compute_significance: true
+  n_permutations: 1000
+
+prompts:
+  system: |
+    You are a Python coding assistant. Write clean, correct code that solves the problem.
+    Only output the function implementation, no explanations or extra text.
+
+random_seed: 42

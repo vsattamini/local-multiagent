@@ -1,0 +1,206 @@
+[
+  {
+    "name": "exp2.1_experimental",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 3.0236089910508506,
+      "df": 6,
+      "p_value": 0.8058778728356162,
+      "cramers_v": 0.1268188729966594,
+      "significant": false,
+      "n_successes": 94
+    },
+    "agent_main_effect": {
+      "method": "logit_lr_main_effect",
+      "chi2": 1.8383748400734703,
+      "df": 2,
+      "p_value": 0.39884300127623384,
+      "significant": false
+    },
+    "lr_test": {
+      "error": "non-converged (separation)",
+      "method": "logit_lr_test"
+    }
+  },
+  {
+    "name": "exp_low_temp",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 69.80328608589477,
+      "df": 6,
+      "p_value": 4.486880286088643e-13,
+      "cramers_v": 0.6297694657837049,
+      "significant": true,
+      "n_successes": 88
+    },
+    "agent_main_effect": {
+      "method": "logit_lr_main_effect",
+      "chi2": 1.1430218526486726,
+      "df": 2,
+      "p_value": 0.5646716166206842,
+      "significant": false
+    },
+    "lr_test": {
+      "error": "Logit: Singular matrix"
+    }
+  },
+  {
+    "name": "exp_5_agents",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 5,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 36.90486603624901,
+      "df": 12,
+      "p_value": 0.00023148035165277238,
+      "cramers_v": 0.34728106394297226,
+      "significant": true,
+      "n_successes": 102
+    },
+    "agent_main_effect": {
+      "method": "logit_lr_main_effect",
+      "chi2": 5.930951053685362,
+      "df": 4,
+      "p_value": 0.20436457499321048,
+      "significant": false
+    },
+    "lr_test": {
+      "error": "Logit: Singular matrix"
+    }
+  },
+  {
+    "name": "exp_3b_baseline",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 7.706712470449173,
+      "df": 6,
+      "p_value": 0.2603872851281179,
+      "cramers_v": 0.17085693632713703,
+      "significant": false,
+      "n_successes": 132
+    },
+    "agent_main_effect": {
+      "method": "logit_lr_main_effect",
+      "chi2": 5.526853331055747,
+      "df": 2,
+      "p_value": 0.06307525980186457,
+      "significant": false
+    },
+    "lr_test": {
+      "error": "non-converged (separation)",
+      "method": "logit_lr_test"
+    }
+  },
+  {
+    "name": "exp_3b_model",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 19.123915763639722,
+      "df": 6,
+      "p_value": 0.003959397240242529,
+      "cramers_v": 0.27995839681878293,
+      "significant": true,
+      "n_successes": 122
+    },
+    "agent_main_effect": {
+      "method": "logit_lr_main_effect",
+      "chi2": 13.390783577422837,
+      "df": 2,
+      "p_value": 0.00123659729448089,
+      "significant": true
+    },
+    "lr_test": {
+      "error": "non-converged (separation)",
+      "method": "logit_lr_test"
+    }
+  },
+  {
+    "name": "exp_3b_low_temp",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 115.89806077856363,
+      "df": 6,
+      "p_value": 1.1833253437669153e-22,
+      "cramers_v": 0.6600810521505173,
+      "significant": true,
+      "n_successes": 133
+    },
+    "agent_main_effect": {
+      "method": "logit_lr_main_effect",
+      "chi2": 4.295326064277873,
+      "df": 2,
+      "p_value": 0.11675669583884951,
+      "significant": false
+    },
+    "lr_test": {
+      "error": "Logit: Singular matrix"
+    }
+  },
+  {
+    "name": "exp_3b_5_agents",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 5,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 42.66768057189015,
+      "df": 12,
+      "p_value": 2.569988897138918e-05,
+      "cramers_v": 0.3294983486461423,
+      "significant": true,
+      "n_successes": 131
+    },
+    "agent_main_effect": {
+      "method": "logit_lr_main_effect",
+      "chi2": 1.6708067826288584,
+      "df": 4,
+      "p_value": 0.7960135249106018,
+      "significant": false
+    },
+    "lr_test": {
+      "error": "Logit: Singular matrix"
+    }
+  },
+  {
+    "name": "exp_7b_model",
+    "n_obs": 164,
+    "n_problems": 164,
+    "n_agents": 3,
+    "chi2_test": {
+      "method": "chi2_contingency",
+      "chi2": 65.01339483863994,
+      "df": 6,
+      "p_value": 4.286872791520291e-12,
+      "cramers_v": 0.48359190699710153,
+      "significant": true,
+      "n_successes": 139
+    },
+    "agent_main_effect": {
+      "method": "logit_lr_main_effect",
+      "chi2": 3.359990287419919,
+      "df": 2,
+      "p_value": 0.1863748811276913,
+      "significant": false
+    },
+    "lr_test": {
+      "error": "non-converged (separation)",
+      "method": "logit_lr_test"
+    }
+  }
+]

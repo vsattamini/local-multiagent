@@ -1,0 +1,298 @@
+{
+  "start_time": "2026-05-03T00:15:51.603866",
+  "output_dir": "results/sweep_3b_pop_n9/seed_42",
+  "end_time": "2026-05-03T00:32:31.655460",
+  "total_elapsed_time": 1000.0516159534454,
+  "total_tasks": 164,
+  "metrics": {
+    "specialization_index": 0.5399198802846081,
+    "specialization_significance": {
+      "observed_S": 0.5399198802846081,
+      "null_mean": 0.04854856917398797,
+      "null_std": 0.01497559861943082,
+      "p_value": 0.0,
+      "significant": true
+    },
+    "context_divergence": 0.7024406790733337,
+    "functional_differentiation": {
+      "chi2": 220.2657881334352,
+      "p_value": 8.553285945013304e-37,
+      "dof": 18,
+      "significant": true,
+      "effect_size": 0.7320700047186159,
+      "contingency_table": {
+        "list": {
+          "0": 0.0,
+          "1": 2.0,
+          "2": 15.0,
+          "3": 16.0,
+          "4": 0.0,
+          "6": 0.0,
+          "8": 0.0
+        },
+        "logic": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 8.0,
+          "6": 0.0,
+          "8": 0.0
+        },
+        "math": {
+          "0": 1.0,
+          "1": 0.0,
+          "2": 27.0,
+          "3": 18.0,
+          "4": 2.0,
+          "6": 14.0,
+          "8": 0.0
+        },
+        "string": {
+          "0": 0.0,
+          "1": 2.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "6": 10.0,
+          "8": 22.0
+        }
+      }
+    },
+    "phase_transition": {
+      "transitions_detected": false,
+      "transitions": [],
+      "final_S": 0.5595123383874856,
+      "pattern": "gradual_drift"
+    },
+    "summary_stats": {
+      "total_tasks": 164,
+      "successful_tasks": 137,
+      "pass_at_1": 0.8353658536585366,
+      "avg_execution_time": 0.029948670689652606,
+      "tasks_by_type": {
+        "list": {
+          "total": 37,
+          "successful": 33
+        },
+        "string": {
+          "total": 41,
+          "successful": 34
+        },
+        "math": {
+          "total": 76,
+          "successful": 62
+        },
+        "logic": {
+          "total": 10,
+          "successful": 8
+        }
+      },
+      "tasks_by_agent": {
+        "3": {
+          "total": 39,
+          "successful": 34
+        },
+        "8": {
+          "total": 27,
+          "successful": 22
+        },
+        "6": {
+          "total": 27,
+          "successful": 24
+        },
+        "2": {
+          "total": 50,
+          "successful": 42
+        },
+        "4": {
+          "total": 13,
+          "successful": 10
+        },
+        "1": {
+          "total": 6,
+          "successful": 4
+        },
+        "0": {
+          "total": 2,
+          "successful": 1
+        }
+      }
+    },
+    "affinity_matrix": {
+      "0": {
+        "string": 0.5,
+        "math": 0.5,
+        "list": 0.5,
+        "logic": 0.5
+      },
+      "1": {
+        "string": 0.6666666666666666,
+        "math": 0.5,
+        "list": 0.6666666666666666,
+        "logic": 0.5
+      },
+      "2": {
+        "string": 0.5,
+        "math": 0.7941176470588235,
+        "list": 0.9375,
+        "logic": 0.5
+      },
+      "3": {
+        "string": 0.0,
+        "math": 0.9,
+        "list": 0.8888888888888888,
+        "logic": 0.5
+      },
+      "4": {
+        "string": 0.5,
+        "math": 0.6666666666666666,
+        "list": 0.5,
+        "logic": 0.8
+      },
+      "5": {
+        "string": 0.5,
+        "math": 0.5,
+        "list": 0.5,
+        "logic": 0.5
+      },
+      "6": {
+        "string": 1.0,
+        "math": 0.8235294117647058,
+        "list": 0.5,
+        "logic": 0.5
+      },
+      "7": {
+        "string": 0.5,
+        "math": 0.5,
+        "list": 0.5,
+        "logic": 0.5
+      },
+      "8": {
+        "string": 0.8148148148148148,
+        "math": 0.5,
+        "list": 0.5,
+        "logic": 0.5
+      }
+    },
+    "agent_states": {
+      "0": {
+        "agent_id": 0,
+        "total_tasks": 2,
+        "successful_tasks": 1,
+        "success_rate": 0.5,
+        "context_size": 1,
+        "task_type_performance": {
+          "string": 0.5,
+          "math": 0.5,
+          "list": 0.5,
+          "logic": 0.5
+        }
+      },
+      "1": {
+        "agent_id": 1,
+        "total_tasks": 6,
+        "successful_tasks": 4,
+        "success_rate": 0.6666666666666666,
+        "context_size": 4,
+        "task_type_performance": {
+          "string": 0.6666666666666666,
+          "math": 0.5,
+          "list": 0.6666666666666666,
+          "logic": 0.5
+        }
+      },
+      "2": {
+        "agent_id": 2,
+        "total_tasks": 50,
+        "successful_tasks": 42,
+        "success_rate": 0.84,
+        "context_size": 5,
+        "task_type_performance": {
+          "string": 0.5,
+          "math": 0.7941176470588235,
+          "list": 0.9375,
+          "logic": 0.5
+        }
+      },
+      "3": {
+        "agent_id": 3,
+        "total_tasks": 39,
+        "successful_tasks": 34,
+        "success_rate": 0.8717948717948718,
+        "context_size": 5,
+        "task_type_performance": {
+          "string": 0.0,
+          "math": 0.9,
+          "list": 0.8888888888888888,
+          "logic": 0.5
+        }
+      },
+      "4": {
+        "agent_id": 4,
+        "total_tasks": 13,
+        "successful_tasks": 10,
+        "success_rate": 0.7692307692307693,
+        "context_size": 5,
+        "task_type_performance": {
+          "string": 0.5,
+          "math": 0.6666666666666666,
+          "list": 0.5,
+          "logic": 0.8
+        }
+      },
+      "5": {
+        "agent_id": 5,
+        "total_tasks": 0,
+        "successful_tasks": 0,
+        "success_rate": 0.0,
+        "context_size": 0,
+        "task_type_performance": {
+          "string": 0.5,
+          "math": 0.5,
+          "list": 0.5,
+          "logic": 0.5
+        }
+      },
+      "6": {
+        "agent_id": 6,
+        "total_tasks": 27,
+        "successful_tasks": 24,
+        "success_rate": 0.8888888888888888,
+        "context_size": 5,
+        "task_type_performance": {
+          "string": 1.0,
+          "math": 0.8235294117647058,
+          "list": 0.5,
+          "logic": 0.5
+        }
+      },
+      "7": {
+        "agent_id": 7,
+        "total_tasks": 0,
+        "successful_tasks": 0,
+        "success_rate": 0.0,
+        "context_size": 0,
+        "task_type_performance": {
+          "string": 0.5,
+          "math": 0.5,
+          "list": 0.5,
+          "logic": 0.5
+        }
+      },
+      "8": {
+        "agent_id": 8,
+        "total_tasks": 27,
+        "successful_tasks": 22,
+        "success_rate": 0.8148148148148148,
+        "context_size": 5,
+        "task_type_performance": {
+          "string": 0.8148148148148148,
+          "math": 0.5,
+          "list": 0.5,
+          "logic": 0.5
+        }
+      }
+    }
+  }
+}

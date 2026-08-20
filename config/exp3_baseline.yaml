@@ -1,0 +1,30 @@
+# Phase 3 Experiment: Baseline (Single Agent)
+name: "exp3_baseline"
+description: "SWE-bench Lite - Single agent baseline"
+
+model:
+  path: "models/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf"
+  type: "llama_cpp"
+  context_length: 8192
+  temperature: 0.2
+  max_tokens: 2048
+
+experiment:
+  condition: "baseline"
+  n_agents: 1
+  routing_strategy: "single"
+
+dataset:
+  name: "SWE-bench_Lite"
+  curated_file: "data/swebench_curated.json"
+  n_issues: 50  # Start with full curated set
+
+execution:
+  timeout: 1800  # 30 minutes per issue
+  run_tests: false  # Set to true for full validation
+  checkpoint_frequency: 5  # Save every 5 issues
+
+output:
+  dir: "results/swebench/baseline"
+  save_intermediate: true
+  log_level: "INFO"

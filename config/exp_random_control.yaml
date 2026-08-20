@@ -1,0 +1,46 @@
+# Experiment: Random Router Control
+# Baseline to compare against affinity routing
+# If affinity ≈ random, the mechanism isn't working
+
+experiment:
+  name: "exp_random_control"
+  description: "Random routing control group"
+  output_dir: "results/exp_random_control"
+
+model:
+  path: "models/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf"
+  context_length: 4096
+  max_tokens: 512
+  temperature: 0.7
+  top_p: 0.95
+
+agents:
+  n_agents: 3
+  max_context_examples: 5
+
+router:
+  type: "random"  # RANDOM - no affinity
+  temperature: 0.5
+
+tasks:
+  n_tasks: 164
+  task_types:
+    - string
+    - math
+    - list
+    - logic
+
+execution:
+  timeout: 5
+
+metrics:
+  snapshot_interval: 10
+  compute_significance: true
+  n_permutations: 1000
+
+prompts:
+  system: |
+    You are a Python coding assistant. Write clean, correct code that solves the problem.
+    Only output the function implementation, no explanations or extra text.
+
+random_seed: 42

@@ -1,0 +1,805 @@
+{
+  "results": [
+    {
+      "instance_id": "django__django-11179",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "math",
+      "execution_time": 17.646120071411133,
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 8933
+      }
+    },
+    {
+      "instance_id": "django__django-12908",
+      "repo": "django/django",
+      "category": "test",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 17.348983764648438,
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 8493
+      }
+    },
+    {
+      "instance_id": "django__django-13230",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 17.602537631988525,
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 10001
+      }
+    },
+    {
+      "instance_id": "django__django-13447",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "string",
+      "execution_time": 17.21543264389038,
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 10771
+      }
+    },
+    {
+      "instance_id": "django__django-15814",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 1.3076756000518799,
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 582
+      }
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23563",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 18.38741445541382,
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 9340
+      }
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-25433",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 17.335556030273438,
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 9729
+      }
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11143",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 18.6402268409729,
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 10005
+      }
+    },
+    {
+      "instance_id": "pytest-dev__pytest-6116",
+      "repo": "pytest-dev/pytest",
+      "category": "feature",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "string",
+      "execution_time": 17.24726939201355,
+      "metadata": {
+        "lines_changed": 1,
+        "files_changed": 1,
+        "solution_length": 6828
+      }
+    },
+    {
+      "instance_id": "django__django-10914",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 17.86564826965332,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6436
+      }
+    },
+    {
+      "instance_id": "django__django-10924",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "math",
+      "execution_time": 17.14222741127014,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7573
+      }
+    },
+    {
+      "instance_id": "django__django-11049",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 17.954105377197266,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 9812
+      }
+    },
+    {
+      "instance_id": "django__django-11133",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "math",
+      "execution_time": 17.708868265151978,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 8845
+      }
+    },
+    {
+      "instance_id": "django__django-12113",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 18.126557111740112,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 8624
+      }
+    },
+    {
+      "instance_id": "django__django-12125",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 17.77194857597351,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 4995
+      }
+    },
+    {
+      "instance_id": "django__django-13964",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 17.485723733901978,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 4995
+      }
+    },
+    {
+      "instance_id": "django__django-14017",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 17.99513840675354,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 10013
+      }
+    },
+    {
+      "instance_id": "django__django-14238",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 17.364298820495605,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 9408
+      }
+    },
+    {
+      "instance_id": "django__django-14534",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 18.032230854034424,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6654
+      }
+    },
+    {
+      "instance_id": "django__django-14580",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 17.519108295440674,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 9592
+      }
+    },
+    {
+      "instance_id": "django__django-14672",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 18.913020133972168,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 10037
+      }
+    },
+    {
+      "instance_id": "django__django-14787",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 17.21900177001953,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7356
+      }
+    },
+    {
+      "instance_id": "django__django-15347",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 17.837607622146606,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 8111
+      }
+    },
+    {
+      "instance_id": "django__django-15388",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 18.257413864135742,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7913
+      }
+    },
+    {
+      "instance_id": "django__django-15781",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "math",
+      "execution_time": 17.612160682678223,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6687
+      }
+    },
+    {
+      "instance_id": "django__django-15851",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "string",
+      "execution_time": 17.98271918296814,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7389
+      }
+    },
+    {
+      "instance_id": "django__django-15902",
+      "repo": "django/django",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "math",
+      "execution_time": 17.07944631576538,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 9022
+      }
+    },
+    {
+      "instance_id": "django__django-16046",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 17.78009557723999,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6435
+      }
+    },
+    {
+      "instance_id": "django__django-16255",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 17.382164478302002,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6556
+      }
+    },
+    {
+      "instance_id": "django__django-16527",
+      "repo": "django/django",
+      "category": "feature",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "string",
+      "execution_time": 17.76681613922119,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 11305
+      }
+    },
+    {
+      "instance_id": "django__django-17087",
+      "repo": "django/django",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 17.309202194213867,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 10013
+      }
+    },
+    {
+      "instance_id": "matplotlib__matplotlib-23314",
+      "repo": "matplotlib/matplotlib",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 17.71235156059265,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 12993
+      }
+    },
+    {
+      "instance_id": "pytest-dev__pytest-11148",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 17.703442811965942,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 5811
+      }
+    },
+    {
+      "instance_id": "pytest-dev__pytest-5227",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 18.029058933258057,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6286
+      }
+    },
+    {
+      "instance_id": "pytest-dev__pytest-7168",
+      "repo": "pytest-dev/pytest",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 18.984288454055786,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6271
+      }
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13584",
+      "repo": "scikit-learn/scikit-learn",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 17.437885522842407,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 4995
+      }
+    },
+    {
+      "instance_id": "scikit-learn__scikit-learn-13779",
+      "repo": "scikit-learn/scikit-learn",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 18.038678407669067,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 4995
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-13480",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 17.31527614593506,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6209
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-13647",
+      "repo": "sympy/sympy",
+      "category": "refactor",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "list",
+      "execution_time": 17.95767331123352,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7098
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-14774",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 17.455530881881714,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 6087
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-15346",
+      "repo": "sympy/sympy",
+      "category": "test",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 17.86559796333313,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 4504
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-16988",
+      "repo": "sympy/sympy",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "math",
+      "execution_time": 17.14454174041748,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 3988
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-17139",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 17.975250959396362,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 4680
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-17630",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 17.837440013885498,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 10058
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-18057",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 1,
+      "task_type": "logic",
+      "execution_time": 18.098165035247803,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 5899
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-18189",
+      "repo": "sympy/sympy",
+      "category": "other",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "math",
+      "execution_time": 1.593106746673584,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 762
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-18621",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 18.006500005722046,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 9858
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-20212",
+      "repo": "sympy/sympy",
+      "category": "docs",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "list",
+      "execution_time": 17.43519639968872,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 9864
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-21612",
+      "repo": "sympy/sympy",
+      "category": "test",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 2,
+      "task_type": "logic",
+      "execution_time": 17.840592622756958,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 7252
+      }
+    },
+    {
+      "instance_id": "sympy__sympy-21627",
+      "repo": "sympy/sympy",
+      "category": "bug",
+      "condition": "experimental",
+      "success": true,
+      "solution_generated": true,
+      "agent_id": 0,
+      "task_type": "logic",
+      "execution_time": 2.2760050296783447,
+      "metadata": {
+        "lines_changed": 2,
+        "files_changed": 1,
+        "solution_length": 767
+      }
+    }
+  ],
+  "timestamp": "2026-01-24 20:46:20"
+}
